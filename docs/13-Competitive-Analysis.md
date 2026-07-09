@@ -69,7 +69,7 @@ MarketSurge combines market commentary, screening, and research-oriented content
 - strong editorial and educational framing
 
 ### Weaknesses
-- positioning can feel advisory in nature
+- positioning can feel overly directive in nature
 - reasoning behind analysis is not always transparent
 
 ### Lessons Learned
@@ -81,7 +81,7 @@ MarketSurge combines market commentary, screening, and research-oriented content
 - strong research presentation
 
 ### Ideas To Avoid
-- recommendation-style language that blurs the line between analysis and advice
+- directive language that blurs the line between analysis and advice
 
 ### TradeEvidence Differentiation
 TradeEvidence remains non-advisory and evidence-based, with a stronger emphasis on explainability and user reflection.
@@ -203,19 +203,15 @@ TradeEvidence aims to support broader trading analysis with transparent evidence
 ## TODO
 
 ### High
-- What additional competitor categories should be researched next?
-- Which product areas need deeper comparison with current market tools?
-- What assumptions in this analysis should be validated with user or market research?
+- Identify additional competitor categories that should be reviewed next.
+- Validate the current assumptions with user research or market observation where possible.
 
 ### Medium
-- Which competitor workflows should be observed in more detail?
-- What product patterns should be revisited as the market evolves?
-- Which comparison points should be documented more formally in a future research note?
+- Add more detailed notes on competitor workflows that influence the product direction.
+- Update this document when the product scope changes or new competitors become relevant.
 
 ### Low
-- What additional competitors would be useful to include over time?
-- What research notes should be captured as the landscape changes?
-- What insight from this analysis should be revisited later?
+- Capture any future research findings that may affect differentiation or product positioning.
 
 ## Related Documents
 - [00-PRD.md](00-PRD.md)

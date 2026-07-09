@@ -63,19 +63,15 @@ erDiagram
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Define the initial entity relationships in more detail for the first implementation scope.
+- Decide whether analysis history should be stored as snapshots or event-based records.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Clarify how scores, evidence, and journal entries should be linked in early releases.
+- Document any future data retention or privacy considerations that apply to saved analysis.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Add examples showing how the conceptual model maps to future product workflows.
 
 ## Related Documents
 - [03-Architecture.md](03-Architecture.md)

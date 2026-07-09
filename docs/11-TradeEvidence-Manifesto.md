@@ -19,19 +19,14 @@ Transparency creates confidence. When the reasoning is visible, the trader can a
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Refine the manifesto language as the product voice and positioning mature.
+- Ensure the manifesto remains consistent with the documentation set and product principles.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Add short examples that connect the manifesto to current product workflows.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Revisit the manifesto as the product expands into new user scenarios.
 
 ## Related Documents
 - [00-PRD.md](00-PRD.md)

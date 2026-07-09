@@ -64,19 +64,15 @@ Dark mode should be the default for the trading application because it is well s
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Define the token system for color, spacing, and component density.
+- Document the initial component patterns for score cards, tables, and alert surfaces.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Clarify how emphasis and hierarchy should be applied in dense analysis views.
+- Define how empty states and loading states should be expressed across the product.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Add patterns for future report and journal surfaces as the product matures.
 
 ## Related Documents
 - [03-Architecture.md](03-Architecture.md)

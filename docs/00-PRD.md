@@ -9,7 +9,7 @@ TradeEvidence is not a financial advisor, signal service, or automated execution
 TradeEvidence exists to bring clarity to a noisy and often emotionally charged trading environment. The product helps traders understand what evidence exists, how it is being interpreted, and how their own assumptions and risks fit into the decision process.
 
 ## Problem Statement
-Self-directed traders often work across fragmented tools and scattered information. They may have charts, notes, watchlists, reports, and market context in different places, yet still lack a clear and explainable way to connect evidence to decisions. Many existing experiences emphasize speed, alerts, or prediction, but traders need a calmer, more disciplined environment where reasoning is visible, assumptions are explicit, and decisions can be reviewed over time.
+Self-directed traders often work across fragmented tools and scattered information. They may have charts, notes, watchlists, reports, and market context in different places, yet still lack a clear and explainable way to connect evidence to decisions. Many existing experiences emphasize speed, alerts, or forecast-like outputs, but traders need a calmer, more disciplined environment where reasoning is visible, assumptions are explicit, and decisions can be reviewed over time.
 
 TradeEvidence addresses this need by providing a structured workspace for evidence review, scoring, reflection, and learning.
 
@@ -162,7 +162,7 @@ Success will be measured through a combination of product and user outcomes:
 ## Risks
 
 ### Product Risks
-- the product could be perceived as too advisory if language is not carefully managed
+- the product could be perceived as overly directive if language is not carefully managed
 - users may expect automated recommendations that the product does not provide
 - feature breadth may outpace clarity if the experience becomes too complex
 
@@ -193,19 +193,19 @@ Success will be measured through a combination of product and user outcomes:
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Confirm the initial set of Version 1 workflows and their priority order.
+- Define which modules should be included in the first authenticated experience.
+- Clarify the first success metrics that will be used to evaluate initial adoption and usefulness.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Document the initial scoring categories and their intended role in the product.
+- Define how confidence and uncertainty should be communicated in core views.
+- Decide whether the first release should include AI-assisted summaries or keep that capability as a later milestone.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Capture any regulatory or compliance considerations that become relevant during early rollout.
+- Record any product language changes that may affect the non-advisory positioning.
+- Keep this document aligned with future roadmap decisions as the product evolves.
 
 ## Related Documents
 - [01-Product-Vision.md](01-Product-Vision.md)

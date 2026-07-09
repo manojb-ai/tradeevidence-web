@@ -47,19 +47,15 @@ AI features should feel like a thoughtful assistant for disciplined traders, not
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Define the first AI-assisted features to ship in v0.6 and beyond.
+- Define acceptable output boundaries and safety constraints for AI-generated assistance.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Clarify how AI-generated explanations should be labeled and reviewed by users.
+- Document any content policies or guardrails that should govern AI-assisted summaries.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Record any future improvements to AI review flows as the product evolves.
 
 ## Related Documents
 - [02-Principles.md](02-Principles.md)

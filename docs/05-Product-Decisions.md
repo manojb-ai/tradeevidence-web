@@ -12,7 +12,7 @@ This document records important product and architecture decisions for TradeEvid
 | Use GitHub for source control | GitHub supports collaboration, versioning, and project management. | GitLab; Bitbucket | Accepted |
 | Deliver a desktop-first experience | Trading workflows benefit from dense information layout and multi-panel analysis. | Mobile-first; equal-first | Accepted |
 | Make scoring explainable | Traders need to understand why a score exists and what evidence supports it. | Black-box scoring; opaque AI-only scoring | Accepted |
-| Emphasize evidence instead of recommendations | TradeEvidence should remain non-advisory and support user judgment. | Recommendation-driven UX; automated alerts as decisions | Accepted |
+| Emphasize evidence instead of decision directives | TradeEvidence should remain non-advisory and support user judgment. | Decision-directive UX; automated alerts as decisions | Accepted |
 | Separate public website from authenticated application | Marketing, onboarding, and the trading workspace have different goals and responsibilities. | Single unified experience | Accepted |
 
 ## Guidance for Future Decisions
@@ -28,19 +28,15 @@ Each future decision should state:
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Record decisions around backend architecture and authentication provider selection.
+- Record decisions around data sources and the initial scoring model approach.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Document the decision criteria for future AI-assisted features.
+- Capture any trade-offs between breadth of features and clarity of the user experience.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Add follow-up notes whenever a decision is revisited or superseded.
 
 ## Related Documents
 - [03-Architecture.md](03-Architecture.md)

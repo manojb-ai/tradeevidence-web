@@ -47,19 +47,16 @@ Over time, TradeEvidence aims to become a comprehensive knowledge base for tradi
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Define the first onboarding experience for new users.
+- Confirm the first core workflows that should be prioritized in the product roadmap.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Document how the product should present evidence and assumptions in early releases.
+- Clarify how the initial experience should balance structure with ease of use.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Add examples that show how the vision translates into user-facing product behavior.
+- Revisit the audience framing as the product evolves and new user segments are validated.
 
 ## Related Documents
 - [00-PRD.md](00-PRD.md)

@@ -29,7 +29,7 @@ Scores should be generated from multiple independent evidence sources rather tha
 | Sector Strength | Evaluate whether the sector is helping or hurting the opportunity. |
 
 ## Scoring Approach
-A score should be treated as a structured summary of evidence, not a recommendation. It should support a trader's own analysis by clarifying:
+A score should be treated as a structured summary of evidence, not a decision directive. It should support a trader's own analysis by clarifying:
 - what evidence is present
 - which factors are contributing positively or negatively
 - where confidence is high or uncertain
@@ -66,19 +66,15 @@ The scoring engine should provide:
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Define the initial scoring model and weighting approach for v0.4.
+- Define how scores should be visualized and compared in primary product views.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Clarify how confidence and assumptions should appear beside each score.
+- Document how evidence categories should be grouped or prioritized in the first release.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Capture any score model updates that emerge from early testing or user feedback.
 
 ## Related Documents
 - [03-Architecture.md](03-Architecture.md)

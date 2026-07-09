@@ -130,19 +130,15 @@ Use concise, purpose-driven commit messages.
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Define the formal linting and build checklist that contributors should follow.
+- Define release note requirements for each feature branch.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Document the expected review checklist for UI, documentation, and architecture changes.
+- Clarify any exceptions to the standard branch and commit conventions.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Update this standard as the team adopts new tooling or workflows.
 
 ## Related Documents
 - [02-Principles.md](02-Principles.md)

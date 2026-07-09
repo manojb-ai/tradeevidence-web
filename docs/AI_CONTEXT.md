@@ -123,19 +123,15 @@ When working on TradeEvidence, assume the following:
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Add implementation-specific guidance when the team begins to formalize the first engineering workflow.
+- Record any future AI coding constraints that become necessary as the product evolves.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Add examples of preferred terminology in UI copy and documentation.
+- Update this file when the architecture or engineering standards change materially.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Capture additional assistant guidance as new product modules are introduced.
 
 ## Related Documents
 - [00-PRD.md](00-PRD.md)

@@ -54,6 +54,10 @@ This directory is the long-term knowledge base for the TradeEvidence platform.
 - [research/Breadth.md](research/Breadth.md)
 - [research/MarketRegimes.md](research/MarketRegimes.md)
 
+### Supporting Documentation
+- [images/README.md](images/README.md) — mockups, diagrams, screenshots, and visual references
+- [meeting-notes/README.md](meeting-notes/README.md) — planning notes and architecture discussions
+
 ### Decisions and Releases
 - [decisions/ADR-0001.md](decisions/ADR-0001.md)
 - [decisions/ADR-0002.md](decisions/ADR-0002.md)

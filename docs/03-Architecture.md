@@ -199,19 +199,16 @@ flowchart LR
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Define the initial backend service boundaries for the first production-ready release.
+- Clarify the authentication provider and account model assumptions.
+- Decide the storage strategy for user content, market context, and saved analysis.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Document the expected interaction between the frontend, scoring services, and AI-assisted review flows.
+- Clarify whether the first release needs asynchronous processing for reports or alerts.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Add a more detailed deployment diagram once hosting and operational responsibilities are finalized.
 
 ## Related Documents
 - [00-PRD.md](00-PRD.md)

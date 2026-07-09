@@ -36,7 +36,7 @@ flowchart LR
 ### v0.1 — Landing Page
 - establish the public website experience
 - communicate the product vision and value proposition
-- introduce the non-advisory positioning
+- introduce the evidence-based positioning
 
 ### v0.2 — Authentication
 - support secure access to the authenticated experience
@@ -56,7 +56,7 @@ flowchart LR
 
 ### v0.6 — AI Review
 - introduce AI-assisted summaries and review support
-- maintain a clear non-advisory role for AI features
+- maintain a clear role for AI features as decision support rather than decision authority
 
 ### v0.7 — Journal
 - enable structured journaling of observations and outcomes
@@ -80,19 +80,15 @@ flowchart LR
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Sequence milestone dependencies more explicitly for the first release path.
+- Define acceptance criteria for each release milestone.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Clarify which features should be included in v0.4 and v0.5 based on initial product scope.
+- Document any release ordering changes if the initial architecture decisions shift.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Add release notes for future milestones once they are finalized.
 
 ## Related Documents
 - [00-PRD.md](00-PRD.md)

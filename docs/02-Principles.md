@@ -10,7 +10,7 @@ These principles define how TradeEvidence should behave as a product and as a pl
 | AI assists; the trader decides | AI can support analysis and summarization, but the trader remains responsible for the final decision. |
 | Every score should be explainable | Scores must be traceable to visible factors and evidence. |
 | Never hide assumptions | Assumptions, limits, and data quality should be visible. |
-| Transparency over black-box predictions | The product should favor interpretable logic over opaque outputs. |
+| Transparency over opaque outputs | The product should favor interpretable logic over opaque outputs. |
 | Professional over flashy | The experience should feel calm, credible, and focused on work. |
 | Consistency over complexity | Simplicity and repeatable workflows are more valuable than unnecessary feature depth. |
 | Show confidence and uncertainty | The product should distinguish between strong evidence and uncertain context. |
@@ -31,19 +31,15 @@ TradeEvidence should feel analytical, professional, and trustworthy. It should h
 ## TODO
 
 ### High
-- What decision must be made first to unblock the next milestone?
-- What user or product risk is most urgent to resolve?
-- Which requirement is still ambiguous and needs stakeholder input?
+- Define how uncertainty should be presented consistently across the product UI.
+- Define how assumptions should be surfaced in reports and AI-assisted summaries.
 
 ### Medium
-- What implementation choice should be clarified before development begins?
-- What additional product or UX detail should be defined next?
-- Which trade-off should be documented before the feature is prioritized?
+- Clarify how confidence and evidence should be shown in score-related surfaces.
+- Document any exceptions to the principle of transparency where product constraints may apply.
 
 ### Low
-- What future enhancement would benefit from early documentation?
-- What minor detail should be captured as the product evolves?
-- What open question is useful to keep visible for later refinement?
+- Review this document periodically as the product voice and workflow patterns mature.
 
 ## Related Documents
 - [00-PRD.md](00-PRD.md)
