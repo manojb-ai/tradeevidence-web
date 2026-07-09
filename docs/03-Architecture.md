@@ -1,0 +1,221 @@
+# 03. Architecture
+
+## Overview
+TradeEvidence will be built as a modular product experience with a clear separation between a public website and an authenticated trading application.
+
+## High-level Architecture
+
+```mermaid
+flowchart LR
+    A[Public Website] --> B[Authenticated App]
+    B --> C[Research Workspace]
+    C --> D[Scoring Engine]
+    C --> E[AI Services]
+    C --> F[Market Data]
+    C --> G[Database]
+    D --> H[Explainable Scores]
+    E --> I[Summaries and Review]
+```
+
+## Frontend
+The user-facing experience will be built with:
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+The frontend will support:
+- desktop-first trading workflows
+- responsive layouts for broader access
+- modular dashboard and workspace surfaces
+- light, dark, and system theme support
+
+```mermaid
+flowchart LR
+    subgraph Frontend[Frontend Surface]
+        Landing[Landing Pages]
+        App[Authenticated App]
+        Dash[Dashboard]
+        Modules[Workspace Modules - Placeholder]
+    end
+
+    Landing --> App
+    App --> Dash
+    App --> Modules
+```
+
+## Backend (Future)
+A backend layer will be introduced when the product requires authenticated services, persistent analysis workflows, and data synchronization.
+
+```mermaid
+flowchart TD
+    Client[Frontend] --> API[API Layer - Placeholder]
+    API --> Services[Core Services - Placeholder]
+    Services --> Store[(Persistent Storage - Placeholder)]
+```
+
+## Authentication
+Authentication will support secure access to the authenticated application and protect personal workspaces, journals, and saved analysis.
+
+```mermaid
+flowchart LR
+    User[Trader] --> Auth[Authentication Layer - Placeholder]
+    Auth --> App[Protected App Experience]
+    Auth --> Profile[User Profile - Placeholder]
+```
+
+## Market Data
+Market data services will provide the context required for:
+- watchlists
+- sector views
+- scanners
+- market summaries
+- score inputs
+
+## Scoring Engine
+The scoring engine will combine multiple evidence categories into explainable scores. It will remain transparent and non-black-box in nature.
+
+```mermaid
+flowchart TD
+    Inputs[Evidence Inputs - Placeholder] --> Engine[Scoring Engine]
+    Engine --> Output[Explainable Score]
+    Output --> Review[Trader Review]
+```
+
+## AI Services
+AI services may be used for:
+- explaining scores
+- summarizing evidence
+- reviewing journals
+- generating reports
+- supporting educational assistance
+
+AI should support trader decisions without replacing them.
+
+```mermaid
+flowchart LR
+    Evidence[Evidence and Scores] --> AI[AI Services - Placeholder]
+    AI --> Explain[Plain-language Explanation]
+    AI --> Summaries[Journal and Report Summaries]
+    Explain --> Trader[Trader Decision]
+    Summaries --> Trader
+```
+
+## Database
+A persistent data store will be needed for user content, saved analyses, journals, alerts, portfolios, and market context.
+
+```mermaid
+flowchart TB
+    App[Application Services] --> DB[(Database - Placeholder)]
+    DB --> UserData[User Content]
+    DB --> MarketData[Market Context]
+    DB --> Analysis[Saved Analysis]
+```
+
+## Deployment
+The product will use:
+- GitHub for source control and collaboration
+- Vercel for deployment and hosting
+
+```mermaid
+flowchart LR
+    Repo[GitHub Repository - Placeholder] --> Deploy[Vercel or Similar Hosting - Placeholder]
+    Deploy --> App[Frontend Application]
+    Deploy --> API[API Services - Placeholder]
+    API --> DB[(Database - Placeholder)]
+```
+
+## GitHub
+GitHub will serve as the collaboration and source-control layer for the product.
+
+```mermaid
+flowchart TD
+    Repo[Repository - Placeholder] --> PR[Pull Requests - Placeholder]
+    Repo --> Issues[Issues and Planning - Placeholder]
+    Repo --> Actions[CI/CD - Placeholder]
+```
+
+## Vercel
+Vercel will be considered for hosting and deployment once the initial application and deployment workflow are defined.
+
+```mermaid
+flowchart LR
+    Vercel[Vercel Project - Placeholder] --> Preview[Preview Deployments - Placeholder]
+    Vercel --> Prod[Production Deployments - Placeholder]
+    Vercel --> Env[Environment Configuration - Placeholder]
+```
+
+## Future Cloud Architecture
+As the platform grows, the architecture may evolve to include:
+- managed application hosting
+- API services for market and scoring data
+- asynchronous background processing for alerts and reports
+- observability and analytics
+
+```mermaid
+flowchart LR
+    Client[Frontend] --> Edge[Edge or CDN - Placeholder]
+    Client --> API[API Services - Placeholder]
+    API --> Queue[Background Jobs - Placeholder]
+    API --> DB[(Primary Database - Placeholder)]
+    API --> Cache[(Cache - Placeholder)]
+    Queue --> Notify[Alerts and Reports - Placeholder]
+```
+
+## Request Flow
+
+```mermaid
+sequenceDiagram
+    participant User as Trader
+    participant UI as Frontend
+    participant Auth as Auth
+    participant Data as Market Data
+    participant Score as Scoring Engine
+    participant AI as AI Services
+
+    User->>UI: Open dashboard
+    UI->>Auth: Verify access
+    UI->>Data: Load market context
+    UI->>Score: Request score context
+    Score-->>UI: Return explainable results
+    UI->>AI: Request summary or explanation
+    AI-->>UI: Return assisted insights
+    UI-->>User: Display workspace
+```
+
+## Deployment Concept
+
+```mermaid
+flowchart LR
+    GH[GitHub Repository] --> Vercel[Vercel Hosting]
+    Vercel --> FE[Frontend Application]
+    Vercel --> API[Future API Services]
+    API --> DB[(Database)]
+    API --> MD[Market Data Providers]
+```
+
+---
+
+## TODO
+
+### High
+- What decision must be made first to unblock the next milestone?
+- What user or product risk is most urgent to resolve?
+- Which requirement is still ambiguous and needs stakeholder input?
+
+### Medium
+- What implementation choice should be clarified before development begins?
+- What additional product or UX detail should be defined next?
+- Which trade-off should be documented before the feature is prioritized?
+
+### Low
+- What future enhancement would benefit from early documentation?
+- What minor detail should be captured as the product evolves?
+- What open question is useful to keep visible for later refinement?
+
+## Related Documents
+- [00-PRD.md](00-PRD.md)
+- [04-Design-System.md](04-Design-System.md)
+- [05-Product-Decisions.md](05-Product-Decisions.md)
+- [06-Roadmap.md](06-Roadmap.md)
+- [09-Data-Model.md](09-Data-Model.md)

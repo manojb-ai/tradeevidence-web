@@ -1,0 +1,101 @@
+# 06. Roadmap
+
+## Release Overview
+The roadmap below outlines the intended evolution of TradeEvidence from early foundation work to a production-ready platform.
+
+| Release | Focus |
+| --- | --- |
+| v0.1 | Landing Page |
+| v0.2 | Authentication |
+| v0.3 | Dashboard |
+| v0.4 | Scoring Engine |
+| v0.5 | Watchlists |
+| v0.6 | AI Review |
+| v0.7 | Journal |
+| v0.8 | Portfolio |
+| v0.9 | Reports |
+| v1.0 | Production Release |
+
+## Release Flow
+
+```mermaid
+flowchart LR
+    A[v0.1 Landing Page] --> B[v0.2 Authentication]
+    B --> C[v0.3 Dashboard]
+    C --> D[v0.4 Scoring Engine]
+    D --> E[v0.5 Watchlists]
+    E --> F[v0.6 AI Review]
+    F --> G[v0.7 Journal]
+    G --> H[v0.8 Portfolio]
+    H --> I[v0.9 Reports]
+    I --> J[v1.0 Production Release]
+```
+
+## Release Notes
+
+### v0.1 — Landing Page
+- establish the public website experience
+- communicate the product vision and value proposition
+- introduce the non-advisory positioning
+
+### v0.2 — Authentication
+- support secure access to the authenticated experience
+- define the initial user account and profile flow
+
+### v0.3 — Dashboard
+- deliver the first trading workspace experience
+- introduce the primary dashboard layout inspired by product mockups
+
+### v0.4 — Scoring Engine
+- build the initial explainable scoring framework
+- define scoring categories and evidence inputs
+
+### v0.5 — Watchlists
+- support organization of tracked assets and market context
+- expose watchlist-specific analysis views
+
+### v0.6 — AI Review
+- introduce AI-assisted summaries and review support
+- maintain a clear non-advisory role for AI features
+
+### v0.7 — Journal
+- enable structured journaling of observations and outcomes
+- support reflection on assumptions and decision quality
+
+### v0.8 — Portfolio
+- provide portfolio-oriented context and performance review
+- connect journal and analysis workflows
+
+### v0.9 — Reports
+- produce reports that summarize evidence, scores, and reflections
+- support better review and learning cycles
+
+### v1.0 — Production Release
+- stabilize the product experience
+- support light, dark, and system themes
+- deliver a reliable foundation for future growth
+
+---
+
+## TODO
+
+### High
+- What decision must be made first to unblock the next milestone?
+- What user or product risk is most urgent to resolve?
+- Which requirement is still ambiguous and needs stakeholder input?
+
+### Medium
+- What implementation choice should be clarified before development begins?
+- What additional product or UX detail should be defined next?
+- Which trade-off should be documented before the feature is prioritized?
+
+### Low
+- What future enhancement would benefit from early documentation?
+- What minor detail should be captured as the product evolves?
+- What open question is useful to keep visible for later refinement?
+
+## Related Documents
+- [00-PRD.md](00-PRD.md)
+- [03-Architecture.md](03-Architecture.md)
+- [05-Product-Decisions.md](05-Product-Decisions.md)
+- [07-Scoring-Engine.md](07-Scoring-Engine.md)
