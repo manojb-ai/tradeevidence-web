@@ -1,7 +1,7 @@
 # 00. Product Requirements Document
 
 ## Product Overview
-TradeEvidence is an evidence-based trading intelligence platform for self-directed traders. It helps users organize research, review evidence, understand scoring logic, maintain a journal of decisions, and reflect on outcomes in a structured environment.
+TradeEvidence is an evidence-based trading education and intelligence platform for self-directed traders. It helps users organize research, review evidence, understand scoring logic, maintain a journal of decisions, and reflect on outcomes in a structured environment.
 
 TradeEvidence is not a financial advisor, signal service, or automated execution tool. The trader remains responsible for the final decision.
 
@@ -11,7 +11,7 @@ TradeEvidence exists to bring clarity to a noisy and often emotionally charged t
 ## Problem Statement
 Self-directed traders often work across fragmented tools and scattered information. They may have charts, notes, watchlists, reports, and market context in different places, yet still lack a clear and explainable way to connect evidence to decisions. Many existing experiences emphasize speed, alerts, or forecast-like outputs, but traders need a calmer, more disciplined environment where reasoning is visible, assumptions are explicit, and decisions can be reviewed over time.
 
-TradeEvidence addresses this need by providing a structured workspace for evidence review, scoring, reflection, and learning.
+TradeEvidence addresses this need by providing a structured workspace for evidence review, scoring, reflection, and learning while focusing on risk control and risk tolerance. 
 
 ## Target Users
 
@@ -19,6 +19,11 @@ TradeEvidence addresses this need by providing a structured workspace for eviden
 - self-directed traders who prefer independent analysis
 - active traders who value transparency and structured thinking
 - traders who want a better way to organize their research and decision process
+- Stock traders who jump into the trading but don't know what stocks to trade
+- Stock traders who have heard about stock options but don't have proper education on what option strategies are out there and should be employed
+- Traders who want to trade options but don't know the pros and cons of various option strategies
+- Educate Stock and Option Traders regarding risks of various stock and option strategies, capital requirements, market structure suitable for different option strategies
+- Educate users with demonstrable examples of proper capital allocation and risk control 
 
 ### Secondary Users
 - investors who want a more organized research workflow
@@ -34,8 +39,8 @@ TradeEvidence addresses this need by providing a structured workspace for eviden
 TradeEvidence should help users achieve the following outcomes:
 
 ### Outcome Goals
-- help traders make more deliberate decisions
-- make evidence and analysis easier to understand
+- help traders make more deliberate decisions that are based on data rather than intuition or hunch
+- make evidence and analysis easier to understand and in greater detail
 - support explainable scoring and transparent reasoning
 - encourage disciplined journaling and review
 - improve consistency over time without replacing trader judgment
@@ -120,12 +125,19 @@ Version 1 will focus on the core foundation of the platform:
 - a public landing experience
 - an authenticated product experience
 - a dashboard-oriented workspace
+- Scoring and technical analysis of major market indexes like SPY, QQQ, IWM
+- Scoring and technical analysis of major commodities like Gold, Silver, Corn, Soybean
+- Scoring and technical analysis of major currency pairs like EURUSD, GBPUSD, USDJPY
 - watchlists and market context surfaces
 - an explainable scoring experience
 - journaling and notes
 - basic reports and review flows
 - light and dark theme support
 - responsive and accessible user experience
+- AI Chatbot that can help pull the scoring logic, technical levels of stocks, various option strategies and their pros and cons, and risk tolerance questions based on the user query, refer to educational websites. AI Chatbot must always mention that the provided information is for educational purpose only and not financial advice
+- Platform security and stability
+- Protection from Cybersecurity and Denial of Service type attacks
+- Extreme awareness to focus on educational and analysis content but never a financial recommendation
 
 Version 1 will prioritize clarity, usability, and explainability over breadth. The initial release should establish a strong foundation for research, scoring, and reflection without trying to solve every future use case at once.
 
@@ -153,6 +165,9 @@ Success will be measured through a combination of product and user outcomes:
 - users report improved clarity in their process
 - users engage with reports and journal reflections over time
 - the product maintains strong accessibility and usability standards
+- users provide platform features
+- users request additional features
+- users vote on feature prioritization
 
 ### Product Health Signals
 - users can complete the core workflow without confusion
@@ -193,9 +208,31 @@ Success will be measured through a combination of product and user outcomes:
 ## TODO
 
 ### High
-- Confirm the initial set of Version 1 workflows and their priority order.
-- Define which modules should be included in the first authenticated experience.
-- Clarify the first success metrics that will be used to evaluate initial adoption and usefulness.
+
+Workflows
+
+Workflow 1 - User lands on main dashboard -> Views Market Statistics -> Advancers and Declines Information -> Index Charts and Direction -> Views Leading and Lagging Sectors 
+Workflow 2 - Users are encouraged to create their user profile to get additional features
+Workflow 3 - User Signs in -> Main Dashboard -> Top Long and Short Opportunities -> Review Evidence for Top Long and Short Opportunities -> Add to Watchlist 
+Workflow 4 - Review and Maintain Watchlist
+Workflow 5 - Query Individual Stock -> Review Evidence -> Review Option Strategies -> Review Risk, Pros & Cons -> Add to Watchlist
+Workflow 6 - Open Journal -> Add Trade -> Upload Screenshot -> Write Notes
+
+Modules
+
+Module 1 - Dashboard
+Module 2 - Market Summary, Statistics and Charts
+Module 3 - Watchlists
+Module 4 - Journal
+Module 5 - Settings
+Module 6 - User Profile, Password Management
+
+Success Metrics
+
+Success 1 - User Returns Multiple Times during the week
+Success 2 - User returns every morning and evening
+Success 3 - Users refers to other users
+Success 4 - Stable and Increasing website traffic
 
 ### Medium
 - Document the initial scoring categories and their intended role in the product.
