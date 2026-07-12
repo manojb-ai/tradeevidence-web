@@ -62,6 +62,17 @@ A typical user flow should look like this:
 
 The workspace should make that flow feel natural and deliberate rather than crowded or overwhelming.
 
+## Evidence History and Validation
+The workspace should make past evidence visible and reviewable. Each opportunity or thesis should eventually connect to an evidence history trail that shows:
+- the immutable evidence snapshot created at the time of analysis
+- the model and data versions used
+- the supporting and contradicting evidence preserved for review
+- later outcome measurements that show what happened
+
+This makes the workspace more than a place to capture a current opinion; it becomes a place to learn from past analysis. It also supports a Devil's Advocate posture by surfacing the strongest bullish and bearish arguments before a decision is finalized.
+
+The broader architectural context for this concept is documented in [Evidence-History-and-Validation.md](Evidence-History-and-Validation.md), and the expected record structure is described in [Evidence-Snapshot-Data-Contract.md](Evidence-Snapshot-Data-Contract.md).
+
 ## Future Evolution
 
 The Decision Workspace will evolve through the product's broader design roadmap:

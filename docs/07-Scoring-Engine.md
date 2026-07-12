@@ -61,6 +61,17 @@ The scoring engine should provide:
 - contextual notes on uncertainty
 - a narrative explanation when needed
 
+## Historical Validation and Versioning
+The scoring engine should not only generate a score for the present moment; it should also preserve the conditions under which that score was produced. Each score should be associated with an immutable Evidence Snapshot that records the model version, data version, supporting and contradicting evidence, and later outcome measurements.
+
+This supports:
+- historical validation of past scores and theses
+- comparison across model iterations
+- transparent confidence changes over time
+- a Devil's Advocate view that preserves both bullish and bearish reasoning
+
+The broader product architecture for this approach is described in [Evidence-History-and-Validation.md](Evidence-History-and-Validation.md), and the expected record shape is defined in [Evidence-Snapshot-Data-Contract.md](Evidence-Snapshot-Data-Contract.md).
+
 ---
 
 ## TODO

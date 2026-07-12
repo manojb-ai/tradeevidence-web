@@ -67,6 +67,23 @@ This document captures the reasoning behind major product decisions. It is not a
 - Expected Product Impact: Personalization will influence education and workflow structure, but it will not replace the trader's judgment or change objective context.
 - Status: Active
 
+## Evidence History and Validation Decisions
+
+- Decision: TradeEvidence should preserve immutable evidence snapshots for each analytical run.
+- Reason: Historical evidence is a strategic asset that enables later validation, comparison, and learning.
+- Expected Product Impact: The platform will maintain an evidence history repository, preserve both supporting and contradicting evidence, and retain model and data versions alongside each snapshot.
+- Status: Active
+
+- Decision: The product should maintain a Devil's Advocate posture in its analysis workflow.
+- Reason: Preserving the strongest bullish and bearish case helps reduce confirmation bias and supports more disciplined thinking.
+- Expected Product Impact: Users will be able to review both sides of an argument before forming a conclusion.
+- Status: Active
+
+- Decision: Scoring models and underlying data should be versioned.
+- Reason: Historical scores must remain interpretable as the product evolves.
+- Expected Product Impact: The platform will support historical validation and outcome measurement over time.
+- Status: Active
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)

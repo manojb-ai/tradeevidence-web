@@ -14,6 +14,8 @@ This document captures the conceptual data model for TradeEvidence. It is intent
 | Score | A structured evaluation of an asset or setup. |
 | Evidence | A supporting piece of information related to a score or thesis. |
 | Alert | A notification or trigger tied to a condition of interest. |
+| Evidence Snapshot | An immutable record of a scoring run or analysis session, including score, confidence, context, evidence, versions, and later outcomes. |
+| Outcome Measurement | A later evaluation of how a score, thesis, or evidence set performed over time. |
 | Journal Entry | A personal reflection or record of analysis and outcomes. |
 | Trade | A recorded trade event or decision context. |
 | Portfolio | A collection of holdings or tracked positions. |
@@ -30,10 +32,17 @@ A user may own multiple watchlists, journal entries, and alerts. A watchlist may
 flowchart LR
     A[Market Snapshot] --> B[Evidence]
     B --> C[Score]
-    C --> D[Journal Entry]
-    C --> E[Alert]
-    C --> F[Report]
+    C --> D[Evidence Snapshot]
+    D --> E[Outcome Measurement]
+    C --> F[Journal Entry]
+    C --> G[Alert]
+    C --> H[Report]
 ```
+
+## Evidence History and Validation
+The data model should preserve the history of analysis rather than overwrite it. Each score or thesis should be able to link to an immutable Evidence Snapshot that records the model version, data version, supporting evidence, contradicting evidence, and later outcome measurements.
+
+This supports a long-lived record of how TradeEvidence reasoned at a given moment, while still allowing future validation and improvement. The broader product concept is documented in [Evidence-History-and-Validation.md](Evidence-History-and-Validation.md), and the snapshot structure is described in [Evidence-Snapshot-Data-Contract.md](Evidence-Snapshot-Data-Contract.md).
 
 ## Conceptual Model
 

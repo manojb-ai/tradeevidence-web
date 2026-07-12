@@ -99,6 +99,18 @@ flowchart TD
     Output --> Review[Trader Review]
 ```
 
+## Evidence History and Validation
+TradeEvidence should treat evidence as a durable asset rather than a transient calculation. Each scoring run should produce an immutable Evidence Snapshot that captures the market context, the evidence used, the model version, the data version, and the later outcome. This supports historical validation and enables the platform to learn from its own past assessments without overwriting earlier beliefs.
+
+The architecture should therefore preserve:
+- an Evidence History Repository for persisted snapshots and review trails
+- model versioning and data versioning for every score and analysis run
+- outcome measurements that compare earlier expectations with what later occurred
+- a Devil's Advocate perspective that preserves both supporting and contradicting evidence
+- a Future Evidence Lab for retrospective analysis and product learning
+
+This pattern is described in more detail in [Evidence-History-and-Validation.md](Evidence-History-and-Validation.md) and the expected record structure is defined in [Evidence-Snapshot-Data-Contract.md](Evidence-Snapshot-Data-Contract.md).
+
 ## AI Services
 AI services may be used for:
 - explaining scores
