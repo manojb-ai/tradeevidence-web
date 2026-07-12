@@ -3,6 +3,23 @@
 ## Overview
 TradeEvidence will be built as a modular product experience with a clear separation between a public website and an authenticated trading application.
 
+## Core Product Domain
+
+The product experience is organized around the user's journey from identity and profile to decision-making and learning.
+
+```mermaid
+flowchart TD
+    U[User] --> TP[Trading Profile]
+    TP --> P[Persona]
+    P --> DW[Decision Workspace]
+    DW --> E[Evidence]
+    E --> D[Decision]
+    D --> J[Journal]
+    J --> CI[Continuous Improvement]
+```
+
+The Decision Workspace becomes the primary surface for market context, evidence review, risk framing, and post-decision reflection. The trading profile and persona inform personalization, while the journal and continuous improvement loop help the trader develop judgment over time.
+
 ## High-level Architecture
 
 ```mermaid
@@ -212,7 +229,11 @@ flowchart LR
 
 ## Related Documents
 - [00-PRD.md](00-PRD.md)
+- [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
 - [04-Design-System.md](04-Design-System.md)
 - [05-Product-Decisions.md](05-Product-Decisions.md)
 - [06-Roadmap.md](06-Roadmap.md)
+- [07-Decision-Workspace-Concept.md](07-Decision-Workspace-Concept.md)
+- [08-AI-Strategy.md](08-AI-Strategy.md)
 - [09-Data-Model.md](09-Data-Model.md)
+- [Trading-Profile.md](Trading-Profile.md)

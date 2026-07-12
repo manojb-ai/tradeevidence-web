@@ -3,6 +3,30 @@
 ## Role of AI
 AI will be used to assist traders with research, analysis, and reflection. It should extend the trader's ability to process information without replacing their judgment.
 
+TradeEvidence should position AI as a Decision Coach. Its purpose is to help the trader answer, "What should I be thinking about?" rather than "What should I do?" The system should support reflection, clarify assumptions, and improve decision quality without assuming authority over the trader's judgment.
+
+## Interaction Principles
+
+- Ask before answering.
+- Teach before suggesting.
+- Present multiple reasonable approaches.
+- Explain assumptions.
+- Explain risks.
+- Respect the Trading Profile.
+- Encourage user ownership.
+- Never provide individualized investment advice.
+
+## Educational Scenarios
+
+The AI experience should be able to support educational discussion around situations such as:
+
+- down 20% or 50% on a position
+- a stock down significantly from highs
+- covered calls
+- protective puts
+- waiting for technical confirmation
+- position sizing discussions
+
 ## Intended Uses
 AI may support:
 - explaining scores in plain language
@@ -58,7 +82,11 @@ AI features should feel like a thoughtful assistant for disciplined traders, not
 - Record any future improvements to AI review flows as the product evolves.
 
 ## Related Documents
+- [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
 - [02-Principles.md](02-Principles.md)
+- [03-Architecture.md](03-Architecture.md)
+- [07-Decision-Workspace-Concept.md](07-Decision-Workspace-Concept.md)
 - [07-Scoring-Engine.md](07-Scoring-Engine.md)
 - [09-Data-Model.md](09-Data-Model.md)
 - [11-TradeEvidence-Manifesto.md](11-TradeEvidence-Manifesto.md)
+- [Trading-Profile.md](Trading-Profile.md)

@@ -3,6 +3,20 @@
 ## UI Philosophy
 TradeEvidence should feel professional, calm, analytical, and trustworthy. The interface should help users focus on evidence, context, and decision quality.
 
+## Design Principles and Product Evolution
+
+The design system should reinforce a few core product decisions:
+
+- Market context first.
+- Simplicity before customization.
+- Progressive disclosure.
+- Every screen should answer the trader's next question.
+
+The dashboard experience should evolve in stages:
+- Version 1: a curated Decision Workspace that surfaces the most important context and next steps.
+- Version 2: persona-based workspace templates that adapt the experience to different trading styles.
+- Version 3: user-customizable dashboards using widgets, allowing advanced users to arrange their own analysis surfaces.
+
 ## Typography
 Typography should be clean, legible, and structured for dense dashboards and longer reading sessions. The system should support clear hierarchy for:
 - headings
@@ -77,4 +91,6 @@ Dark mode should be the default for the trading application because it is well s
 ## Related Documents
 - [03-Architecture.md](03-Architecture.md)
 - [05-Product-Decisions.md](05-Product-Decisions.md)
+- [07-Decision-Workspace-Concept.md](07-Decision-Workspace-Concept.md)
 - [10-Glossary.md](10-Glossary.md)
+- [Trading-Profile.md](Trading-Profile.md)
