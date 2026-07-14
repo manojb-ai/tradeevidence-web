@@ -3,6 +3,14 @@
 ## Overview
 TradeEvidence will be built as a modular product experience with a clear separation between a public website and an authenticated trading application.
 
+## Documentation Status
+Status: MVP
+Version: 1.0
+Owner: Engineering
+Last Updated: 2026-07-14
+Applies To: Architecture direction and implementation framing
+Related Documents: [00-PRD.md](00-PRD.md), [04-Design-System.md](04-Design-System.md), [09-Data-Model.md](09-Data-Model.md), [Source-of-Truth.md](Source-of-Truth.md)
+
 ## Core Product Domain
 
 The product experience is organized around the user's journey from identity and profile to decision-making and learning.
@@ -52,7 +60,7 @@ flowchart LR
     subgraph Frontend[Frontend Surface]
         Landing[Landing Pages]
         App[Authenticated App]
-        Dash[Dashboard]
+        Dash[Homepage]
         Modules[Workspace Modules - Placeholder]
     end
 
@@ -202,7 +210,7 @@ sequenceDiagram
     participant Score as Scoring Engine
     participant AI as AI Services
 
-    User->>UI: Open dashboard
+    User->>UI: Open homepage
     UI->>Auth: Verify access
     UI->>Data: Load market context
     UI->>Score: Request score context

@@ -5,6 +5,14 @@ TradeEvidence is an evidence-based trading education and intelligence platform f
 
 TradeEvidence is not a financial advisor, signal service, or automated execution tool. The trader remains responsible for the final decision.
 
+## Documentation Status
+Status: Approved
+Version: 1.0
+Owner: Product
+Last Updated: 2026-07-14
+Applies To: Product direction and MVP scope
+Related Documents: [01-Product-Vision.md](01-Product-Vision.md), [01a-Product-Philosophy.md](01a-Product-Philosophy.md), [06-Roadmap.md](06-Roadmap.md), [MVP-v1.md](MVP-v1.md)
+
 ## Vision
 TradeEvidence exists to bring clarity to a noisy and often emotionally charged trading environment. The product helps traders understand what evidence exists, how it is being interpreted, and how their own assumptions and risks fit into the decision process.
 
@@ -87,8 +95,8 @@ The product experience will be organized around a small set of core modules that
 ### Landing Website
 Public-facing product overview, positioning, and onboarding entry points.
 
-### Dashboard
-Primary workspace for research, market context, and quick analysis.
+### Homepage
+Primary authenticated workspace for research, market context, and quick analysis.
 
 ### Market Summary
 Broader market context including index and sector awareness.
@@ -124,7 +132,7 @@ Future management surfaces for account, settings, and platform administration.
 Version 1 will focus on the core foundation of the platform:
 - a public landing experience
 - an authenticated product experience
-- a dashboard-oriented workspace
+- an authenticated homepage and workspace experience
 - Scoring and technical analysis of major market indexes like SPY, QQQ, IWM
 - Scoring and technical analysis of major commodities like Gold, Silver, Corn, Soybean
 - Scoring and technical analysis of major currency pairs like EURUSD, GBPUSD, USDJPY
@@ -211,16 +219,16 @@ Success will be measured through a combination of product and user outcomes:
 
 Workflows
 
-Workflow 1 - User lands on main dashboard -> Views Market Statistics -> Advancers and Declines Information -> Index Charts and Direction -> Views Leading and Lagging Sectors 
+Workflow 1 - User lands on the homepage -> views Today's Briefing -> reviews market context -> evaluates opportunities
 Workflow 2 - Users are encouraged to create their user profile to get additional features
-Workflow 3 - User Signs in -> Main Dashboard -> Top Long and Short Opportunities -> Review Evidence for Top Long and Short Opportunities -> Add to Watchlist 
+Workflow 3 - User signs in -> opens the Homepage -> reviews Highest Conviction Opportunities -> enters the Decision Workspace -> adds to a watchlist
 Workflow 4 - Review and Maintain Watchlist
 Workflow 5 - Query Individual Stock -> Review Evidence -> Review Option Strategies -> Review Risk, Pros & Cons -> Add to Watchlist
 Workflow 6 - Open Journal -> Add Trade -> Upload Screenshot -> Write Notes
 
 Modules
 
-Module 1 - Dashboard
+Module 1 - Homepage
 Module 2 - Market Summary, Statistics and Charts
 Module 3 - Watchlists
 Module 4 - Journal

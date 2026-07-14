@@ -6,6 +6,14 @@ TradeEvidence exists to help self-directed traders make higher-quality decisions
 ## Vision
 TradeEvidence will become a long-term operating environment for evidence-based trading analysis, where traders can organize research, understand assumptions, and review their own decision process without relying on opaque guidance.
 
+## Documentation Status
+Status: Approved
+Version: 1.0
+Owner: Product
+Last Updated: 2026-07-14
+Applies To: Product vision and long-term value proposition
+Related Documents: [00-PRD.md](00-PRD.md), [01a-Product-Philosophy.md](01a-Product-Philosophy.md), [06-Roadmap.md](06-Roadmap.md), [Canonical-Terminology.md](Canonical-Terminology.md)
+
 ## Problem Statement
 Markets produce too much information and too little explanation. Traders need tools that help them examine evidence, understand context, and reflect on decisions without being pushed into automated conclusions.
 

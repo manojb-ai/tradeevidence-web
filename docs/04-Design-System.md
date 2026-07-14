@@ -3,6 +3,14 @@
 ## UI Philosophy
 TradeEvidence should feel professional, calm, analytical, and trustworthy. The interface should help users focus on evidence, context, and decision quality.
 
+## Documentation Status
+Status: Approved
+Version: 1.0
+Owner: Design
+Last Updated: 2026-07-14
+Applies To: Product experience and interface patterns
+Related Documents: [03-Architecture.md](03-Architecture.md), [07-Decision-Workspace-Concept.md](07-Decision-Workspace-Concept.md), [08-AI-Strategy.md](08-AI-Strategy.md), [Canonical-Terminology.md](Canonical-Terminology.md)
+
 ## Design Principles and Product Evolution
 
 The design system should reinforce a few core product decisions:
@@ -12,13 +20,13 @@ The design system should reinforce a few core product decisions:
 - Progressive disclosure.
 - Every screen should answer the trader's next question.
 
-The dashboard experience should evolve in stages:
-- Version 1: a curated Decision Workspace that surfaces the most important context and next steps.
+The homepage experience should evolve in stages:
+- Version 1: a curated Homepage and Decision Workspace experience that surfaces the most important context and next steps.
 - Version 2: persona-based workspace templates that adapt the experience to different trading styles.
-- Version 3: user-customizable dashboards using widgets, allowing advanced users to arrange their own analysis surfaces.
+- Version 3: user-customizable workspaces using widgets, allowing advanced users to arrange their own analysis surfaces.
 
 ## Typography
-Typography should be clean, legible, and structured for dense dashboards and longer reading sessions. The system should support clear hierarchy for:
+Typography should be clean, legible, and structured for dense workspace surfaces and longer reading sessions. The system should support clear hierarchy for:
 - headings
 - metrics
 - tables
@@ -52,7 +60,7 @@ The color system should support clarity and confidence. It should emphasize:
 - accessible contrast
 
 ## Navigation
-Navigation should be simple and predictable. The design should support rapid movement between workspace modules such as dashboard, watchlists, reports, journal, and settings.
+Navigation should be simple and predictable. The design should support rapid movement between workspace modules such as Homepage, watchlists, reports, journal, and settings.
 
 ## Desktop-first Responsive Design
 The first experience should be optimized for desktop workflows, with responsive behavior layered in for broader access.
@@ -71,7 +79,7 @@ TradeEvidence will support:
 - Light Mode
 - System Mode
 
-Dark mode should be the default for the trading application because it is well suited to active dashboards and long analysis sessions. Light mode will support reports, marketing pages, and users who prefer a brighter experience.
+Dark mode should be the default for the trading application because it is well suited to active workspace sessions and long analysis sessions. Light mode will support reports, marketing pages, and users who prefer a brighter experience.
 
 ---
 
