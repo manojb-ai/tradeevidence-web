@@ -4,7 +4,7 @@
 **Version:** 1.0  
 **Owner:** Founder and Chief Software Architect  
 **Last Updated:** 2026-07-18
-**Related Documents:** [../engineering/Engineering-Specification-Index.md](../engineering/Engineering-Specification-Index.md), [../engineering/TradeEvidence-Engineering-Lifecycle.md](../engineering/TradeEvidence-Engineering-Lifecycle.md), [../governance/AI-DLC-Adoption-Policy.md](../governance/AI-DLC-Adoption-Policy.md), [../governance/decisions/ADR-001-Adopt-AI-DLC.md](../governance/decisions/ADR-001-Adopt-AI-DLC.md)
+**Related Documents:** [../engineering/Engineering-Specification-Index.md](../engineering/Engineering-Specification-Index.md), [../engineering/TradeEvidence-Engineering-Lifecycle.md](../engineering/TradeEvidence-Engineering-Lifecycle.md), [../engineering/Master-System-Architecture.md](../engineering/Master-System-Architecture.md), [../engineering/Canonical-Analytical-Model.md](../engineering/Canonical-Analytical-Model.md), [../governance/AI-DLC-Adoption-Policy.md](../governance/AI-DLC-Adoption-Policy.md), [../governance/decisions/ADR-001-Adopt-AI-DLC.md](../governance/decisions/ADR-001-Adopt-AI-DLC.md), [../governance/decisions/ADR-002-Master-System-Architecture.md](../governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Objective
 
@@ -20,6 +20,15 @@ Convert TradeEvidence's Product Handbook into implementation-ready engineering s
 6. **Evidence Engine:** pipeline, explainability, versioning, history, validation, and Devil's Advocate behavior.
 7. **AI Workflow:** context, outputs, allowed/prohibited behavior, prompts, evaluation, cost, latency, and failure handling.
 8. **Delivery Readiness:** testing, security, observability, deployment, Definition of Done, and first backlog.
+
+## Workshop #1 Approved Outputs
+
+Status: Completed
+Completion Date: 2026-07-18
+
+- [../engineering/Master-System-Architecture.md](../engineering/Master-System-Architecture.md)
+- [../engineering/Canonical-Analytical-Model.md](../engineering/Canonical-Analytical-Model.md)
+- [../governance/decisions/ADR-002-Master-System-Architecture.md](../governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Workshop Operating Pattern
 

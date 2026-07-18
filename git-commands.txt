@@ -1,0 +1,7 @@
+git status
+
+git add .
+
+git commit -m "meaningful commit message"
+
+git push origin main

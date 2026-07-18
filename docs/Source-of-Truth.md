@@ -16,6 +16,13 @@ This document defines which TradeEvidence documents are authoritative for specif
 - Canonical Language: [Canonical-Terminology.md](Canonical-Terminology.md)
 - Workshop History and context: [workshops](workshops)
 
+## Architecture Authority Boundary
+
+- [03-Architecture.md](03-Architecture.md) defines product architecture direction, product vision alignment, and user-facing conceptual design.
+- [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md) defines the authoritative software architecture for implementation, including subsystem decomposition, platform services, analytical engines, and engineering architecture boundaries.
+
+These documents are complementary. Product architecture defines intent and conceptual experience. Engineering architecture defines implementation structure and system responsibility boundaries.
+
 ## Engineering Governance Authorities
 
 - AI-assisted development policy and boundaries: [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md)
@@ -23,7 +30,10 @@ This document defines which TradeEvidence documents are authoritative for specif
 - Approved architecture decision records for engineering governance: [governance/decisions](governance/decisions)
 - Lifecycle stages and required quality gates: [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md), [engineering/AI-DLC-Phase-Gates.md](engineering/AI-DLC-Phase-Gates.md)
 - Specification authority and creation order: [engineering/Engineering-Specification-Index.md](engineering/Engineering-Specification-Index.md)
+- Master layered architecture authority: [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md)
+- Canonical symbol analytical foundation authority: [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
 - Market-data architecture and phased evolution authority: [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md)
+- Architecture decision authority for the layered model: [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Boundary: Product AI vs Development AI
 

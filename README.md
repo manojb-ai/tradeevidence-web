@@ -21,12 +21,16 @@ TradeEvidence is decision preparation software for traders. The product emphasiz
 - [docs/governance/AI-DLC-Adoption-Policy.md](docs/governance/AI-DLC-Adoption-Policy.md)
 - [docs/governance/Human-AI-Responsibility-Matrix.md](docs/governance/Human-AI-Responsibility-Matrix.md)
 - [docs/governance/decisions/ADR-001-Adopt-AI-DLC.md](docs/governance/decisions/ADR-001-Adopt-AI-DLC.md)
+- [docs/governance/decisions/ADR-002-Master-System-Architecture.md](docs/governance/decisions/ADR-002-Master-System-Architecture.md)
 - [docs/governance/decisions/ADR-003-Market-Data-Evolution.md](docs/governance/decisions/ADR-003-Market-Data-Evolution.md)
+- [docs/engineering/Master-System-Architecture.md](docs/engineering/Master-System-Architecture.md)
+- [docs/engineering/Canonical-Analytical-Model.md](docs/engineering/Canonical-Analytical-Model.md)
 - [docs/engineering/TradeEvidence-Engineering-Lifecycle.md](docs/engineering/TradeEvidence-Engineering-Lifecycle.md)
 - [docs/engineering/AI-DLC-Phase-Gates.md](docs/engineering/AI-DLC-Phase-Gates.md)
 - [docs/engineering/Engineering-Specification-Index.md](docs/engineering/Engineering-Specification-Index.md)
 - [docs/engineering/Market-Data-Strategy.md](docs/engineering/Market-Data-Strategy.md)
 - [docs/workshops/Architecture-Workshop-Plan.md](docs/workshops/Architecture-Workshop-Plan.md)
+- [docs/workshops/Workshop-01-Summary.md](docs/workshops/Workshop-01-Summary.md)
 
 ## Product AI and Development AI Boundary
 

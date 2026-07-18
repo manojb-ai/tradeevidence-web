@@ -63,7 +63,10 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md) — approved policy for selective, risk-based AI-DLC adoption in development.
 - [governance/Human-AI-Responsibility-Matrix.md](governance/Human-AI-Responsibility-Matrix.md) — approved accountability split between AI-assisted execution and human authority.
 - [governance/decisions/ADR-001-Adopt-AI-DLC.md](governance/decisions/ADR-001-Adopt-AI-DLC.md) — approved ADR recording why and how AI-DLC is adopted.
+- [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md) — approved ADR recording the layered Decision Intelligence Platform architecture.
 - [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md) — approved ADR recording the CSV-first MVP decision and provider-abstraction evolution path.
+- [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md) — authoritative layered architecture specification for the platform.
+- [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md) — authoritative shared symbol analytical foundation across engines and consumers.
 - [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md) — approved lifecycle for implementation delivery and learning.
 - [engineering/AI-DLC-Phase-Gates.md](engineering/AI-DLC-Phase-Gates.md) — approved phase-gate readiness criteria.
 - [engineering/Engineering-Specification-Index.md](engineering/Engineering-Specification-Index.md) — approved index and order for architecture and implementation specifications.
@@ -74,6 +77,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [workshops/2026-07-14-Decision-Workspace-Workshop.md](workshops/2026-07-14-Decision-Workspace-Workshop.md) — workshop notes for the decision-workspace design session.
 - [workshops/2026-07-16-Decision-Workspace-Workshop.md](workshops/2026-07-16-Decision-Workspace-Workshop.md) — follow-on workshop notes for the workspace direction.
 - [workshops/Architecture-Workshop-Plan.md](workshops/Architecture-Workshop-Plan.md) — approved plan for converting handbook decisions into implementation-ready architecture specifications.
+- [workshops/Workshop-01-Summary.md](workshops/Workshop-01-Summary.md) — concise executive summary of Workshop #1 approved architecture baseline and deferred topics.
 
 ### Prototypes
 - [prototypes/Dashboard-v1-Baseline.md](prototypes/Dashboard-v1-Baseline.md) — the approved homepage prototype and design baseline.

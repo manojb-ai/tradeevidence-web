@@ -4,7 +4,7 @@
 Status: Approved
 Version: 1.0
 Owner: Product
-Last Updated: 2026-07-14
+Last Updated: 2026-07-18
 Applies To: Product decisions, rationale, and historical record
 Related Documents: [00-PRD.md](00-PRD.md), [01-Product-Vision.md](01-Product-Vision.md), [06-Roadmap.md](06-Roadmap.md), [Documentation-Governance.md](Documentation-Governance.md), [Canonical-Terminology.md](Canonical-Terminology.md)
 
@@ -225,6 +225,22 @@ Each decision entry below includes:
 - Date: 2026-07-18
 - Related Documents: [08-AI-Strategy.md](08-AI-Strategy.md), [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md), [governance/Human-AI-Responsibility-Matrix.md](governance/Human-AI-Responsibility-Matrix.md)
 
+### Decision Intelligence Platform Architecture Adopted
+- Decision: TradeEvidence architecture is approved as a layered Decision Intelligence Platform targeting Earned Confidence outcomes.
+- Reason: A layered model with specialized analytical engines and shared platform services improves separation of concerns, explainability, and long-term evolvability.
+- Expected Product Impact: Dashboard and workspace surfaces consume analytical outputs instead of performing business calculations, preserving consistency across user workflows.
+- Status: Active
+- Date: 2026-07-18
+- Related Documents: [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md), [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md), [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
+
+### Workshop #1 Architecture Baseline Closed
+- Decision: Architecture Workshop #1 is closed with approved architecture baseline documents.
+- Reason: Workshop closure confirms the authoritative engineering architecture baseline for subsequent implementation planning and architecture workshops.
+- Expected Product Impact: Future engineering specifications and implementation planning will reference the approved baseline rather than introducing alternate architectural interpretations.
+- Status: Active
+- Date: 2026-07-18
+- Related Documents: [workshops/Architecture-Workshop-Plan.md](workshops/Architecture-Workshop-Plan.md), [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md), [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md), [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
+
 ### MVP Phase 1 Uses CSV While Preserving Provider Abstraction
 - Decision: MVP Phase 1 uses CSV as the authoritative market-data source while architecture is built around a Market Data Service abstraction.
 - Reason: This enables deterministic MVP delivery and testing without coupling product behavior to a specific market-data provider.
@@ -248,7 +264,10 @@ Each decision entry below includes:
 - [product/Community-and-Growth.md](product/Community-and-Growth.md)
 - [Documentation-Governance.md](Documentation-Governance.md)
 - [governance/decisions/ADR-001-Adopt-AI-DLC.md](governance/decisions/ADR-001-Adopt-AI-DLC.md)
+- [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
 - [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md)
 - [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md)
+- [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md)
+- [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
 - [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md)
 - [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md)

@@ -4,35 +4,38 @@
 **Version:** 1.0  
 **Owner:** Chief Software Architect  
 **Last Updated:** 2026-07-18
-**Related Documents:** [TradeEvidence-Engineering-Lifecycle.md](TradeEvidence-Engineering-Lifecycle.md), [AI-DLC-Phase-Gates.md](AI-DLC-Phase-Gates.md), [../governance/AI-DLC-Adoption-Policy.md](../governance/AI-DLC-Adoption-Policy.md), [../workshops/Architecture-Workshop-Plan.md](../workshops/Architecture-Workshop-Plan.md)
+**Related Documents:** [TradeEvidence-Engineering-Lifecycle.md](TradeEvidence-Engineering-Lifecycle.md), [Master-System-Architecture.md](Master-System-Architecture.md), [Canonical-Analytical-Model.md](Canonical-Analytical-Model.md), [AI-DLC-Phase-Gates.md](AI-DLC-Phase-Gates.md), [../governance/AI-DLC-Adoption-Policy.md](../governance/AI-DLC-Adoption-Policy.md), [../governance/decisions/ADR-002-Master-System-Architecture.md](../governance/decisions/ADR-002-Master-System-Architecture.md), [../workshops/Architecture-Workshop-Plan.md](../workshops/Architecture-Workshop-Plan.md)
 
 ## Priority 1 — Foundation
 
 1. `Master-System-Architecture.md`
-2. `Market-Data-Strategy.md`
-3. `MVP-Implementation-Spec.md`
-4. `MVP-Data-Schema.md`
-5. `API-Contracts-v1.md`
+2. `Canonical-Analytical-Model.md`
+3. `Market-Data-Strategy.md`
+4. `MVP-Implementation-Spec.md`
+5. `MVP-Data-Schema.md`
+6. `API-Contracts-v1.md`
 
 ## Priority 2 — Application Architecture
 
-6. `Frontend-Architecture.md`
-7. `Backend-Architecture.md`
-8. `Evidence-Engine-Specification.md`
-9. `AI-Workflow-Contract.md`
+7. `Frontend-Architecture.md`
+8. `Backend-Architecture.md`
+9. `Evidence-Engine-Specification.md`
+10. `AI-Workflow-Contract.md`
 
 ## Priority 3 — Delivery and Operations
 
-10. `Testing-Strategy.md`
-11. `Security-and-Privacy-Baseline.md`
-12. `Observability-and-Operations.md`
-13. `Deployment-Architecture.md`
-14. `Definition-of-Done.md`
+11. `Testing-Strategy.md`
+12. `Security-and-Privacy-Baseline.md`
+13. `Observability-and-Operations.md`
+14. `Deployment-Architecture.md`
+15. `Definition-of-Done.md`
 
 ## Creation Order
 
 ```text
 Master System Architecture
+        ↓
+Canonical Analytical Model
         ↓
 Market Data Strategy
         ↓
