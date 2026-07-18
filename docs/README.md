@@ -59,10 +59,21 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [07-Scoring-Engine.md](07-Scoring-Engine.md) — the explainable scoring framework and evidence philosophy.
 - [10-Glossary.md](10-Glossary.md) — terminology used across the product and documentation.
 
+### Engineering Governance
+- [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md) — approved policy for selective, risk-based AI-DLC adoption in development.
+- [governance/Human-AI-Responsibility-Matrix.md](governance/Human-AI-Responsibility-Matrix.md) — approved accountability split between AI-assisted execution and human authority.
+- [governance/decisions/ADR-001-Adopt-AI-DLC.md](governance/decisions/ADR-001-Adopt-AI-DLC.md) — approved ADR recording why and how AI-DLC is adopted.
+- [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md) — approved ADR recording the CSV-first MVP decision and provider-abstraction evolution path.
+- [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md) — approved lifecycle for implementation delivery and learning.
+- [engineering/AI-DLC-Phase-Gates.md](engineering/AI-DLC-Phase-Gates.md) — approved phase-gate readiness criteria.
+- [engineering/Engineering-Specification-Index.md](engineering/Engineering-Specification-Index.md) — approved index and order for architecture and implementation specifications.
+- [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md) — authoritative engineering specification for market-data service abstraction and phased source evolution.
+
 ### Workshops
 - [workshops/2026-07-13-Homepage-Design-Workshop.md](workshops/2026-07-13-Homepage-Design-Workshop.md) — workshop notes from the homepage design session.
 - [workshops/2026-07-14-Decision-Workspace-Workshop.md](workshops/2026-07-14-Decision-Workspace-Workshop.md) — workshop notes for the decision-workspace design session.
 - [workshops/2026-07-16-Decision-Workspace-Workshop.md](workshops/2026-07-16-Decision-Workspace-Workshop.md) — follow-on workshop notes for the workspace direction.
+- [workshops/Architecture-Workshop-Plan.md](workshops/Architecture-Workshop-Plan.md) — approved plan for converting handbook decisions into implementation-ready architecture specifications.
 
 ### Prototypes
 - [prototypes/Dashboard-v1-Baseline.md](prototypes/Dashboard-v1-Baseline.md) — the approved homepage prototype and design baseline.
@@ -90,6 +101,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - Start with the vision and philosophy documents for intent.
 - Move to the decision-making and product experience documents for the current product model.
 - Use the architecture, design system, and AI strategy documents for implementation framing.
+- Use engineering governance documents to guide how AI is used to build TradeEvidence; use product AI strategy to guide user-facing AI behavior.
 - Treat the workshop notes as context, and the decision log and permanent product docs as the authoritative spec.
 
 ## Future Documentation Guidance

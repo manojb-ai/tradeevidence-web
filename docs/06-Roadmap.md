@@ -33,6 +33,18 @@ flowchart LR
 
 ## Release Notes
 
+### Engineering Architecture Phase (Approved Plan)
+- Master System Architecture
+- MVP Implementation Specification
+- MVP Data Schema
+- API Contracts
+- Frontend and Backend Architecture
+- Evidence Engine and AI Workflow
+- Delivery Readiness
+- First Vertical Slice
+
+This phase defines implementation-ready engineering artifacts before full feature acceleration. It does not replace product philosophy or alter approved product AI behavior boundaries.
+
 ### v0.1 — Landing Page
 - establish the public website experience
 - communicate the product vision and value proposition

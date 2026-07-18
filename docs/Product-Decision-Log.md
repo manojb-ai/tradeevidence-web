@@ -207,6 +207,32 @@ Each decision entry below includes:
 - Date: 2026-07-14
 - Related Documents: [product/Community-and-Growth.md](product/Community-and-Growth.md)
 
+## Engineering Governance Decisions
+
+### Selective AI-DLC Adoption for Building TradeEvidence
+- Decision: TradeEvidence adopts AI-DLC selectively, using risk-based rigor determined by the Chief Software Architect.
+- Reason: The engineering phase requires stronger traceability, architecture discipline, and delivery consistency while preserving human accountability.
+- Expected Product Impact: Product strategy and user-facing AI boundaries remain unchanged, while development execution quality and governance improve.
+- Status: Active
+- Date: 2026-07-18
+- Related Documents: [governance/decisions/ADR-001-Adopt-AI-DLC.md](governance/decisions/ADR-001-Adopt-AI-DLC.md), [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md), [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md)
+
+### Product AI and Development AI Are Governed Separately
+- Decision: Product AI behavior is governed by product strategy, while development AI use is governed by AI-DLC policy and engineering governance.
+- Reason: Separating these concerns prevents process decisions from being misread as user-facing product behavior changes.
+- Expected Product Impact: TradeEvidence continues to position AI as educational decision support for traders, not autonomous advice, while engineering teams use AI under human-controlled delivery governance.
+- Status: Active
+- Date: 2026-07-18
+- Related Documents: [08-AI-Strategy.md](08-AI-Strategy.md), [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md), [governance/Human-AI-Responsibility-Matrix.md](governance/Human-AI-Responsibility-Matrix.md)
+
+### MVP Phase 1 Uses CSV While Preserving Provider Abstraction
+- Decision: MVP Phase 1 uses CSV as the authoritative market-data source while architecture is built around a Market Data Service abstraction.
+- Reason: This enables deterministic MVP delivery and testing without coupling product behavior to a specific market-data provider.
+- Expected Product Impact: Product workflows remain stable while market-data infrastructure can evolve from CSV to live providers with minimal downstream disruption.
+- Status: Active
+- Date: 2026-07-18
+- Related Documents: [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md), [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
@@ -221,3 +247,8 @@ Each decision entry below includes:
 - [product/Decision-Journal.md](product/Decision-Journal.md)
 - [product/Community-and-Growth.md](product/Community-and-Growth.md)
 - [Documentation-Governance.md](Documentation-Governance.md)
+- [governance/decisions/ADR-001-Adopt-AI-DLC.md](governance/decisions/ADR-001-Adopt-AI-DLC.md)
+- [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md)
+- [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md)
+- [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md)
+- [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md)
