@@ -11,7 +11,7 @@
 1. `Master-System-Architecture.md`
 2. `Canonical-Analytical-Model.md`
 3. `Market-Data-Strategy.md`
-4. `MVP-Implementation-Spec.md`
+4. [`MVP-Implementation-Spec.md`](MVP-Implementation-Spec.md) — Approved 2026-07-19
 5. `MVP-Data-Schema.md`
 6. `API-Contracts-v1.md`
 

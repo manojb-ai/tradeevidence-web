@@ -30,6 +30,15 @@ Completion Date: 2026-07-18
 - [../engineering/Canonical-Analytical-Model.md](../engineering/Canonical-Analytical-Model.md)
 - [../governance/decisions/ADR-002-Master-System-Architecture.md](../governance/decisions/ADR-002-Master-System-Architecture.md)
 
+## Workshop #2 Approved Outputs
+
+Status: Completed
+Completion Date: 2026-07-19
+
+- [../engineering/MVP-Implementation-Spec.md](../engineering/MVP-Implementation-Spec.md)
+- [../governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](../governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md)
+- [Workshop-02-Summary.md](Workshop-02-Summary.md)
+
 ## Workshop Operating Pattern
 
 Each workshop ends with product decisions, architecture decisions, risks, updated specifications, decision-log updates, AI-DLC level, and repository merge instructions.

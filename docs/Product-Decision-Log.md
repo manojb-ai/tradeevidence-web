@@ -249,6 +249,43 @@ Each decision entry below includes:
 - Date: 2026-07-18
 - Related Documents: [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md), [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md)
 
+## Workshop #2 Decisions (2026-07-19)
+
+### MVP Vertical Slice Approved
+- Decision: The first slice moves an authenticated user from Today's Briefing and a deterministic Evidence-Aligned Opportunity into a symbol Decision Workspace with market and sector context, inspectable Technical Evidence, Devil's Advocate analysis, categorical Decision Confidence, educational strategy alignment, grounded Ask TradeEvidence, and a non-transactional checklist.
+- Reason: One small end-to-end workflow validates the core decision-preparation value while preserving explainability and non-advisory boundaries.
+- Expected Product Impact: Implementation can proceed without importing deferred portfolio, journal, brokerage, or personalization complexity.
+- Status: Active
+- Related Documents: [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md), [workshops/Workshop-02-Summary.md](workshops/Workshop-02-Summary.md)
+
+### Technical Evidence, Decision Confidence, and Strategy Alignment Remain Distinct
+- Decision: Phase 1 uses a transparent Technical Evidence Score, separate categorical Decision Confidence, and separate Educational Strategy Alignment. Missing evidence is not negative evidence; incomplete results receive no normal opportunity classification; current weights remain unvalidated hypotheses.
+- Reason: Separate concepts prevent false precision, hidden contradictions, and advisory interpretation.
+- Expected Product Impact: Users can inspect what supports, contradicts, or limits a result without reading it as prediction or recommendation.
+- Status: Active
+- Related Documents: [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md), [product/Decision-Confidence.md](product/Decision-Confidence.md)
+
+### Deterministic Evidence-Aligned Opportunities
+- Decision: The Homepage shows up to five complete, current Evidence-Aligned Opportunities selected by versioned deterministic rules, with visible constraints and sector diversity that never lowers evidence standards.
+- Reason: The Homepage should focus attention without implying conviction, certainty, or recommendation.
+- Expected Product Impact: Users receive a reproducible entry point into deeper research and a truthful no-opportunity state.
+- Status: Active
+- Related Documents: [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md), [product/Dashboard.md](product/Dashboard.md)
+
+### Grounded Ask TradeEvidence v1
+- Decision: Ask TradeEvidence explains and challenges recorded evidence but cannot create evidence, alter scores, recommend actions, personalize suitability, predict outcomes, or invent missing information.
+- Reason: AI improves understanding without becoming analytical or decision authority.
+- Expected Product Impact: The AI experience is useful, traceable, provider-independent, and safely degradable.
+- Status: Active
+- Related Documents: [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md), [08-AI-Strategy.md](08-AI-Strategy.md)
+
+### Immutable Atomic Snapshot Publication and Retention
+- Decision: Runs are versioned, validated, human-approved during Phase 1, atomically published, and immutable. Object storage preserves accepted bundles, an operational database serves historical queries, cache/CDN serves precomputed views, and the regular-session close is Phase 1's canonical observation.
+- Reason: Reproducibility, trend analysis, honest outcome evaluation, and high website performance require separate archive, query, and delivery responsibilities.
+- Expected Product Impact: Failed or partial runs cannot replace current data, every published score can be reproduced, and request performance remains independent of archive size.
+- Status: Active
+- Related Documents: [governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md), [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)

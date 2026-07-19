@@ -13,6 +13,7 @@ This document defines which TradeEvidence documents are authoritative for specif
 - Product Decision Record (Why this decision): [Product-Decision-Log.md](Product-Decision-Log.md)
 - Delivery Sequence (When): [06-Roadmap.md](06-Roadmap.md)
 - MVP Boundary (First release scope): [MVP-v1.md](MVP-v1.md)
+- MVP Vertical Slice Implementation Contract: [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md)
 - Canonical Language: [Canonical-Terminology.md](Canonical-Terminology.md)
 - Workshop History and context: [workshops](workshops)
 
@@ -33,6 +34,7 @@ These documents are complementary. Product architecture defines intent and conce
 - Master layered architecture authority: [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md)
 - Canonical symbol analytical foundation authority: [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
 - Market-data architecture and phased evolution authority: [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md)
+- Canonical market observation and retention authority: [governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md)
 - Architecture decision authority for the layered model: [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Boundary: Product AI vs Development AI

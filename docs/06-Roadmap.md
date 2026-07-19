@@ -47,6 +47,8 @@ This phase defines implementation-ready engineering artifacts before full featur
 
 Traceability Update (2026-07-18): Workshop #1 is completed with approved baseline artifacts: [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md), [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md), and [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md).
 
+Traceability Update (2026-07-19): Workshop #2 is completed with the approved [MVP Implementation Specification](engineering/MVP-Implementation-Spec.md), [Workshop #2 Summary](workshops/Workshop-02-Summary.md), and [ADR-004](governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md). Workshop #3 is the MVP Data Schema.
+
 ### v0.1 — Landing Page
 - establish the public website experience
 - communicate the product vision and value proposition
