@@ -4,6 +4,8 @@ TradeEvidence is decision preparation software for traders. The product emphasiz
 
 ## Repository Areas
 
+- `analytics-engine/` — deterministic Phase 1 analytical-engine baseline.
+
 - `app/` — Next.js application source.
 - `docs/` — Product Handbook and engineering governance documentation.
 - `public/` — static assets.
