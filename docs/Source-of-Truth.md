@@ -16,6 +16,7 @@ This document defines which TradeEvidence documents are authoritative for specif
 - MVP Vertical Slice Implementation Contract: [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md)
 - MVP Physical Data Model and Integrity Contract: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)
 - MVP Internal API Contract: [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md), [engineering/openapi-v1.json](engineering/openapi-v1.json)
+- MVP Frontend and Backend Application Architecture: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md)
 - Canonical Language: [Canonical-Terminology.md](Canonical-Terminology.md)
 - Workshop History and context: [workshops](workshops)
 
@@ -39,6 +40,7 @@ These documents are complementary. Product architecture defines intent and conce
 - Canonical market observation and retention authority: [governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md)
 - MVP persistence and data-integrity authority: [governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md](governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md)
 - Internal API contract and evolution authority: [governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
+- MVP application structure and dependency authority: [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md)
 - Architecture decision authority for the layered model: [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Boundary: Product AI vs Development AI

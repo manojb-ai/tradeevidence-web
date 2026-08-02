@@ -58,6 +58,15 @@ Completion Date: 2026-08-02
 - [../governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](../governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
 - [Workshop-04-Summary.md](Workshop-04-Summary.md)
 
+## Workshop #5 Approved Outputs
+
+Status: Completed
+Completion Date: 2026-08-02
+
+- [../engineering/MVP-Application-Architecture.md](../engineering/MVP-Application-Architecture.md)
+- [../governance/decisions/ADR-007-MVP-Application-Architecture.md](../governance/decisions/ADR-007-MVP-Application-Architecture.md)
+- [Workshop-05-Summary.md](Workshop-05-Summary.md)
+
 ## Workshop Operating Pattern
 
 Each workshop ends with product decisions, architecture decisions, risks, updated specifications, decision-log updates, AI-DLC level, and repository merge instructions.

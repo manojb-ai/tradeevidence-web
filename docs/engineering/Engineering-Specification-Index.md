@@ -14,21 +14,20 @@
 4. [`MVP-Implementation-Spec.md`](MVP-Implementation-Spec.md) — Approved 2026-07-19
 5. [`MVP-Data-Schema.md`](MVP-Data-Schema.md) - Approved 2026-08-02
 6. [`API-Contracts-v1.md`](API-Contracts-v1.md) and [`openapi-v1.json`](openapi-v1.json) - Approved 2026-08-02
+7. [`MVP-Application-Architecture.md`](MVP-Application-Architecture.md) - Approved 2026-08-02
 
 ## Priority 2 — Application Architecture
 
-7. `Frontend-Architecture.md`
-8. `Backend-Architecture.md`
-9. `Evidence-Engine-Specification.md`
-10. `AI-Workflow-Contract.md`
+8. `Evidence-Engine-Specification.md`
+9. `AI-Workflow-Contract.md`
 
 ## Priority 3 — Delivery and Operations
 
-11. `Testing-Strategy.md`
-12. `Security-and-Privacy-Baseline.md`
-13. `Observability-and-Operations.md`
-14. `Deployment-Architecture.md`
-15. `Definition-of-Done.md`
+10. `Testing-Strategy.md`
+11. `Security-and-Privacy-Baseline.md`
+12. `Observability-and-Operations.md`
+13. `Deployment-Architecture.md`
+14. `Definition-of-Done.md`
 
 ## Creation Order
 

@@ -360,6 +360,57 @@ Each decision entry below includes:
 - Status: Active
 - Related Documents: [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md), [engineering/openapi-v1.json](engineering/openapi-v1.json), [workshops/Workshop-04-Summary.md](workshops/Workshop-04-Summary.md)
 
+## Workshop #5 Decisions (2026-08-02)
+
+### Modular Monolith with Pragmatic Clean Architecture
+- Decision: Phase 1 uses one horizontally scalable Next.js modular monolith for the public site, authenticated product, and `/api/v1`, with inward dependencies and a separate deterministic analytics producer.
+- Reason: The MVP needs enforceable separation without premature distributed-system cost or request-time duplication of analytical behavior.
+- Expected Product Impact: Product delivery remains manageable while UI, use cases, domain rules, persistence, providers, and analytics retain extraction-ready boundaries.
+- Status: Active
+- Related Documents: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md), [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md)
+
+### Canonical Same-Origin Product and Server-First Frontend
+- Decision: `https://www.tradeevidence.com` is the canonical production origin; public, product, and API surfaces remain same-origin; Server Components are the default with bounded Client Component interactions and approved feature boundaries.
+- Reason: Canonical routing, secure sessions, efficient rendering, and limited browser authority reduce operational and security complexity.
+- Expected Product Impact: Visitors converge through safe HTTPS redirects, protected journeys survive validated sign-in returns, and authenticated pages remain fast, private, and consistently structured.
+- Status: Active
+- Related Documents: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md), [workshops/Workshop-05-Summary.md](workshops/Workshop-05-Summary.md)
+
+### Future Approved-Widget Dashboard Boundary
+- Decision: MVP features preserve stable, authorized, state-explicit widget-ready presentation boundaries, while user-created dashboards, arbitrary JavaScript, saved layout implementation, and a grid library remain deferred.
+- Reason: The architecture should preserve future personalization without weakening the validated default workflow or paying speculative accessibility, persistence, and migration cost.
+- Expected Product Impact: TradeEvidence can later offer user-arranged approved widgets without moving calculations or ownership authority into the browser.
+- Status: Active; implementation deferred
+- Related Documents: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md), [product/Dashboard.md](product/Dashboard.md)
+
+### Semantic Cache Separation and Scale Evolution
+- Decision: Immutable/run-specific universal analytics, mutable publication pointers, and private responses use distinct cache policies. PostgreSQL remains authoritative; CDN and distributed in-memory caching may be introduced as non-authoritative scale infrastructure based on measurement.
+- Reason: Fast analytical delivery must never mix runs, hide freshness, leak private data, or turn disposable acceleration into the system of record.
+- Expected Product Impact: Phase 1 stays operationally simple while retaining a safe path toward high concurrency, coordinated invalidation, stampede protection, and horizontal scale.
+- Status: Active
+- Related Documents: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md), [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)
+
+### Deny-by-Default Application Security and Abuse Resistance
+- Decision: Provider-independent server sessions, per-use-case authorization, owner-scoped persistence, exceptional audited staff access, endpoint resource budgets, and layered DoS controls govern protected application behavior.
+- Reason: Authentication alone does not prove resource access, and availability controls must not weaken privacy or analytical integrity.
+- Expected Product Impact: Cross-user access is prevented at multiple tested layers, staff access remains selective, and expensive or abusive traffic can degrade safely before core evidence review fails.
+- Status: Active
+- Related Documents: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md), [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md)
+
+### Architecture and Cross-Browser Acceptance Gates
+- Decision: Domain, database, API, component, end-to-end, browser, architecture, security, performance, and scale tests enforce Workshop 5 boundaries, with human approval for Level 3 concerns and releases.
+- Reason: Architectural labels and browser compatibility are meaningful only when dependency direction, negative security behavior, run consistency, accessibility, and measured performance are continuously verified.
+- Expected Product Impact: The critical journey is supported across current popular browsers and cannot be accepted on happy-path UI behavior alone.
+- Status: Active
+- Related Documents: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md), [workshops/Workshop-05-Summary.md](workshops/Workshop-05-Summary.md)
+
+### Workshop #5 Application Architecture Closed
+- Decision: Workshop #5 is closed with approved topology, routes, components, state, caching, services, security, resilience, scalability, and test seams.
+- Reason: Evidence Engine design requires a stable application boundary that will consume published analytical outputs without absorbing scoring behavior.
+- Expected Product Impact: Workshop #6 can define the Evidence Engine without reopening frontend/backend responsibilities or approved API semantics.
+- Status: Active
+- Related Documents: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md), [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md), [workshops/Workshop-05-Summary.md](workshops/Workshop-05-Summary.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
@@ -380,6 +431,7 @@ Each decision entry below includes:
 - [governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md)
 - [governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md](governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md)
 - [governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
+- [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md)
 - [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md)
 - [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md)
 - [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
@@ -387,3 +439,4 @@ Each decision entry below includes:
 - [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md)
 - [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)
 - [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md)
+- [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md)

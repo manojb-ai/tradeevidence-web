@@ -1,5 +1,9 @@
 # Authentication
 
+## Authority Notice
+
+The authoritative MVP identity, authorization, staff-access, session, and abuse-resistance boundaries are defined in [../engineering/MVP-Application-Architecture.md](../engineering/MVP-Application-Architecture.md), [../engineering/API-Contracts-v1.md](../engineering/API-Contracts-v1.md), and [../engineering/MVP-Data-Schema.md](../engineering/MVP-Data-Schema.md). This document remains a high-level overview.
+
 ## Purpose
 Authentication will protect the authenticated experience and secure user-specific workflows.
 

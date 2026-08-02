@@ -1,5 +1,9 @@
 # Backend
 
+## Authority Notice
+
+The authoritative MVP frontend and backend implementation structure is defined in [../engineering/MVP-Application-Architecture.md](../engineering/MVP-Application-Architecture.md). This document remains a high-level overview.
+
 ## Purpose
 The backend will support future authenticated workflows, persistent data, and service-oriented capabilities.
 
@@ -24,8 +28,8 @@ The backend will support future authenticated workflows, persistent data, and se
 - data storage decisions
 
 ## Open Questions
-- What services are required for the first production-ready release?
-- Which backend stack should be adopted?
+- Authentication, hosting, distributed-cache, queue, and observability providers remain deferred.
+- Service extraction requires measured operational need and a new approved decision.
 
 ## Related Documents
 - [../03-Architecture.md](../03-Architecture.md)
