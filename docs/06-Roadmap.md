@@ -51,6 +51,8 @@ Traceability Update (2026-07-19): Workshop #2 is completed with the approved [MV
 
 Traceability Update (2026-08-02): Workshop #3 is completed with the approved [MVP Data Schema](engineering/MVP-Data-Schema.md), [Workshop #3 Summary](workshops/Workshop-03-Summary.md), and [ADR-005](governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md). Workshop #4 is API Contracts.
 
+Traceability Update (2026-08-02): Workshop #4 is completed with the approved [API Contracts v1](engineering/API-Contracts-v1.md), [OpenAPI v1 contract](engineering/openapi-v1.json), [Workshop #4 Summary](workshops/Workshop-04-Summary.md), and [ADR-006](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md). Workshop #5 is Frontend and Backend Architecture.
+
 ### v0.1 — Landing Page
 - establish the public website experience
 - communicate the product vision and value proposition

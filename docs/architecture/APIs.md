@@ -1,5 +1,9 @@
 # APIs
 
+## Authority Notice
+
+The authoritative MVP HTTP API semantics are defined in [../engineering/API-Contracts-v1.md](../engineering/API-Contracts-v1.md) and the machine-readable [../engineering/openapi-v1.json](../engineering/openapi-v1.json). This document remains a high-level architectural overview.
+
 ## Purpose
 APIs will connect the application to services such as market data, scoring logic, AI assistance, and internal workflows.
 
@@ -25,8 +29,8 @@ APIs will connect the application to services such as market data, scoring logic
 - AI service decisions
 
 ## Open Questions
-- Which APIs should be internal only versus externally accessible?
-- What versioning strategy should be used?
+- Phase 1 APIs are internal product APIs. Public partner APIs remain deferred.
+- Phase 1 uses a long-lived `/api/v1` major compatibility boundary.
 
 ## Related Documents
 - [../03-Architecture.md](../03-Architecture.md)

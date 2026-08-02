@@ -13,7 +13,7 @@
 3. `Market-Data-Strategy.md`
 4. [`MVP-Implementation-Spec.md`](MVP-Implementation-Spec.md) — Approved 2026-07-19
 5. [`MVP-Data-Schema.md`](MVP-Data-Schema.md) - Approved 2026-08-02
-6. `API-Contracts-v1.md`
+6. [`API-Contracts-v1.md`](API-Contracts-v1.md) and [`openapi-v1.json`](openapi-v1.json) - Approved 2026-08-02
 
 ## Priority 2 — Application Architecture
 

@@ -323,6 +323,43 @@ Each decision entry below includes:
 - Status: Active
 - Related Documents: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md), [workshops/Workshop-03-Summary.md](workshops/Workshop-03-Summary.md)
 
+## Workshop #4 Decisions (2026-08-02)
+
+### Long-Lived Internal API v1 Contract
+- Decision: Phase 1 uses an internal resource-oriented HTTPS JSON API under `/api/v1`, with stable naming, value, envelope, compatibility, and major-version rules. `v1` is a long-lived contract boundary rather than a release number.
+- Reason: One provider-independent contract prevents frontend features from coupling to database tables, engine files, vendors, or inconsistent response conventions.
+- Expected Product Impact: The frontend and backend can evolve independently through compatible additive changes while genuine breaking changes receive explicit review.
+- Status: Active
+- Related Documents: [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md), [governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
+
+### Same-Run Analytical API Integrity
+- Decision: Homepage, Decision Workspace, Evidence, and grounded AI responses resolve through the publication pointer or an explicit accessible run and remain pinned to one complete analytical run with server-owned freshness and observation identity.
+- Reason: A user must never receive new market context combined with old symbol evidence or silently change evidence during active review.
+- Expected Product Impact: Analytical journeys remain explainable, reproducible, stale-aware, and safe during publication changes or integrity failures.
+- Status: Active
+- Related Documents: [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md), [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)
+
+### Owner-Derived Private API Authorization
+- Decision: Private APIs derive ownership from verified internal identity, never accept client-supplied ownership authority, conceal cross-user resources, and reserve exceptional staff access for a separate selective and audited boundary.
+- Reason: API-level authorization must enforce the deny-by-default privacy model approved in Workshop #3.
+- Expected Product Impact: Watchlists remain private across provider choices, normal users and staff cannot bypass ownership, and security behavior is testable and consistent.
+- Status: Active
+- Related Documents: [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md), [governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
+
+### Grounded Ask TradeEvidence API
+- Decision: Ask TradeEvidence accepts a bounded question, intent, instrument, and published run identity; the server assembles same-run context and returns structured educational output with evidence references, counterpoints, missing information, and guardrail disposition.
+- Reason: AI explanation must remain useful and traceable without becoming analytical authority, advisory behavior, or unrestricted data access.
+- Expected Product Impact: AI failures remain isolated, advisory questions are productively redirected, retries are idempotent, and unavailable facts are not invented.
+- Status: Active
+- Related Documents: [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md), [08-AI-Strategy.md](08-AI-Strategy.md)
+
+### Workshop #4 API Contracts Closed
+- Decision: Workshop #4 is closed with aligned human-readable and machine-readable API contracts, stable errors, retry/idempotency/concurrency behavior, performance and security targets, contract-test requirements, and explicit deferred modules.
+- Reason: Frontend and backend architecture require stable product-facing contracts and acceptance boundaries before implementation decomposition.
+- Expected Product Impact: Workshop #5 can choose routes, services, state, caching, and test seams without changing approved product or API semantics.
+- Status: Active
+- Related Documents: [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md), [engineering/openapi-v1.json](engineering/openapi-v1.json), [workshops/Workshop-04-Summary.md](workshops/Workshop-04-Summary.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
@@ -342,9 +379,11 @@ Each decision entry below includes:
 - [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md)
 - [governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md)
 - [governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md](governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md)
+- [governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
 - [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md)
 - [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md)
 - [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
 - [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md)
 - [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md)
 - [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)
+- [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md)

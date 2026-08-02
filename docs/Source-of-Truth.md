@@ -15,6 +15,7 @@ This document defines which TradeEvidence documents are authoritative for specif
 - MVP Boundary (First release scope): [MVP-v1.md](MVP-v1.md)
 - MVP Vertical Slice Implementation Contract: [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md)
 - MVP Physical Data Model and Integrity Contract: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)
+- MVP Internal API Contract: [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md), [engineering/openapi-v1.json](engineering/openapi-v1.json)
 - Canonical Language: [Canonical-Terminology.md](Canonical-Terminology.md)
 - Workshop History and context: [workshops](workshops)
 
@@ -37,6 +38,7 @@ These documents are complementary. Product architecture defines intent and conce
 - Market-data architecture and phased evolution authority: [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md)
 - Canonical market observation and retention authority: [governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md)
 - MVP persistence and data-integrity authority: [governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md](governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md)
+- Internal API contract and evolution authority: [governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
 - Architecture decision authority for the layered model: [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Boundary: Product AI vs Development AI

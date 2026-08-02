@@ -1,0 +1,820 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TradeEvidence Internal Product API",
+    "version": "1.0.0",
+    "description": "Machine-readable skeleton for the approved internal v1 API. Product language is educational and non-advisory. Authentication mechanism selection is deferred; every operation requires a verified internal user unless explicitly superseded by an approved contract."
+  },
+  "servers": [
+    {
+      "url": "/api/v1",
+      "description": "Same-origin internal product API"
+    }
+  ],
+  "tags": [
+    { "name": "Homepage" },
+    { "name": "Workspace" },
+    { "name": "Evidence" },
+    { "name": "History" },
+    { "name": "Watchlists" },
+    { "name": "Ask TradeEvidence" }
+  ],
+  "paths": {
+    "/homepage": {
+      "get": {
+        "tags": ["Homepage"],
+        "operationId": "getHomepage",
+        "summary": "Get one published Homepage briefing and opportunity selection",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/OptionalAnalysisRunId" },
+          { "$ref": "#/components/parameters/IfNoneMatch" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Published Homepage representation, including valid empty opportunity state",
+            "headers": { "ETag": { "$ref": "#/components/headers/ETag" } },
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/HomepageResponse" } } }
+          },
+          "304": { "description": "Representation unchanged" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    },
+    "/instruments/{instrumentId}/workspace": {
+      "get": {
+        "tags": ["Workspace"],
+        "operationId": "getDecisionWorkspace",
+        "summary": "Get a compact same-run Decision Workspace",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/InstrumentId" },
+          { "$ref": "#/components/parameters/OptionalAnalysisRunId" },
+          { "$ref": "#/components/parameters/IfNoneMatch" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workspace representation",
+            "headers": { "ETag": { "$ref": "#/components/headers/ETag" } },
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WorkspaceResponse" } } }
+          },
+          "304": { "description": "Representation unchanged" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    },
+    "/instruments/{instrumentId}/evidence": {
+      "get": {
+        "tags": ["Evidence"],
+        "operationId": "getDetailedEvidence",
+        "summary": "Get detailed versioned Technical Evidence",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/InstrumentId" },
+          { "$ref": "#/components/parameters/OptionalAnalysisRunId" },
+          { "$ref": "#/components/parameters/IfNoneMatch" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed Evidence representation",
+            "headers": { "ETag": { "$ref": "#/components/headers/ETag" } },
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/EvidenceResponse" } } }
+          },
+          "304": { "description": "Representation unchanged" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    },
+    "/instruments/{instrumentId}/history": {
+      "get": {
+        "tags": ["History"],
+        "operationId": "getInstrumentHistory",
+        "summary": "Get compact like-for-like published history",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/InstrumentId" },
+          { "$ref": "#/components/parameters/FromMarketDate" },
+          { "$ref": "#/components/parameters/ToMarketDate" },
+          { "$ref": "#/components/parameters/Cursor" },
+          { "$ref": "#/components/parameters/Limit" },
+          { "$ref": "#/components/parameters/Order" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cursor-paginated historical series",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/HistoryResponse" } } }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/watchlists": {
+      "get": {
+        "tags": ["Watchlists"],
+        "operationId": "listWatchlists",
+        "summary": "List authenticated owner's private watchlists",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/Cursor" },
+          { "$ref": "#/components/parameters/Limit" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owner-scoped watchlists",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WatchlistCollectionResponse" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      },
+      "post": {
+        "tags": ["Watchlists"],
+        "operationId": "createWatchlist",
+        "summary": "Create a private watchlist",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [ { "$ref": "#/components/parameters/IdempotencyKey" } ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CreateWatchlistRequest" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Watchlist created",
+            "headers": { "ETag": { "$ref": "#/components/headers/ETag" } },
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WatchlistResponse" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "409": { "$ref": "#/components/responses/Conflict" },
+          "422": { "$ref": "#/components/responses/UnprocessableEntity" }
+        }
+      }
+    },
+    "/watchlists/{watchlistId}": {
+      "get": {
+        "tags": ["Watchlists"],
+        "operationId": "getWatchlist",
+        "summary": "Get one owner-scoped private watchlist",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/WatchlistId" },
+          { "$ref": "#/components/parameters/IncludeCurrentEvidence" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Watchlist",
+            "headers": { "ETag": { "$ref": "#/components/headers/ETag" } },
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WatchlistResponse" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "patch": {
+        "tags": ["Watchlists"],
+        "operationId": "updateWatchlist",
+        "summary": "Update mutable watchlist fields",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/WatchlistId" },
+          { "$ref": "#/components/parameters/IfMatch" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdateWatchlistRequest" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "Watchlist updated",
+            "headers": { "ETag": { "$ref": "#/components/headers/ETag" } },
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WatchlistResponse" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "412": { "$ref": "#/components/responses/PreconditionFailed" },
+          "422": { "$ref": "#/components/responses/UnprocessableEntity" }
+        }
+      },
+      "delete": {
+        "tags": ["Watchlists"],
+        "operationId": "deleteWatchlist",
+        "summary": "Delete an owner-scoped watchlist preference",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/WatchlistId" },
+          { "$ref": "#/components/parameters/IfMatch" }
+        ],
+        "responses": {
+          "204": { "description": "Watchlist deleted" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "412": { "$ref": "#/components/responses/PreconditionFailed" }
+        }
+      }
+    },
+    "/watchlists/{watchlistId}/items/{instrumentId}": {
+      "put": {
+        "tags": ["Watchlists"],
+        "operationId": "putWatchlistItem",
+        "summary": "Idempotently ensure instrument membership",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/WatchlistId" },
+          { "$ref": "#/components/parameters/InstrumentId" }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PutWatchlistItemRequest" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "Existing membership returned",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WatchlistItemResponse" } } }
+          },
+          "201": {
+            "description": "Membership created",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WatchlistItemResponse" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "422": { "$ref": "#/components/responses/UnprocessableEntity" }
+        }
+      },
+      "patch": {
+        "tags": ["Watchlists"],
+        "operationId": "updateWatchlistItem",
+        "summary": "Update mutable watchlist item note",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/WatchlistId" },
+          { "$ref": "#/components/parameters/InstrumentId" },
+          { "$ref": "#/components/parameters/IfMatch" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UpdateWatchlistItemRequest" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WatchlistItemResponse" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "412": { "$ref": "#/components/responses/PreconditionFailed" }
+        }
+      },
+      "delete": {
+        "tags": ["Watchlists"],
+        "operationId": "deleteWatchlistItem",
+        "summary": "Remove instrument membership",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [
+          { "$ref": "#/components/parameters/WatchlistId" },
+          { "$ref": "#/components/parameters/InstrumentId" }
+        ],
+        "responses": {
+          "204": { "description": "Membership removed" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/ask-tradeevidence": {
+      "post": {
+        "tags": ["Ask TradeEvidence"],
+        "operationId": "askTradeEvidence",
+        "summary": "Request a bounded snapshot-grounded educational explanation",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [ { "$ref": "#/components/parameters/IdempotencyKey" } ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AskTradeEvidenceRequest" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "Structured grounded response or productive redirect",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AskTradeEvidenceResponse" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "409": { "$ref": "#/components/responses/Conflict" },
+          "422": { "$ref": "#/components/responses/UnprocessableEntity" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "InstrumentId": {
+        "name": "instrumentId",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string", "minLength": 1 }
+      },
+      "WatchlistId": {
+        "name": "watchlistId",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string", "minLength": 1 }
+      },
+      "OptionalAnalysisRunId": {
+        "name": "analysisRunId",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string", "minLength": 1 }
+      },
+      "IfNoneMatch": {
+        "name": "If-None-Match",
+        "in": "header",
+        "required": false,
+        "schema": { "type": "string" }
+      },
+      "IfMatch": {
+        "name": "If-Match",
+        "in": "header",
+        "required": true,
+        "schema": { "type": "string" }
+      },
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "schema": { "type": "string", "minLength": 8, "maxLength": 200 }
+      },
+      "Cursor": {
+        "name": "cursor",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" }
+      },
+      "Limit": {
+        "name": "limit",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1, "maximum": 100, "default": 50 }
+      },
+      "Order": {
+        "name": "order",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string", "enum": ["asc", "desc"], "default": "desc" }
+      },
+      "FromMarketDate": {
+        "name": "fromMarketDate",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string", "format": "date" }
+      },
+      "ToMarketDate": {
+        "name": "toMarketDate",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string", "format": "date" }
+      },
+      "IncludeCurrentEvidence": {
+        "name": "include",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string", "enum": ["currentEvidence"] }
+      }
+    },
+    "headers": {
+      "ETag": {
+        "description": "Stable representation or mutable-resource revision validator",
+        "schema": { "type": "string" }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Malformed request",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+      },
+      "Unauthorized": {
+        "description": "Authentication required or invalid",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+      },
+      "NotFound": {
+        "description": "Resource absent, inaccessible, or ownership concealed",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+      },
+      "Conflict": {
+        "description": "Operation or idempotency conflict",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+      },
+      "PreconditionFailed": {
+        "description": "ETag or revision conflict",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+      },
+      "UnprocessableEntity": {
+        "description": "Semantic or domain validation failure",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+      },
+      "TooManyRequests": {
+        "description": "Rate limit exceeded",
+        "headers": {
+          "Retry-After": {
+            "description": "Delay before a retry when supplied",
+            "schema": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+      },
+      "ServiceUnavailable": {
+        "description": "Required service or published analytical data unavailable",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
+      }
+    },
+    "schemas": {
+      "Freshness": {
+        "type": "object",
+        "required": ["state"],
+        "properties": {
+          "state": { "type": "string", "enum": ["current", "stale", "superseded"] },
+          "reason": { "type": ["string", "null"] },
+          "expectedMarketDate": { "type": ["string", "null"], "format": "date" },
+          "latestPublishedMarketDate": { "type": ["string", "null"], "format": "date" },
+          "newerPublishedRunId": { "type": ["string", "null"] }
+        }
+      },
+      "BaseMeta": {
+        "type": "object",
+        "required": ["apiVersion", "requestId"],
+        "properties": {
+          "apiVersion": { "const": "v1" },
+          "requestId": { "type": "string" }
+        },
+        "additionalProperties": true
+      },
+      "AnalyticalMeta": {
+        "allOf": [
+          { "$ref": "#/components/schemas/BaseMeta" },
+          {
+            "type": "object",
+            "required": ["analysisRunId", "marketDataAsOf", "marketDate", "exchangeTimezone", "publishedAt", "snapshotType", "tradingSession", "barInterval", "observationPoint", "freshness"],
+            "properties": {
+              "analysisRunId": { "type": "string" },
+              "marketDataAsOf": { "type": "string", "format": "date-time" },
+              "marketDate": { "type": "string", "format": "date" },
+              "exchangeTimezone": { "type": "string" },
+              "publishedAt": { "type": "string", "format": "date-time" },
+              "snapshotType": { "const": "eod" },
+              "tradingSession": { "const": "regular" },
+              "barInterval": { "const": "1d" },
+              "observationPoint": { "const": "official_close" },
+              "freshness": { "$ref": "#/components/schemas/Freshness" }
+            }
+          }
+        ]
+      },
+      "EvidenceSummary": {
+        "type": "object",
+        "required": ["score", "band", "status", "coveragePercent"],
+        "properties": {
+          "score": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+          "band": { "type": ["string", "null"], "enum": ["strong_alignment", "constructive_alignment", "mixed_evidence", "weak_alignment", "low_alignment", null] },
+          "status": { "type": "string", "enum": ["complete", "incomplete"] },
+          "coveragePercent": { "type": "number", "minimum": 0, "maximum": 100 },
+          "summary": { "type": "string" }
+        }
+      },
+      "DecisionConfidence": {
+        "type": "object",
+        "required": ["state", "notProbability"],
+        "properties": {
+          "state": { "type": "string", "enum": ["strong", "moderate", "constrained", "incomplete"] },
+          "summary": { "type": "string" },
+          "notProbability": { "const": true }
+        }
+      },
+      "HomepageResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": ["briefing", "benchmarks", "opportunities", "opportunitySummary"],
+            "properties": {
+              "briefing": { "type": "object", "additionalProperties": true },
+              "benchmarks": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+              "opportunities": { "type": "array", "maxItems": 5, "items": { "type": "object", "additionalProperties": true } },
+              "opportunitySummary": { "type": "object", "additionalProperties": true }
+            }
+          },
+          "meta": { "$ref": "#/components/schemas/AnalyticalMeta" }
+        }
+      },
+      "WorkspaceResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": ["instrument", "workspaceSummary", "marketContext", "sectorContext", "technicalEvidence", "devilsAdvocate", "decisionConfidence", "thesisInvalidation", "strategyEducation", "beforeYouDecide", "askTradeEvidence"],
+            "properties": {
+              "instrument": { "type": "object", "additionalProperties": true },
+              "workspaceSummary": { "type": "object", "additionalProperties": true },
+              "marketContext": { "type": "object", "additionalProperties": true },
+              "sectorContext": { "type": "object", "additionalProperties": true },
+              "technicalEvidence": { "$ref": "#/components/schemas/EvidenceSummary" },
+              "devilsAdvocate": { "type": "object", "additionalProperties": true },
+              "decisionConfidence": { "$ref": "#/components/schemas/DecisionConfidence" },
+              "thesisInvalidation": { "type": "object", "additionalProperties": true },
+              "strategyEducation": { "type": "object", "additionalProperties": true },
+              "beforeYouDecide": { "type": "object", "additionalProperties": true },
+              "askTradeEvidence": { "type": "object", "additionalProperties": true }
+            }
+          },
+          "meta": { "$ref": "#/components/schemas/AnalyticalMeta" }
+        }
+      },
+      "FactorResult": {
+        "type": "object",
+        "required": ["factorResultId", "factorCode", "factorDefinitionVersion", "label", "evaluationStatus", "displayOrder"],
+        "properties": {
+          "factorResultId": { "type": "string" },
+          "factorCode": { "type": "string" },
+          "factorDefinitionVersion": { "type": "string" },
+          "label": { "type": "string" },
+          "evaluationStatus": { "type": "string", "enum": ["evaluated", "unavailable", "not_evaluated"] },
+          "observedState": { "type": ["string", "null"] },
+          "effect": { "type": ["string", "null"], "enum": ["supporting", "contradicting", "neutral", null] },
+          "observedValue": { "type": ["object", "null"], "additionalProperties": true },
+          "contribution": { "type": ["number", "null"] },
+          "maximumSupportingContribution": { "type": ["number", "null"] },
+          "explanation": { "type": "object", "additionalProperties": true },
+          "displayOrder": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "EvidenceResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": ["instrument", "technicalEvidence", "factorGroups", "calculation", "contradictionSummary", "dataCoverage"],
+            "properties": {
+              "instrument": { "type": "object", "additionalProperties": true },
+              "technicalEvidence": { "$ref": "#/components/schemas/EvidenceSummary" },
+              "factorGroups": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["groupCode", "label", "displayOrder", "factors"],
+                  "properties": {
+                    "groupCode": { "type": "string" },
+                    "label": { "type": "string" },
+                    "displayOrder": { "type": "integer" },
+                    "factors": { "type": "array", "items": { "$ref": "#/components/schemas/FactorResult" } }
+                  }
+                }
+              },
+              "calculation": { "type": "object", "additionalProperties": true },
+              "contradictionSummary": { "type": "object", "additionalProperties": true },
+              "dataCoverage": { "type": "object", "additionalProperties": true }
+            }
+          },
+          "meta": { "$ref": "#/components/schemas/AnalyticalMeta" }
+        }
+      },
+      "HistoryPoint": {
+        "type": "object",
+        "required": ["marketDate", "marketDataAsOf", "analysisRunId", "symbolSnapshotId", "symbolAtPublication", "canonicalPrice", "evidenceStatus", "coveragePercent", "decisionConfidence"],
+        "properties": {
+          "marketDate": { "type": "string", "format": "date" },
+          "marketDataAsOf": { "type": "string", "format": "date-time" },
+          "analysisRunId": { "type": "string" },
+          "symbolSnapshotId": { "type": "string" },
+          "symbolAtPublication": { "type": "string" },
+          "canonicalPrice": { "type": "string", "pattern": "^-?[0-9]+(\\.[0-9]+)?$" },
+          "technicalEvidenceScore": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+          "evidenceBand": { "type": ["string", "null"] },
+          "evidenceStatus": { "type": "string", "enum": ["complete", "incomplete"] },
+          "coveragePercent": { "type": "number", "minimum": 0, "maximum": 100 },
+          "decisionConfidence": { "type": "string", "enum": ["strong", "moderate", "constrained", "incomplete"] },
+          "publicationRevision": { "type": "integer", "minimum": 1 },
+          "replacesAnalysisRunId": { "type": ["string", "null"] }
+        }
+      },
+      "HistoryResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": ["instrument", "comparisonBasis", "points", "coverage"],
+            "properties": {
+              "instrument": { "type": "object", "additionalProperties": true },
+              "comparisonBasis": { "type": "object", "additionalProperties": true },
+              "points": { "type": "array", "items": { "$ref": "#/components/schemas/HistoryPoint" } },
+              "coverage": { "type": "object", "additionalProperties": true }
+            }
+          },
+          "meta": { "$ref": "#/components/schemas/PaginatedMeta" }
+        }
+      },
+      "PageMeta": {
+        "type": "object",
+        "required": ["limit", "hasMore"],
+        "properties": {
+          "limit": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "hasMore": { "type": "boolean" },
+          "nextCursor": { "type": ["string", "null"] }
+        }
+      },
+      "PaginatedMeta": {
+        "allOf": [
+          { "$ref": "#/components/schemas/BaseMeta" },
+          {
+            "type": "object",
+            "required": ["page"],
+            "properties": { "page": { "$ref": "#/components/schemas/PageMeta" } }
+          }
+        ]
+      },
+      "Watchlist": {
+        "type": "object",
+        "required": ["watchlistId", "name", "itemCount", "createdAt", "updatedAt", "revision"],
+        "properties": {
+          "watchlistId": { "type": "string" },
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": ["string", "null"] },
+          "itemCount": { "type": "integer", "minimum": 0 },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "revision": { "type": "integer", "minimum": 1 },
+          "items": { "type": "array", "items": { "$ref": "#/components/schemas/WatchlistItem" } }
+        }
+      },
+      "WatchlistItem": {
+        "type": "object",
+        "required": ["instrumentId", "note", "createdAt", "updatedAt", "revision"],
+        "properties": {
+          "instrumentId": { "type": "string" },
+          "note": { "type": ["string", "null"] },
+          "sourceContext": { "type": ["object", "null"], "additionalProperties": true },
+          "currentEvidence": { "type": ["object", "null"], "additionalProperties": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "revision": { "type": "integer", "minimum": 1 }
+        }
+      },
+      "WatchlistResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": { "$ref": "#/components/schemas/Watchlist" },
+          "meta": { "$ref": "#/components/schemas/BaseMeta" }
+        }
+      },
+      "WatchlistItemResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": { "$ref": "#/components/schemas/WatchlistItem" },
+          "meta": { "$ref": "#/components/schemas/BaseMeta" }
+        }
+      },
+      "WatchlistCollectionResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": { "type": "array", "items": { "$ref": "#/components/schemas/Watchlist" } },
+          "meta": { "$ref": "#/components/schemas/PaginatedMeta" }
+        }
+      },
+      "CreateWatchlistRequest": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      },
+      "UpdateWatchlistRequest": {
+        "type": "object",
+        "minProperties": 1,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      },
+      "PutWatchlistItemRequest": {
+        "type": "object",
+        "properties": {
+          "sourceSymbolSnapshotId": { "type": ["string", "null"] },
+          "note": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      },
+      "UpdateWatchlistItemRequest": {
+        "type": "object",
+        "required": ["note"],
+        "properties": { "note": { "type": ["string", "null"] } },
+        "additionalProperties": false
+      },
+      "AskTradeEvidenceRequest": {
+        "type": "object",
+        "required": ["instrumentId", "analysisRunId", "intent", "question"],
+        "properties": {
+          "instrumentId": { "type": "string" },
+          "analysisRunId": { "type": "string" },
+          "intent": {
+            "type": "string",
+            "enum": [
+              "explain_evidence",
+              "explain_score_contribution",
+              "challenge_thesis",
+              "explain_decision_confidence",
+              "compare_supporting_and_contradicting_evidence",
+              "explain_market_alignment",
+              "explain_sector_alignment",
+              "explain_invalidation_conditions",
+              "compare_strategy_education",
+              "explain_terminology",
+              "identify_missing_information"
+            ]
+          },
+          "question": { "type": "string", "minLength": 1 },
+          "sessionId": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      },
+      "AskTradeEvidenceResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": ["responseDisposition", "answer", "evidenceUsed", "missingInformation"],
+            "properties": {
+              "responseDisposition": { "type": "string", "enum": ["answered", "redirected", "insufficient_context", "refused"] },
+              "answer": { "type": "string" },
+              "evidenceUsed": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+              "importantCounterpoint": { "type": ["string", "null"] },
+              "missingInformation": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+              "educationalBoundary": { "type": ["object", "null"], "additionalProperties": true },
+              "suggestedNextQuestions": { "type": "array", "items": { "type": "object", "additionalProperties": true } }
+            }
+          },
+          "meta": {
+            "allOf": [
+              { "$ref": "#/components/schemas/BaseMeta" },
+              {
+                "type": "object",
+                "required": ["analysisRunId", "symbolSnapshotId", "marketDataAsOf", "aiWorkflowVersion", "promptTemplateVersion", "responseId", "guardrailDisposition"],
+                "properties": {
+                  "analysisRunId": { "type": "string" },
+                  "symbolSnapshotId": { "type": "string" },
+                  "marketDataAsOf": { "type": "string", "format": "date-time" },
+                  "aiWorkflowVersion": { "type": "string" },
+                  "promptTemplateVersion": { "type": "string" },
+                  "responseId": { "type": "string" },
+                  "guardrailDisposition": { "type": "string" }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "ErrorDetail": {
+        "type": "object",
+        "required": ["code"],
+        "properties": {
+          "field": { "type": ["string", "null"] },
+          "code": { "type": "string" },
+          "message": { "type": ["string", "null"] }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error", "meta"],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": ["code", "message", "category", "retryable"],
+            "properties": {
+              "code": { "type": "string" },
+              "message": { "type": "string" },
+              "category": { "type": "string" },
+              "retryable": { "type": "boolean" },
+              "details": { "type": "array", "items": { "$ref": "#/components/schemas/ErrorDetail" } }
+            }
+          },
+          "meta": { "$ref": "#/components/schemas/BaseMeta" }
+        }
+      }
+    }
+  },
+  "x-tradeevidence-deferred-security-scheme": "Authentication provider and session mechanism are selected in later architecture/security work. Operations marked x-tradeevidence-authentication require verified internal identity."
+}
