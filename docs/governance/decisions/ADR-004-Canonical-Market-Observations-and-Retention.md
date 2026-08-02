@@ -95,5 +95,5 @@ keeps website performance independent from the size of the historical archive.
 - [Evidence History and Validation](../../Evidence-History-and-Validation.md)
 - [MVP Implementation Specification](../../engineering/MVP-Implementation-Spec.md)
 - [Workshop #2 Summary](../../workshops/Workshop-02-Summary.md)
-- [MVP Implementation Specification](../../engineering/MVP-Implementation-Spec.md)
-- [Workshop #2 Summary](../../workshops/Workshop-02-Summary.md)
+- [MVP Data Schema](../../engineering/MVP-Data-Schema.md)
+- [ADR-005 - MVP Persistence and Data Integrity](ADR-005-MVP-Persistence-and-Data-Integrity.md)

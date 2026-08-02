@@ -3,6 +3,8 @@
 ## Overview
 This document captures the conceptual data model for TradeEvidence. It is intentionally high level and does not define implementation details.
 
+The authoritative physical MVP schema, lifecycle, lineage, constraints, indexes, and versioning rules are defined in [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md).
+
 ## Core Entities
 
 | Entity | Description |
@@ -87,3 +89,4 @@ erDiagram
 - [07-Scoring-Engine.md](07-Scoring-Engine.md)
 - [08-AI-Strategy.md](08-AI-Strategy.md)
 - [05-Product-Decisions.md](05-Product-Decisions.md)
+- [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)

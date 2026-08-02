@@ -286,6 +286,43 @@ Each decision entry below includes:
 - Status: Active
 - Related Documents: [governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md), [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md)
 
+## Workshop #3 Decisions (2026-08-02)
+
+### Hybrid MVP Persistence and Immutable Publication Model
+- Decision: Accepted analytical artifacts use immutable object storage, while a PostgreSQL-compatible relational database provides the authoritative application read model. A transactional publication pointer exposes one complete approved run per channel, and caches remain disposable.
+- Reason: Reproducibility, atomic publication, historical queries, and high website performance require separate archival, query, and delivery responsibilities.
+- Expected Product Impact: The website can serve fast current and historical views without scanning archives or recalculating analytical results during requests.
+- Status: Active
+- Related Documents: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md), [governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md](governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md)
+
+### Stable Identity, Versioned Lineage, and Semantic Duplicate Detection
+- Decision: Analytical entities use stable opaque identities and single-run ownership. Imports preserve complete artifact/version lineage and distinguish execution identity, bundle integrity, and normalized analytical equivalence.
+- Reason: Ticker changes, retries, corrected data, and repeated equivalent executions must not create ambiguous, mixed, duplicated, or silently rewritten history.
+- Expected Product Impact: Exact retries are idempotent, equivalent runs are marked redundant, meaningful changes require a new approved candidate, and every published record remains reproducible.
+- Status: Active
+- Related Documents: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md), [workshops/Workshop-03-Summary.md](workshops/Workshop-03-Summary.md)
+
+### Deny-by-Default Private User Data
+- Decision: TradeEvidence separates stable internal user identity from authentication-provider identity and enforces owner isolation across application, API, database, cache, and object access. Normal users and normal staff roles cannot access another user's private information; exceptional staff access is selective, explicitly authorized, and audited.
+- Reason: Private research data requires defense-in-depth isolation and must not depend on email addresses or a specific authentication vendor.
+- Expected Product Impact: Phase 1 watchlists remain private and portable across future authentication choices, while privileged access is narrowly governed.
+- Status: Active
+- Related Documents: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md), [governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md](governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md)
+
+### Versioned Append-Only Outcome Measurement
+- Decision: Outcome measurements are versioned, append-only observations linked to immutable snapshots. Trading-session horizons, anchor basis, benchmark, corporate-action treatment, missing-data state, and corrections remain explicit.
+- Reason: Later results must never change what TradeEvidence originally observed or silently treat missing, delisted, acquired, or complex-action cases as zero.
+- Expected Product Impact: The platform gains an auditable foundation for future validation without claiming current predictive validity.
+- Status: Active; outcome methodology validation remains deferred
+- Related Documents: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md), [Evidence-History-and-Validation.md](Evidence-History-and-Validation.md)
+
+### Workshop #3 Data Schema Closed
+- Decision: Workshop #3 is closed with an implementation-ready MVP data schema, accepted persistence ADR, integrity constraints, query/index strategy, migration policy, privacy boundaries, acceptance tests, risks, and explicit deferred scope.
+- Reason: API design requires a stable, authoritative data contract and clear integrity boundaries.
+- Expected Product Impact: Workshop #4 can define provider-independent API contracts without inventing schema semantics.
+- Status: Active
+- Related Documents: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md), [workshops/Workshop-03-Summary.md](workshops/Workshop-03-Summary.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
@@ -303,8 +340,11 @@ Each decision entry below includes:
 - [governance/decisions/ADR-001-Adopt-AI-DLC.md](governance/decisions/ADR-001-Adopt-AI-DLC.md)
 - [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
 - [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md)
+- [governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md)
+- [governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md](governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md)
 - [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md)
 - [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md)
 - [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
 - [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md)
 - [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md)
+- [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)

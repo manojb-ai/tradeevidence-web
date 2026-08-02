@@ -3,7 +3,7 @@
 **Status:** Approved  
 **Version:** 1.0  
 **Owner:** Founder and Chief Software Architect  
-**Last Updated:** 2026-07-18
+**Last Updated:** 2026-08-02
 **Related Documents:** [../engineering/Engineering-Specification-Index.md](../engineering/Engineering-Specification-Index.md), [../engineering/TradeEvidence-Engineering-Lifecycle.md](../engineering/TradeEvidence-Engineering-Lifecycle.md), [../engineering/Master-System-Architecture.md](../engineering/Master-System-Architecture.md), [../engineering/Canonical-Analytical-Model.md](../engineering/Canonical-Analytical-Model.md), [../governance/AI-DLC-Adoption-Policy.md](../governance/AI-DLC-Adoption-Policy.md), [../governance/decisions/ADR-001-Adopt-AI-DLC.md](../governance/decisions/ADR-001-Adopt-AI-DLC.md), [../governance/decisions/ADR-002-Master-System-Architecture.md](../governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Objective
@@ -38,6 +38,15 @@ Completion Date: 2026-07-19
 - [../engineering/MVP-Implementation-Spec.md](../engineering/MVP-Implementation-Spec.md)
 - [../governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md](../governance/decisions/ADR-004-Canonical-Market-Observations-and-Retention.md)
 - [Workshop-02-Summary.md](Workshop-02-Summary.md)
+
+## Workshop #3 Approved Outputs
+
+Status: Completed
+Completion Date: 2026-08-02
+
+- [../engineering/MVP-Data-Schema.md](../engineering/MVP-Data-Schema.md)
+- [../governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md](../governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md)
+- [Workshop-03-Summary.md](Workshop-03-Summary.md)
 
 ## Workshop Operating Pattern
 
