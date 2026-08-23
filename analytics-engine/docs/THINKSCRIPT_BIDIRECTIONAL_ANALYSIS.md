@@ -4,6 +4,25 @@
 - **Date:** 2026-08-23
 - **Production eligibility:** Not eligible
 
+## Founder high-level validation
+
+Initial side-by-side chart review confirmed:
+
+- original bullish behavior remains consistent;
+- candidate bearish setup behavior is useful;
+- candidate bearish-watch behavior is useful;
+- candidate Orbit behavior is correct, including the consistent `close` basis;
+- Neutral states are analytically recognizable but visually noisy in the
+  watchlist; and
+- AG, ADM, and DAL are representative Bull, Bear, and Neutral examples,
+  respectively.
+
+TradeEvidence will not introduce a separate Neutral or Unaligned watchlist
+column. One bidirectional StellarEvidence column remains the source column.
+Neutral remains an internal classification so the engine does not mislabel a
+non-directional symbol as bullish or bearish. Its final compact display
+treatment remains subject to usability review.
+
 ## Source reviewed
 
 The analysis used the founder-provided original `Stellar`, `Stellar-Watch`,
@@ -76,7 +95,7 @@ recommendations.
 4. Decide whether the mirrored bearish near-EMA band is visually appropriate.
 5. Compare candidate Orbit to the original, especially flat-line and zero-line
    boundary cases.
-6. Confirm that `price = close` is intended for both Orbit scan and column.
+6. `price = close` has been confirmed for both Orbit scan and column.
 7. Export candidate Daily and Weekly columns only after chart review.
 
 The Python v2 adapter must not treat these labels as authoritative until this
