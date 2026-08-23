@@ -1,0 +1,74 @@
+# ######################################################################
+# WATCHLIST COLUMN: StellarEvidence_Bidirectional
+# Status: Candidate for human review and Thinkorswim validation
+# Purpose: Symmetric bullish/bearish compression and trend-alignment states
+# Use: Apply the same script with Daily, Weekly, or Monthly aggregation
+# ######################################################################
+
+input length = 20;
+input fast_ema_length = 8;
+input slow_ema_length = 21;
+input bb_mult = 2.0;
+input kc_mult = 1.5;
+input useMacroFilter = yes;
+input macro_sma_fast = 50;
+input macro_sma_slow = 200;
+
+# Location bands preserve the original bullish range and mirror it for bears.
+input bullish_near_min_pct = -1.0;
+input bullish_near_max_pct = 2.0;
+input bearish_near_min_pct = -2.0;
+input bearish_near_max_pct = 1.0;
+
+def avg = SimpleMovingAvg(close, length);
+def sDev = StDev(close, length);
+def upperBB = avg + (bb_mult * sDev);
+def lowerBB = avg - (bb_mult * sDev);
+def trueRange = TrueRange(high, close, low);
+def avg_true_range = SimpleMovingAvg(trueRange, length);
+def upperKC = avg + (kc_mult * avg_true_range);
+def lowerKC = avg - (kc_mult * avg_true_range);
+def compressionActive = lowerBB > lowerKC and upperBB < upperKC;
+
+def fastEma = ExpAverage(close, fast_ema_length);
+def slowEma = ExpAverage(close, slow_ema_length);
+def sma50 = SimpleMovingAvg(close, macro_sma_fast);
+def sma200 = SimpleMovingAvg(close, macro_sma_slow);
+def shortTrendUp = fastEma > slowEma;
+def shortTrendDown = fastEma < slowEma;
+def macroTrendUp = if useMacroFilter then close > sma50 and sma50 > sma200 else yes;
+def macroTrendDown = if useMacroFilter then close < sma50 and sma50 < sma200 else yes;
+def trendUp = shortTrendUp and macroTrendUp;
+def trendDown = shortTrendDown and macroTrendDown;
+
+def percentFromSlowEma = ((close - slowEma) / slowEma) * 100;
+def nearBullishSlowEma = percentFromSlowEma >= bullish_near_min_pct and
+                         percentFromSlowEma <= bullish_near_max_pct;
+def nearBearishSlowEma = percentFromSlowEma >= bearish_near_min_pct and
+                         percentFromSlowEma <= bearish_near_max_pct;
+
+def bullishSetup = compressionActive and trendUp and nearBullishSlowEma;
+def bullishWatch = compressionActive and trendUp and !nearBullishSlowEma;
+def bearishSetup = compressionActive and trendDown and nearBearishSlowEma;
+def bearishWatch = compressionActive and trendDown and !nearBearishSlowEma;
+
+AddLabel(yes,
+    if bullishSetup then "BULL-CD"
+    else if bullishWatch then "BULL-WATCH-CD"
+    else if bearishSetup then "BEAR-CD"
+    else if bearishWatch then "BEAR-WATCH-CD"
+    else if compressionActive then "NEUTRAL-CD"
+    else if trendUp then "BULL-BO"
+    else if trendDown then "BEAR-BO"
+    else "NEUTRAL-BO",
+    Color.BLACK
+);
+
+AssignBackgroundColor(
+    if bullishSetup then Color.GREEN
+    else if bullishWatch then Color.DARK_GREEN
+    else if bearishSetup then Color.RED
+    else if bearishWatch then Color.DARK_RED
+    else if compressionActive then Color.YELLOW
+    else Color.GRAY
+);

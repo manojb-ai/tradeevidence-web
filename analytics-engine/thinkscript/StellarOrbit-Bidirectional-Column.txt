@@ -1,0 +1,35 @@
+# ######################################################################
+# WATCHLIST COLUMN: StellarOrbit_Bidirectional
+# Status: Candidate for human review and Thinkorswim validation
+# ######################################################################
+
+input price = close;
+input fastLength = 12;
+input slowLength = 26;
+
+def fastEMA = ExpAverage(price, fastLength);
+def slowEMA = ExpAverage(price, slowLength);
+def orbitLine = fastEMA - slowEMA;
+def isUp = orbitLine > orbitLine[1];
+def isDown = orbitLine < orbitLine[1];
+def bullish = orbitLine >= 0 and isUp;
+def bullishWatch = orbitLine >= 0 and isDown;
+def bearish = orbitLine < 0 and isDown;
+def bearishWatch = orbitLine < 0 and isUp;
+
+AddLabel(yes,
+    if bullish then "BULL"
+    else if bullishWatch then "BULL-WATCH"
+    else if bearish then "BEAR"
+    else if bearishWatch then "BEAR-WATCH"
+    else "NEUTRAL",
+    Color.BLACK
+);
+
+AssignBackgroundColor(
+    if bullish then Color.GREEN
+    else if bullishWatch then Color.DARK_GREEN
+    else if bearish then Color.RED
+    else if bearishWatch then Color.DARK_RED
+    else Color.GRAY
+);

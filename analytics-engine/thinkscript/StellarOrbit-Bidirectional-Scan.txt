@@ -1,0 +1,20 @@
+# ######################################################################
+# SCAN: StellarOrbit_Bidirectional_Cross
+# Status: Candidate for human review and Thinkorswim validation
+# ######################################################################
+
+input scanMode = {default BullishCross, BearishCross};
+input price = close;
+input fastLength = 12;
+input slowLength = 26;
+input withinBars = 1;
+
+def fastEMA = ExpAverage(price, fastLength);
+def slowEMA = ExpAverage(price, slowLength);
+def orbitLine = fastEMA - slowEMA;
+def bullishCross = orbitLine crosses above 0;
+def bearishCross = orbitLine crosses below 0;
+def bullishCrossRecent = bullishCross within withinBars bars;
+def bearishCrossRecent = bearishCross within withinBars bars;
+
+plot scanSignal = if scanMode == scanMode.BullishCross then bullishCrossRecent else bearishCrossRecent;
