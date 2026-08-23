@@ -8,8 +8,8 @@ from enum import Enum
 from typing import Any, Dict, List, Optional
 
 
-ENGINE_VERSION = "TradeEvidence Evidence Engine v2.0.0-candidate.1"
-RULESET_VERSION = "direction-aware-technical-evidence-v0.1.0"
+ENGINE_VERSION = "TradeEvidence Evidence Engine v2.0.0-candidate.2"
+RULESET_VERSION = "direction-aware-technical-evidence-v0.2.0"
 INPUT_SCHEMA_VERSION = "normalized-technical-observation-v1"
 OUTPUT_SCHEMA_VERSION = "technical-evidence-snapshot-v2"
 TEMPLATE_VERSION = "deterministic-evidence-language-v1"
@@ -56,6 +56,7 @@ class NormalizedTechnicalObservation:
     sma200: Optional[Decimal]
     adx14: Optional[Decimal]
     daily_setup: str
+    weekly_setup: str
     daily_momentum: str
     weekly_trend: str
     monthly_context: str

@@ -34,6 +34,7 @@ def observation(**changes) -> NormalizedTechnicalObservation:
         sma200=Decimal("80"),
         adx14=Decimal("32"),
         daily_setup="positive_prime",
+        weekly_setup="positive_prime",
         daily_momentum="bullish",
         weekly_trend="bullish",
         monthly_context="neutral",

@@ -47,7 +47,7 @@ def _allocation(
         raise ValueError(f"Factor {code} does not reconcile to capacity {capacity}")
     return FactorAllocation(
         factor_code=code,
-        definition_version="1.0.0-candidate.1",
+        definition_version="1.0.0-candidate.2",
         group=group,
         capacity=capacity,
         observed_state=state,
@@ -64,7 +64,7 @@ def _allocation(
 def _unavailable(code: str, group: str, capacity: int, reason: str) -> FactorAllocation:
     return FactorAllocation(
         factor_code=code,
-        definition_version="1.0.0-candidate.1",
+        definition_version="1.0.0-candidate.2",
         group=group,
         capacity=capacity,
         observed_state="unavailable",
@@ -87,6 +87,11 @@ def _daily_setup(obs: NormalizedTechnicalObservation) -> FactorAllocation:
         "positive_developing": (12, 0, 8, "The daily setup is developing and provides partial bullish evidence."),
         "positive_active": (14, 0, 6, "The daily setup is active and provides bullish evidence with some maturity limitation."),
         "positive_watch": (8, 0, 12, "The daily setup provides tentative bullish evidence."),
+        "negative_prime": (0, 20, 0, "The daily setup provides strong bearish setup evidence."),
+        "negative_developing": (0, 12, 8, "The daily setup is developing and provides partial bearish evidence."),
+        "bullish_uncompressed": (8, 0, 12, "Bullish trend alignment is present without active compression."),
+        "bearish_uncompressed": (0, 8, 12, "Bearish trend alignment is present without active compression."),
+        "neutral_compression": (0, 0, 20, "Compression is active without an approved directional setup."),
         "no_active_setup": (0, 0, 20, "No active directional setup was identified."),
     }
     if not state or state == "unknown":
@@ -101,10 +106,11 @@ def _directional_momentum(code: str, group: str, capacity: int, state: str, unav
         "bullish": (18, 0, 2),
         "bullish_improving": (14, 0, 6),
         "bullish_stable": (10, 0, 10),
+        "bullish_weakening": (10, 4, 6),
         "bearish_turning": (0, 20, 0),
         "bearish": (0, 18, 2),
-        "bearish_weakening": (0, 14, 6),
         "bearish_soft": (0, 10, 10),
+        "bearish_weakening": (4, 10, 6),
         "neutral": (0, 0, 20),
     }
     if not state or state == "unknown":
