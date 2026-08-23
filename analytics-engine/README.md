@@ -52,19 +52,34 @@ is implemented beside them in `evidence_engine_v2.py` and related v2 modules.
 It is a review candidate, not an approved production ruleset and not a claim of
 predictive or historical validity.
 
-Run it against a local CSV with an explicit observation date:
+For an interactive on-demand run, open PowerShell in `analytics-engine` and
+run:
 
 ```powershell
-py run_evidence_engine_v2.py `
-  --data-file ".\input\watchlist.csv" `
+py run_evidence_engine_v2.py
+```
+
+The program prompts for the Thinkorswim CSV path and market date. Use the
+trading-session date represented by the values, which may differ from the date
+the CSV was exported. Reports are written beneath
+`analytics-engine/output/<csv-name>/`.
+
+You can also provide everything in one command and optionally open the HTML
+report when the run completes:
+
+```powershell
+py run_evidence_engine_v2.py "C:\path\to\watchlist.csv" `
   --market-date "2026-08-21" `
   --as-of "2026-08-21T20:00:00Z" `
-  --output-dir ".\output\evidence-v2"
+  --open-report
 ```
+
+`--as-of` and `--output-dir` are optional. The existing `--data-file` form is
+also supported for scripts and saved commands.
 
 The candidate emits `bullish`, `bearish`, `bullish_watch`, `bearish_watch`,
 `mixed`, `neutral`, and `incomplete` classifications while keeping direction
 separate from alignment strength. Outputs remain local and ignored by Git.
 
-See [V2 Candidate 1 Validation](docs/V2_CANDIDATE_1_VALIDATION.md) before
+See [V2 Candidate 2 Validation](docs/V2_CANDIDATE_2_VALIDATION.md) before
 interpreting its behavior or changing provisional factor capacities.
