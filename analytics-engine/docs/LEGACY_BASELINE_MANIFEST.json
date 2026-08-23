@@ -1,0 +1,12 @@
+{
+  "status": "protected_characterization_baseline",
+  "sourceCommit": "32dd68de10ea3cd102819691154776d2492efec9",
+  "engineVersion": "TradeEvidence Decision Engine v1.1",
+  "rulesetVersion": "Opportunity-First + Location Rules v1.2",
+  "hashAlgorithm": "sha256_utf8_lf_normalized",
+  "files": {
+    "src/tradeevidence_analytics/stellar_data_engine.py": "3e67454d3b7b6998c7ee3aec5ba9071e95ff991cdcfdf174ff2cb99e4cdc12b8",
+    "src/tradeevidence_analytics/stellar_strategy.py": "075b6d27591ff27b53cefee2575a5ea039a57daf9692bfb177c2a8ea538ecb5d",
+    "src/tradeevidence_analytics/stellar_data_reporter.py": "c011db4e154dbabcc41805ff14919a51207f25a8c6b4dc2bebde434e04a8ab44"
+  }
+}

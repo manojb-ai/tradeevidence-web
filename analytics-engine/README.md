@@ -44,3 +44,27 @@ python -m unittest discover -s tests -v
 
 The initial tests characterize the imported baseline so subsequent changes are
 intentional and reviewable.
+
+## Direction-aware v2 candidate
+
+The protected legacy files remain unchanged. Experimental direction-aware work
+is implemented beside them in `evidence_engine_v2.py` and related v2 modules.
+It is a review candidate, not an approved production ruleset and not a claim of
+predictive or historical validity.
+
+Run it against a local CSV with an explicit observation date:
+
+```powershell
+py run_evidence_engine_v2.py `
+  --data-file ".\input\watchlist.csv" `
+  --market-date "2026-08-21" `
+  --as-of "2026-08-21T20:00:00Z" `
+  --output-dir ".\output\evidence-v2"
+```
+
+The candidate emits `bullish`, `bearish`, `bullish_watch`, `bearish_watch`,
+`mixed`, `neutral`, and `incomplete` classifications while keeping direction
+separate from alignment strength. Outputs remain local and ignored by Git.
+
+See [V2 Candidate 1 Validation](docs/V2_CANDIDATE_1_VALIDATION.md) before
+interpreting its behavior or changing provisional factor capacities.
