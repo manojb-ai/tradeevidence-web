@@ -53,6 +53,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [Trading-Profile.md](Trading-Profile.md) — the concept of a dynamic trading profile for personalization and adaptation.
 - [Evidence-History-and-Validation.md](Evidence-History-and-Validation.md) — the evidence history and validation model.
 - [Evidence-Snapshot-Data-Contract.md](Evidence-Snapshot-Data-Contract.md) — the data contract for evidence snapshots.
+- [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md) — the authoritative direction, pipeline, factor, explanation, history, lifecycle, and validation contract for the Evidence Engine.
 
 ### AI
 - [08-AI-Strategy.md](08-AI-Strategy.md) — the strategy for AI as a decision coach rather than an advisor.
@@ -65,6 +66,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [governance/decisions/ADR-001-Adopt-AI-DLC.md](governance/decisions/ADR-001-Adopt-AI-DLC.md) — approved ADR recording why and how AI-DLC is adopted.
 - [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md) — approved ADR recording the layered Decision Intelligence Platform architecture.
 - [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md) — approved ADR recording the CSV-first MVP decision and provider-abstraction evolution path.
+- [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md) — approved ADR recording deterministic Evidence Engine governance and lifecycle boundaries.
 - [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md) — authoritative layered architecture specification for the platform.
 - [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md) — authoritative shared symbol analytical foundation across engines and consumers.
 - [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md) — approved lifecycle for implementation delivery and learning.
@@ -78,6 +80,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [workshops/2026-07-16-Decision-Workspace-Workshop.md](workshops/2026-07-16-Decision-Workspace-Workshop.md) — follow-on workshop notes for the workspace direction.
 - [workshops/Architecture-Workshop-Plan.md](workshops/Architecture-Workshop-Plan.md) — approved plan for converting handbook decisions into implementation-ready architecture specifications.
 - [workshops/Workshop-01-Summary.md](workshops/Workshop-01-Summary.md) — concise executive summary of Workshop #1 approved architecture baseline and deferred topics.
+- [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md) — durable summary of Workshop #6 Evidence Engine decisions, candidate findings, risks, and deferred scope.
 
 ### Prototypes
 - [prototypes/Dashboard-v1-Baseline.md](prototypes/Dashboard-v1-Baseline.md) — the approved homepage prototype and design baseline.

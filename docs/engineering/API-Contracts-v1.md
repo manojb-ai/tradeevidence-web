@@ -337,7 +337,7 @@ Default history returns one current valid publication revision per market date. 
 
 Pagination uses opaque cursors bound to resource, filters, sort, and ownership where applicable. Provisional default is 50 and maximum is 100. Stable history ordering uses market as-of plus snapshot ID. Unknown filters and unsupported sort fields fail visibly.
 
-Outcome measurements are not exposed until Workshop 6 approves methodology, presentation, and non-predictive language.
+Outcome measurements are not exposed until an outcome methodology, presentation contract, and non-predictive language satisfy the Workshop 6 validation gates and receive explicit human approval.
 
 ## Error Contract
 

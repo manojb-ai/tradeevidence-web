@@ -155,7 +155,7 @@ These targets must be refined with representative environments and measured duri
 - Physical database schema and indexes (Workshop #3)
 - API payloads and error contract (Workshop #4)
 - Concrete frontend/backend framework boundaries and caching implementation (Workshop #5)
-- Validated score weights and full outcome methodology (Workshop #6)
+- Production-approved score weights and outcome methodology (deferred until the approved Workshop #6 validation gates are satisfied)
 - AI provider, prompt implementation, evaluations, cost, and latency budgets (Workshop #7)
 - Authentication provider, production storage vendors, security controls, SLOs, and release approval (Workshop #8)
 

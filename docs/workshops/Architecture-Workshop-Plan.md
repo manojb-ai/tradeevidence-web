@@ -1,9 +1,9 @@
 # Architecture Workshop Plan
 
 **Status:** Approved  
-**Version:** 1.0  
+**Version:** 1.1
 **Owner:** Founder and Chief Software Architect  
-**Last Updated:** 2026-08-02
+**Last Updated:** 2026-08-23
 **Related Documents:** [../engineering/Engineering-Specification-Index.md](../engineering/Engineering-Specification-Index.md), [../engineering/TradeEvidence-Engineering-Lifecycle.md](../engineering/TradeEvidence-Engineering-Lifecycle.md), [../engineering/Master-System-Architecture.md](../engineering/Master-System-Architecture.md), [../engineering/Canonical-Analytical-Model.md](../engineering/Canonical-Analytical-Model.md), [../governance/AI-DLC-Adoption-Policy.md](../governance/AI-DLC-Adoption-Policy.md), [../governance/decisions/ADR-001-Adopt-AI-DLC.md](../governance/decisions/ADR-001-Adopt-AI-DLC.md), [../governance/decisions/ADR-002-Master-System-Architecture.md](../governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Objective
@@ -66,6 +66,15 @@ Completion Date: 2026-08-02
 - [../engineering/MVP-Application-Architecture.md](../engineering/MVP-Application-Architecture.md)
 - [../governance/decisions/ADR-007-MVP-Application-Architecture.md](../governance/decisions/ADR-007-MVP-Application-Architecture.md)
 - [Workshop-05-Summary.md](Workshop-05-Summary.md)
+
+## Workshop #6 Approved Outputs
+
+Status: Completed
+Completion Date: 2026-08-23
+
+- [../engineering/Evidence-Engine-Specification.md](../engineering/Evidence-Engine-Specification.md)
+- [../governance/decisions/ADR-008-Evidence-Engine-Governance.md](../governance/decisions/ADR-008-Evidence-Engine-Governance.md)
+- [Workshop-06-Summary.md](Workshop-06-Summary.md)
 
 ## Workshop Operating Pattern
 

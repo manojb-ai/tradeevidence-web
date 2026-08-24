@@ -1,9 +1,9 @@
 # Engineering Specification Index
 
 **Status:** Approved  
-**Version:** 1.0  
+**Version:** 1.1
 **Owner:** Chief Software Architect  
-**Last Updated:** 2026-08-02
+**Last Updated:** 2026-08-23
 **Related Documents:** [TradeEvidence-Engineering-Lifecycle.md](TradeEvidence-Engineering-Lifecycle.md), [Master-System-Architecture.md](Master-System-Architecture.md), [Canonical-Analytical-Model.md](Canonical-Analytical-Model.md), [AI-DLC-Phase-Gates.md](AI-DLC-Phase-Gates.md), [../governance/AI-DLC-Adoption-Policy.md](../governance/AI-DLC-Adoption-Policy.md), [../governance/decisions/ADR-002-Master-System-Architecture.md](../governance/decisions/ADR-002-Master-System-Architecture.md), [../workshops/Architecture-Workshop-Plan.md](../workshops/Architecture-Workshop-Plan.md)
 
 ## Priority 1 — Foundation
@@ -18,7 +18,7 @@
 
 ## Priority 2 — Application Architecture
 
-8. `Evidence-Engine-Specification.md`
+8. [`Evidence-Engine-Specification.md`](Evidence-Engine-Specification.md) - Approved 2026-08-23
 9. `AI-Workflow-Contract.md`
 
 ## Priority 3 — Delivery and Operations

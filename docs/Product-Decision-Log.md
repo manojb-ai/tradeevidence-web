@@ -411,6 +411,57 @@ Each decision entry below includes:
 - Status: Active
 - Related Documents: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md), [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md), [workshops/Workshop-05-Summary.md](workshops/Workshop-05-Summary.md)
 
+## Workshop #6 Decisions (2026-08-23)
+
+### Direction-Aware Reconciled Technical Evidence
+- Decision: Technical Evidence independently allocates bullish, bearish, neutral, and unavailable capacity; direction, alignment, coverage, classification, and Decision Confidence remain separate; missing required inputs produce Incomplete; every factor and snapshot reconciles exactly.
+- Reason: Absence of bullish evidence is not bearish evidence, missing data is not neutrality, and an explainable score requires an auditable contribution ledger.
+- Expected Product Impact: Traders can review Bullish, Bearish, Watch, Mixed, Neutral, and Incomplete evidence without forced labels, hidden missing data, or probability-like claims.
+- Status: Active
+- Related Documents: [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md), [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md)
+
+### Provider-Neutral Versioned Evidence Pipeline
+- Decision: Provider adapters create canonical normalized observations; a versioned factor registry evaluates them; exact reconciliation creates immutable Evidence Snapshots; controlled publication exposes them to downstream consumers. CSV remains a Phase 1 adapter, not an engine dependency.
+- Reason: Provider transport, scoring semantics, storage, and presentation must evolve independently without silent analytical changes.
+- Expected Product Impact: TradeEvidence can validate CSV today and add future market-data sources without rewriting the core engine or losing reproducibility.
+- Status: Active
+- Related Documents: [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md), [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
+
+### Immutable Evidence History and Traceable Reruns
+- Decision: Snapshot content is append-only and retains input checksums, factor ledgers, explanations, support, contradiction, invalidation, and all applicable versions. Retries are idempotent, intentional reruns remain distinct events, and equivalent content may be deduplicated without losing run history.
+- Reason: Later review must recover exactly what TradeEvidence calculated and why without overwriting history or confusing retries with new analysis.
+- Expected Product Impact: Historical timelines, alerts, audits, corrections, and future validation can reference trustworthy immutable evidence.
+- Status: Active
+- Related Documents: [Evidence-History-and-Validation.md](Evidence-History-and-Validation.md), [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md), [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)
+
+### Layered Explanations with Timeframe-Aware Devil's Advocate
+- Decision: Deterministic explanations preserve principal support, contradiction, unavailable evidence, invalidation, and distinct daily/weekly/monthly roles. Beginner and detailed views use progressive disclosure over the same canonical facts; AI may explain but cannot create or alter evidence.
+- Reason: Newer traders need clarity without overload, while experienced traders need factor allocations and higher-timeframe contradictions.
+- Expected Product Impact: Explanations remain approachable, inspectable, and honest about conflicting evidence without changing scores by audience.
+- Status: Active
+- Related Documents: [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md), [08-AI-Strategy.md](08-AI-Strategy.md)
+
+### Controlled Ruleset and Validation Lifecycle
+- Decision: Rulesets move through Draft, Candidate, Approved, Production, and Retired states. Promotion requires structural tests, mirrored bullish/bearish tests, founder chart review, multi-date shadow runs, approved outcome methodology, documentation, and explicit human approval.
+- Reason: Passing software tests or matching selected examples does not establish production suitability or predictive validity.
+- Expected Product Impact: Material scoring changes remain versioned, reversible, evidence-backed, and unable to silently replace production history.
+- Status: Active; Candidate 2 remains experimental
+- Related Documents: [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md), [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md), [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md)
+
+### Evidence Engine Product Boundary
+- Decision: The engine owns deterministic evidence evaluation and snapshots. It does not own acquisition, authentication, user state, alert delivery, AI conversation, Decision Confidence, trader decisions, execution, personalized advice, outcome claims, or production promotion. Alerts consume committed snapshots and do not calculate evidence.
+- Reason: Analytical authority must remain deterministic and cannot leak into UI, AI, alerts, or transactional behavior.
+- Expected Product Impact: Many analytical engines and consumers can share one canonical model without duplicating scoring or weakening non-advisory positioning.
+- Status: Active
+- Related Documents: [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md), [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md), [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
+
+### Workshop #6 Evidence Engine Closed
+- Decision: Workshop #6 is closed with approved direction, pipeline, normalized input, factor registry, score, completeness, reconciliation, immutable history, explanations, timeframe roles, validation, ruleset lifecycle, execution semantics, and product boundaries.
+- Reason: AI Workflow design requires a stable evidence authority and explicit constraints on what AI may consume and explain.
+- Expected Product Impact: Workshop #7 can define grounded AI behavior without reopening evidence calculation or allowing AI to become the source of truth.
+- Status: Active
+- Related Documents: [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md), [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md), [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
@@ -432,6 +483,7 @@ Each decision entry below includes:
 - [governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md](governance/decisions/ADR-005-MVP-Persistence-and-Data-Integrity.md)
 - [governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
 - [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md)
+- [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md)
 - [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md)
 - [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md)
 - [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
@@ -440,3 +492,5 @@ Each decision entry below includes:
 - [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)
 - [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md)
 - [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md)
+- [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md)
+- [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md)
