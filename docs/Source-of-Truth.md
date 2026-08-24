@@ -18,6 +18,8 @@ This document defines which TradeEvidence documents are authoritative for specif
 - MVP Internal API Contract: [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md), [engineering/openapi-v1.json](engineering/openapi-v1.json)
 - MVP Frontend and Backend Application Architecture: [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md)
 - Evidence Engine semantics, lifecycle, explanations, and validation: [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md)
+- Product AI role and philosophy: [08-AI-Strategy.md](08-AI-Strategy.md)
+- Ask TradeEvidence workflow, grounding, privacy, safety, cost, and evaluation: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md)
 - Canonical Language: [Canonical-Terminology.md](Canonical-Terminology.md)
 - Workshop History and context: [workshops](workshops)
 
@@ -43,6 +45,7 @@ These documents are complementary. Product architecture defines intent and conce
 - Internal API contract and evolution authority: [governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
 - MVP application structure and dependency authority: [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md)
 - Evidence Engine governance authority: [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md)
+- Grounded AI Workflow governance authority: [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md)
 - Architecture decision authority for the layered model: [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Boundary: Product AI vs Development AI

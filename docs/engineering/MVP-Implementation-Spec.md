@@ -1,7 +1,7 @@
 # MVP Implementation Specification
 
 **Status:** Approved
-**Version:** 1.0
+**Version:** 1.1
 **Owner:** Founder and Chief Software Architect
 **Approved:** 2026-07-19
 **AI-DLC Level:** Level 3 — Controlled
@@ -112,7 +112,7 @@ Ask TradeEvidence is a provider-independent, snapshot-grounded educational expla
 
 It may not create evidence, modify scores, recommend buying/selling/holding/entering/exiting, select a personalized strategy, recommend position size, invent price targets/stops/entries, predict movement, estimate unsupported probability, claim predictive validity, invent missing data, or imply personalized suitability.
 
-Answers identify evidence used, a material counterpoint, missing or unevaluated information, freshness when relevant, and traceable snapshot identifiers. Phase 1 uses bounded snapshot context and approved educational content, no live internet augmentation, session-only conversation, no portfolio or journal context, and safe degradation. Operational metadata records run/snapshot IDs, workflow and prompt versions, provider/model identifier, timestamp, intent category, guardrail result, latency, and failure status while avoiding unnecessary personal content.
+Answers identify evidence used, always-visible Data Status, a material counterpoint, missing or unevaluated information, and traceable sources/snapshots. Phase 1 uses bounded same-run context plus approved pre-ingested external content, no unrestricted live-web browsing, no portfolio or journal context, and safe degradation. AI history is Off by default with optional owner-selected 1-, 3-, or 7-day encrypted retention. Operational metadata records run/snapshot IDs, workflow and prompt versions, provider/model identifier, timestamp, intent category, guardrail result, latency, tokens, cost, and failure status without retaining conversation text when history is Off.
 
 ### W2-10 — Immutable, Atomic Snapshot Publication and Retention
 
@@ -156,7 +156,7 @@ These targets must be refined with representative environments and measured duri
 - API payloads and error contract (Workshop #4)
 - Concrete frontend/backend framework boundaries and caching implementation (Workshop #5)
 - Production-approved score weights and outcome methodology (deferred until the approved Workshop #6 validation gates are satisfied)
-- AI provider, prompt implementation, evaluations, cost, and latency budgets (Workshop #7)
+- AI provider/model selection, exact allowances/pricing, and measured latency/cost thresholds under the approved Workshop #7 contract
 - Authentication provider, production storage vendors, security controls, SLOs, and release approval (Workshop #8)
 
 ## Human Approval Boundaries

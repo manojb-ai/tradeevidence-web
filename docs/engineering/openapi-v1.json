@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "TradeEvidence Internal Product API",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Machine-readable skeleton for the approved internal v1 API. Product language is educational and non-advisory. Authentication mechanism selection is deferred; every operation requires a verified internal user unless explicitly superseded by an approved contract."
   },
   "servers": [
@@ -281,6 +281,68 @@
         ],
         "responses": {
           "204": { "description": "Membership removed" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/me/ai-preferences": {
+      "get": {
+        "tags": ["Ask TradeEvidence"],
+        "operationId": "getAiPreferences",
+        "summary": "Retrieve owner AI history and explanation preferences",
+        "x-tradeevidence-authentication": "required",
+        "responses": {
+          "200": { "description": "Current AI preferences", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AiPreferencesResponse" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      },
+      "patch": {
+        "tags": ["Ask TradeEvidence"],
+        "operationId": "updateAiPreferences",
+        "summary": "Update owner AI history and explanation preferences",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [ { "$ref": "#/components/parameters/IfMatch" } ],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AiPreferencesPatch" } } } },
+        "responses": {
+          "200": { "description": "Updated AI preferences", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AiPreferencesResponse" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "412": { "$ref": "#/components/responses/PreconditionFailed" },
+          "422": { "$ref": "#/components/responses/UnprocessableEntity" }
+        }
+      }
+    },
+    "/ai-conversations": {
+      "get": {
+        "tags": ["Ask TradeEvidence"],
+        "operationId": "listAiConversations",
+        "summary": "List unexpired owner-saved AI conversations",
+        "x-tradeevidence-authentication": "required",
+        "responses": {
+          "200": { "description": "Owner conversation list", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AiConversationListResponse" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      },
+      "delete": {
+        "tags": ["Ask TradeEvidence"],
+        "operationId": "deleteAllAiConversations",
+        "summary": "Delete all owner-saved AI history",
+        "x-tradeevidence-authentication": "required",
+        "responses": {
+          "204": { "description": "All owner AI history removed from active context" },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      }
+    },
+    "/ai-conversations/{conversationId}": {
+      "delete": {
+        "tags": ["Ask TradeEvidence"],
+        "operationId": "deleteAiConversation",
+        "summary": "Delete one owner-saved AI conversation",
+        "x-tradeevidence-authentication": "required",
+        "parameters": [ { "name": "conversationId", "in": "path", "required": true, "schema": { "type": "string", "minLength": 1 } } ],
+        "responses": {
+          "204": { "description": "Conversation removed from active context" },
           "401": { "$ref": "#/components/responses/Unauthorized" },
           "404": { "$ref": "#/components/responses/NotFound" }
         }
@@ -742,13 +804,66 @@
               "explain_invalidation_conditions",
               "compare_strategy_education",
               "explain_terminology",
-              "identify_missing_information"
+              "identify_missing_information",
+              "explain_timeframe_conflict",
+              "suggest_research_questions"
             ]
           },
           "question": { "type": "string", "minLength": 1 },
-          "sessionId": { "type": ["string", "null"] }
+          "sessionId": { "type": ["string", "null"] },
+          "presentationDepth": { "type": "string", "enum": ["quick", "guided", "technical"], "default": "guided" }
         },
         "additionalProperties": false
+      },
+      "AiPreferencesPatch": {
+        "type": "object",
+        "properties": {
+          "historyRetention": { "type": "string", "enum": ["off", "1_day", "3_days", "7_days"], "default": "off" },
+          "defaultPresentationDepth": { "type": "string", "enum": ["quick", "guided", "technical"], "default": "guided" },
+          "deleteExistingHistory": { "type": "boolean" }
+        },
+        "minProperties": 1,
+        "additionalProperties": false
+      },
+      "AiPreferencesResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": {
+            "type": "object",
+            "required": ["historyRetention", "defaultPresentationDepth", "revision"],
+            "properties": {
+              "historyRetention": { "type": "string", "enum": ["off", "1_day", "3_days", "7_days"] },
+              "defaultPresentationDepth": { "type": "string", "enum": ["quick", "guided", "technical"] },
+              "revision": { "type": "integer", "minimum": 1 }
+            },
+            "additionalProperties": false
+          },
+          "meta": { "$ref": "#/components/schemas/BaseMeta" }
+        }
+      },
+      "AiConversationListResponse": {
+        "type": "object",
+        "required": ["data", "meta"],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["conversationId", "createdAt", "lastActivityAt", "expiresAt"],
+              "properties": {
+                "conversationId": { "type": "string" },
+                "instrumentId": { "type": ["string", "null"] },
+                "title": { "type": ["string", "null"] },
+                "createdAt": { "type": "string", "format": "date-time" },
+                "lastActivityAt": { "type": "string", "format": "date-time" },
+                "expiresAt": { "type": "string", "format": "date-time" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "meta": { "$ref": "#/components/schemas/BaseMeta" }
+        }
       },
       "AskTradeEvidenceResponse": {
         "type": "object",
@@ -756,13 +871,26 @@
         "properties": {
           "data": {
             "type": "object",
-            "required": ["responseDisposition", "answer", "evidenceUsed", "missingInformation"],
+            "required": ["responseDisposition", "dataStatus", "groundingStatus", "answer", "evidenceUsed", "importantCounterpoint", "missingInformation", "sourcesUsed"],
             "properties": {
-              "responseDisposition": { "type": "string", "enum": ["answered", "redirected", "insufficient_context", "refused"] },
+              "responseDisposition": { "type": "string", "enum": ["answered", "clarification_needed", "redirected", "insufficient_context", "refused"] },
+              "dataStatus": {
+                "type": "object",
+                "required": ["state", "marketDataAsOf", "summary", "unavailableReasons"],
+                "properties": {
+                  "state": { "type": "string", "enum": ["current_complete", "current_supplemental_unavailable", "stale", "incomplete", "inconsistent", "unavailable"] },
+                  "marketDataAsOf": { "type": ["string", "null"], "format": "date-time" },
+                  "summary": { "type": "string" },
+                  "unavailableReasons": { "type": "array", "items": { "type": "string" } }
+                },
+                "additionalProperties": false
+              },
+              "groundingStatus": { "type": "string", "enum": ["grounded", "partially_grounded", "insufficient_context", "source_conflict", "stale"] },
               "answer": { "type": "string" },
               "evidenceUsed": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
               "importantCounterpoint": { "type": ["string", "null"] },
               "missingInformation": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+              "sourcesUsed": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
               "educationalBoundary": { "type": ["object", "null"], "additionalProperties": true },
               "suggestedNextQuestions": { "type": "array", "items": { "type": "object", "additionalProperties": true } }
             }

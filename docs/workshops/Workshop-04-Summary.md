@@ -46,7 +46,7 @@ Define stable, provider-independent API contracts for the approved Homepage-to-D
 - Portfolio and holdings
 - Trades
 - Journal and Decision Snapshots
-- Persistent AI conversations
+- Persistent AI conversations (subsequently superseded by Workshop #7's opt-in 1/3/7-day maximum AI history contract)
 - Brokerage integration
 - Alerts
 - Public partner API

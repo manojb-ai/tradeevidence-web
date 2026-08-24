@@ -57,6 +57,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 
 ### AI
 - [08-AI-Strategy.md](08-AI-Strategy.md) — the strategy for AI as a decision coach rather than an advisor.
+- [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md) — the authoritative grounded AI interaction, source, privacy, safety, cost, and evaluation contract.
 - [07-Scoring-Engine.md](07-Scoring-Engine.md) — the explainable scoring framework and evidence philosophy.
 - [10-Glossary.md](10-Glossary.md) — terminology used across the product and documentation.
 
@@ -67,6 +68,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md) — approved ADR recording the layered Decision Intelligence Platform architecture.
 - [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md) — approved ADR recording the CSV-first MVP decision and provider-abstraction evolution path.
 - [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md) — approved ADR recording deterministic Evidence Engine governance and lifecycle boundaries.
+- [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md) — approved ADR recording grounded Ask TradeEvidence behavior and release controls.
 - [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md) — authoritative layered architecture specification for the platform.
 - [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md) — authoritative shared symbol analytical foundation across engines and consumers.
 - [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md) — approved lifecycle for implementation delivery and learning.
@@ -81,6 +83,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [workshops/Architecture-Workshop-Plan.md](workshops/Architecture-Workshop-Plan.md) — approved plan for converting handbook decisions into implementation-ready architecture specifications.
 - [workshops/Workshop-01-Summary.md](workshops/Workshop-01-Summary.md) — concise executive summary of Workshop #1 approved architecture baseline and deferred topics.
 - [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md) — durable summary of Workshop #6 Evidence Engine decisions, candidate findings, risks, and deferred scope.
+- [workshops/Workshop-07-Summary.md](workshops/Workshop-07-Summary.md) — durable summary of Workshop #7 AI Workflow decisions, risks, and deferred scope.
 
 ### Prototypes
 - [prototypes/Dashboard-v1-Baseline.md](prototypes/Dashboard-v1-Baseline.md) — the approved homepage prototype and design baseline.

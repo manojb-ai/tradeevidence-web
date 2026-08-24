@@ -1,9 +1,9 @@
 # MVP Application Architecture
 
 - **Status:** Approved
-- **Version:** 1.0
+- **Version:** 1.1
 - **Owner:** Founder and Chief Software Architect
-- **Last Updated:** 2026-08-02
+- **Last Updated:** 2026-08-23
 - **AI-DLC Level:** Level 3 - Controlled
 - **Related Documents:** [Master-System-Architecture.md](Master-System-Architecture.md), [MVP-Implementation-Spec.md](MVP-Implementation-Spec.md), [MVP-Data-Schema.md](MVP-Data-Schema.md), [API-Contracts-v1.md](API-Contracts-v1.md), [../governance/decisions/ADR-007-MVP-Application-Architecture.md](../governance/decisions/ADR-007-MVP-Application-Architecture.md), [../workshops/Workshop-05-Summary.md](../workshops/Workshop-05-Summary.md)
 
@@ -178,13 +178,19 @@ Load, cache-hit ratio, latency, saturation, and error measurements trigger infra
 
 Mutations go through `/api/v1`, use runtime validation, and return authoritative state. Watchlists use ETags; repeatable creates use idempotency. Optimism is limited to easily reversible, low-risk interactions. The client never fabricates analytical, publication, AI, or ownership-sensitive success.
 
-Client requests preserve the active run. Background refresh cannot replace it. Future dashboard editing uses a local draft and revision/ETag-checked save; failed saves preserve the last stored layout. Ask TradeEvidence state remains bounded and session-only until Workshop 7 decides otherwise.
+Client requests preserve the active run. Background refresh cannot replace it. Future dashboard editing uses a local draft and revision/ETag-checked save; failed saves preserve the last stored layout. Ask TradeEvidence history is Off by default; owner-selected 1-, 3-, or 7-day history is server persisted, encrypted, expiry-bound, and never stored as casual browser state.
 
 ## 9. Identity, Authorization, and Abuse Resistance
 
 TradeEvidence uses a provider-independent identity adapter around a standards-based authentication provider selected before implementation. The application stores a stable internal user and links provider identity by immutable issuer and subject, never by email ownership.
 
 Production sessions use secure, HTTP-only, appropriately SameSite, narrowly scoped cookies. Tokens and secrets never enter client storage, URLs, analytics, or logs. Proxy may provide an early route check but is never the sole authorization control.
+
+Production traffic uses HTTPS and encrypted service connections. Databases,
+object storage, replicas, snapshots, backups, and saved AI content use
+encryption at rest. Clear passwords are never stored or logged; a dedicated
+authentication provider is preferred, and any future direct password handling
+stores only an approved salted adaptive one-way hash.
 
 Every protected use case derives identity from verified authentication and independently verifies ownership or permission. Client-supplied owner identity is never authoritative. Repository queries include owner scope. Cross-user private resources are concealed as not found. Server and API paths share the same policies.
 
@@ -238,6 +244,6 @@ Human approval remains mandatory for scoring semantics, financial language, auth
 - Authentication provider and final session library selection
 - Hosting, CDN/WAF, distributed-cache, observability, and queue vendors
 - User-created dashboard implementation and grid library
-- AI provider, prompts, evaluations, persistence, latency, and cost controls
+- AI provider/model selection, exact pricing/allowances, and measured operational thresholds under the approved AI Workflow Contract
 - Concrete production rate limits, alerts, retention, and incident runbooks
 - Portfolio, trades, journal, alerts, brokerage, staff administration, and public partner API

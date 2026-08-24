@@ -53,6 +53,12 @@ Traceability Update (2026-08-02): Workshop #3 is completed with the approved [MV
 
 Traceability Update (2026-08-02): Workshop #4 is completed with the approved [API Contracts v1](engineering/API-Contracts-v1.md), [OpenAPI v1 contract](engineering/openapi-v1.json), [Workshop #4 Summary](workshops/Workshop-04-Summary.md), and [ADR-006](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md). Workshop #5 is Frontend and Backend Architecture.
 
+Traceability Update (2026-08-02): Workshop #5 is completed with the approved [MVP Application Architecture](engineering/MVP-Application-Architecture.md), [Workshop #5 Summary](workshops/Workshop-05-Summary.md), and [ADR-007](governance/decisions/ADR-007-MVP-Application-Architecture.md).
+
+Traceability Update (2026-08-23): Workshop #6 is completed with the approved [Evidence Engine Specification](engineering/Evidence-Engine-Specification.md), [Workshop #6 Summary](workshops/Workshop-06-Summary.md), and [ADR-008](governance/decisions/ADR-008-Evidence-Engine-Governance.md).
+
+Traceability Update (2026-08-23): Workshop #7 is completed with the approved [AI Workflow Contract](engineering/AI-Workflow-Contract.md), [Workshop #7 Summary](workshops/Workshop-07-Summary.md), and [ADR-009](governance/decisions/ADR-009-Grounded-AI-Workflow.md). Workshop #8 is Delivery Readiness.
+
 ### v0.1 — Landing Page
 - establish the public website experience
 - communicate the product vision and value proposition

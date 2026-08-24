@@ -7,14 +7,17 @@ TradeEvidence should position AI as a Decision Coach. Its purpose is to help the
 
 ## Interaction Principles
 
-- Ask before answering.
+- Answer directly when grounded context is sufficient; ask one material clarification only when necessary.
 - Teach before suggesting.
 - Present multiple reasonable approaches.
-- Explain assumptions.
+- Explain explicitly conditional reasoning without inventing assumptions.
 - Explain risks.
-- Respect the Trading Profile.
+- Respect only explicitly approved and available Trading Profile context; the MVP excludes profile-based AI personalization.
 - Encourage user ownership.
 - Never provide individualized investment advice.
+- Never fill missing information with invented assumptions.
+- Cite approved internal and external sources used.
+- Protect proprietary indicator logic, prompts, credentials, and private data.
 
 ## Educational Scenarios
 
@@ -26,6 +29,7 @@ The AI experience should be able to support educational discussion around situat
 - protective puts
 - waiting for technical confirmation
 - position sizing discussions
+- timeframe conflicts and missing-information review
 
 ## Intended Uses
 AI may support:
@@ -66,17 +70,31 @@ Over time, the platform may expand into more advanced agentic workflows that hel
 ## Product Positioning
 AI features should feel like a thoughtful assistant for disciplined traders, not a black-box oracle or automated advisor.
 
+## MVP Workflow Boundary
+
+Ask TradeEvidence is a grounded decision-preparation guide governed by the
+[AI Workflow Contract](engineering/AI-Workflow-Contract.md). It consumes
+published deterministic evidence and approved sources; it never creates or
+modifies authoritative evidence.
+
+AI history is Off by default. Users may opt into 1-, 3-, or 7-day retention.
+Every response shows Data Status and a material counterpoint. Controlled beta
+uses internal and approved pre-ingested external sources; unrestricted live-web
+browsing is deferred.
+
+General position-sizing education is permitted, but personalized position-size
+recommendations are prohibited.
+
 ---
 
 ## TODO
 
 ### High
-- Define the first AI-assisted features to ship in v0.6 and beyond.
-- Define acceptable output boundaries and safety constraints for AI-generated assistance.
+- Select providers and models through the approved evaluation and privacy gates.
+- Build and human-review the versioned evaluation dataset before controlled beta.
 
 ### Medium
-- Clarify how AI-generated explanations should be labeled and reviewed by users.
-- Document any content policies or guardrails that should govern AI-assisted summaries.
+- Measure beta usefulness, cost, latency, allowance needs, and source quality.
 
 ### Low
 - Record any future improvements to AI review flows as the product evolves.
@@ -90,3 +108,4 @@ AI features should feel like a thoughtful assistant for disciplined traders, not
 - [09-Data-Model.md](09-Data-Model.md)
 - [11-TradeEvidence-Manifesto.md](11-TradeEvidence-Manifesto.md)
 - [Trading-Profile.md](Trading-Profile.md)
+- [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md)

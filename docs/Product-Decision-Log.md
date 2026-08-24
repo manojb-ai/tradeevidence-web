@@ -462,6 +462,71 @@ Each decision entry below includes:
 - Status: Active
 - Related Documents: [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md), [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md), [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md)
 
+## Workshop #7 Decisions (2026-08-23)
+
+### Answer-First Grounded Decision Coach
+- Decision: Ask TradeEvidence answers directly from sufficient approved context, asks one material clarification only when necessary, never fills gaps with assumptions, and guides the trader toward their own decision without acting as advisor or analytical authority.
+- Reason: A useful AI experience must avoid both unsupported certainty and an obstructive question/disclaimer loop.
+- Expected Product Impact: Users receive clear explanations, counterpoints, conditional education, and decision-preparation help while retaining ownership of the decision.
+- Status: Active
+- Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [08-AI-Strategy.md](08-AI-Strategy.md)
+
+### Bounded Intents, Sources, and Proprietary Protection
+- Decision: Natural language maps to approved explanatory, challenge, comparison, terminology, missing-information, and research-question intents. Symbol claims use same-run internal evidence and controlled approved external sources; unrestricted live web and disclosure of proprietary formulas, code, thresholds, prompts, or confidential rules are prohibited.
+- Reason: Conversational freedom requires traceable facts and intellectual-property boundaries rather than unrestricted model behavior.
+- Expected Product Impact: Ask TradeEvidence can explain and cite useful information without inventing current facts or revealing how proprietary indicators are implemented.
+- Status: Active
+- Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md)
+
+### User-Controlled Short-Lived AI History
+- Decision: AI history is Off by default and may be enabled for 1, 3, or 7 days maximum. Content is encrypted, owner isolated, individually/all deletable, used only when explicitly reopened, and separate from non-content operational metadata. Service traffic and storage/backups are encrypted; clear passwords and credentials are never persisted or logged.
+- Reason: Users should control conversational retention while privacy exposure, stale context, and database growth remain bounded.
+- Expected Product Impact: Follow-up conversations remain usable without creating hidden permanent memory or behavioral profiles.
+- Status: Active
+- Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md)
+
+### Structured Layered AI Explanation
+- Decision: Every answer includes a direct answer, always-visible Data Status, relevant reasoning, material counterpoint, sources, and optional follow-ups. Quick, Guided, and Technical depths present the same canonical facts and never infer user expertise.
+- Reason: Newer users need clarity without overload while experienced traders need factors, timeframe contradictions, versions, and citations.
+- Expected Product Impact: One trustworthy answer can serve different information needs without changing evidence or safety boundaries.
+- Status: Active
+- Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md)
+
+### Productive Financial-Boundary Handling
+- Decision: Requests are answered, clarified, redirected, marked insufficient, or refused. Advisory requests normally receive a constructive redirect with evidence and decision questions; the AI cannot direct trades, predict outcomes, personalize sizing/contracts, override evidence, or facilitate abuse.
+- Reason: A dead-end disclaimer is not useful, but decision authority and personalized financial instruction are outside TradeEvidence's role.
+- Expected Product Impact: Users remain supported even when their original wording crosses the boundary.
+- Status: Active
+- Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [08-AI-Strategy.md](08-AI-Strategy.md)
+
+### Versioned Provider-Neutral and Cost-Bounded AI
+- Decision: A provider-neutral gateway routes only evaluated models and fallbacks. Workflow, prompt, context, guardrail, schema, model, source, latency, token, and cost metadata remain traceable. AI is capped rather than unlimited; beta is free with limits and future paid plans use visible included allowances without automatic overages.
+- Reason: Model behavior and provider cost can change rapidly and must remain controlled, reversible, measurable, and unable to disable deterministic research.
+- Expected Product Impact: TradeEvidence can change providers safely, prevent duplicate/runaway cost, and preserve core use when AI is unavailable or allowance is exhausted.
+- Status: Active; exact provider, model, pricing, and allowance deferred to measured evaluation
+- Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md)
+
+### Defense-in-Depth AI Security
+- Decision: The model is untrusted. Authentication, authorization, minimal owner-scoped context, untrusted-source handling, bounded tools, prompt-injection resistance, output/citation validation, proprietary/privacy filtering, encryption, rate limits, and circuit breakers enforce security before, during, and after generation.
+- Reason: Prompts alone cannot protect users, credentials, proprietary logic, sources, or system availability.
+- Expected Product Impact: Malicious instructions and model errors cannot grant permissions, expose other users, or send raw unvalidated output to the browser.
+- Status: Active
+- Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md)
+
+### Evaluation Dataset and Human AI Release Gate
+- Decision: Every material prompt, workflow, provider, model, retrieval, or guardrail change runs a versioned evaluation dataset containing contexts, questions, expected dispositions, required facts, prohibited claims, sources, and automated/human criteria. Critical advice, fabricated-source, credential, proprietary, or cross-user failures block release; founder approval is mandatory.
+- Reason: Selected demonstrations cannot establish reliable AI behavior across normal, ambiguous, stale, adversarial, privacy, failure, and cost conditions.
+- Expected Product Impact: AI changes become repeatable, comparable, monitorable, and reversible without using user conversations as automatic training data.
+- Status: Active
+- Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md)
+
+### Workshop #7 AI Workflow Closed
+- Decision: Workshop #7 is closed with approved interaction, intents, grounding, sources, history/privacy, response, financial boundary, uncertainty, versioning, provider/cost, security, latency/failure, and evaluation/release semantics.
+- Reason: Delivery readiness requires stable product-AI behavior and explicit operational/security gates before implementation planning.
+- Expected Product Impact: Workshop #8 can produce the testing, privacy, security, deployment, observability, release, Definition of Done, and backlog plan without reopening AI product authority.
+- Status: Active
+- Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md), [workshops/Workshop-07-Summary.md](workshops/Workshop-07-Summary.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
@@ -484,6 +549,7 @@ Each decision entry below includes:
 - [governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md](governance/decisions/ADR-006-Internal-API-Contract-and-Evolution.md)
 - [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md)
 - [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md)
+- [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md)
 - [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md)
 - [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md)
 - [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
@@ -493,4 +559,6 @@ Each decision entry below includes:
 - [engineering/API-Contracts-v1.md](engineering/API-Contracts-v1.md)
 - [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md)
 - [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md)
+- [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md)
 - [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md)
+- [workshops/Workshop-07-Summary.md](workshops/Workshop-07-Summary.md)

@@ -1,9 +1,9 @@
 # API Contracts v1
 
 **Status:** Approved
-**Version:** 1.0
+**Version:** 1.1
 **Owner:** Founder and Chief Software Architect
-**Approved:** 2026-08-02
+**Approved:** 2026-08-02; AI workflow additive update 2026-08-23
 **AI-DLC Level:** Level 3 - Controlled
 
 ## Purpose
@@ -154,6 +154,11 @@ Analytical GET responses support validators such as `ETag` based on stable run a
 | `PATCH` | `/api/v1/watchlists/{watchlistId}/items/{instrumentId}` | Update mutable item note |
 | `DELETE` | `/api/v1/watchlists/{watchlistId}/items/{instrumentId}` | Remove membership |
 | `POST` | `/api/v1/ask-tradeevidence` | Grounded educational AI explanation |
+| `GET` | `/api/v1/me/ai-preferences` | Retrieve owner AI history and explanation preferences |
+| `PATCH` | `/api/v1/me/ai-preferences` | Update owner AI history and explanation preferences |
+| `GET` | `/api/v1/ai-conversations` | List unexpired owner-saved conversations |
+| `DELETE` | `/api/v1/ai-conversations` | Delete all owner-saved AI history |
+| `DELETE` | `/api/v1/ai-conversations/{conversationId}` | Delete one owner-saved conversation |
 
 ## Homepage Contract
 
@@ -276,7 +281,8 @@ Idempotency-Key: <opaque-key>
   "analysisRunId": "run_...",
   "intent": "challenge_thesis",
   "question": "What is the strongest contrary interpretation?",
-  "sessionId": "session_..."
+  "sessionId": "session_...",
+  "presentationDepth": "guided"
 }
 ```
 
@@ -294,6 +300,8 @@ explain_invalidation_conditions
 compare_strategy_education
 explain_terminology
 identify_missing_information
+explain_timeframe_conflict
+suggest_research_questions
 ```
 
 The server assembles bounded same-run context. The client does not submit authoritative scores, factors, confidence, context, or hidden instructions. The AI receives no unrestricted database or service access.
@@ -302,20 +310,45 @@ The server assembles bounded same-run context. The client does not submit author
 
 Structured output contains:
 
-- `responseDisposition`: `answered`, `redirected`, `insufficient_context`, or safe refusal state
+- `responseDisposition`: `answered`, `clarification_needed`, `redirected`, `insufficient_context`, or `refused`
+- Always-present `dataStatus` with observation identity, freshness, completeness, and unavailable reasons
+- `groundingStatus`: `grounded`, `partially_grounded`, `insufficient_context`, `source_conflict`, or `stale`
 - Direct educational answer
 - Traceable deterministic `evidenceUsed`
 - Important counterpoint
 - Missing or unevaluated information
+- Approved internal and external `sourcesUsed`
 - Educational boundary when relevant
 - Suggested approved next questions
 - Run, snapshot, workflow, prompt, response, and guardrail identity
 
-Advisory requests are productively redirected without buy/sell/hold/entry/exit/target/stop/position-size/suitability instructions. Missing information is not supplemented from memory or live internet data. Strategy comparisons remain general education without contract selection.
+Advisory requests are productively redirected without buy/sell/hold/entry/exit/target/stop/position-size/suitability instructions. Missing information is not supplemented from memory. Strategy comparisons remain general education without contract selection. Controlled beta permits approved internal and pre-ingested external sources; unrestricted live-web browsing is prohibited.
 
-Phase 1 sessions are temporary, do not include portfolio/journal/financial-profile context, and expire under an approved short-lived policy. Exact ephemeral storage and AI latency are deferred to Workshop 7. Idempotency prevents duplicate calls and cost within the supported retry window.
+AI history is Off by default. The owner may opt into 1-, 3-, or 7-day retention through profile preferences. Expiry is measured from last activity. Saved history remains owner scoped, encrypted, listable, individually/all deletable, and excluded from implicit personalization. Sessions do not include portfolio, journal, or financial-profile context. Idempotency prevents duplicate calls, allowance use, and cost within the supported retry window.
 
-AI service failure affects only this endpoint; deterministic product endpoints remain available. The MVP guarantees a normal JSON response. Streaming is optional later only if it preserves the same final structured response and guardrails.
+AI service failure affects only this endpoint; deterministic product endpoints remain available. The MVP returns one complete validated JSON response and does not stream raw model tokens. Bounded progress states are presentation behavior. Later streaming is compatible only if it preserves the same final structured response and guardrails.
+
+## AI Preferences and History Contract
+
+`GET/PATCH /me/ai-preferences` uses the authenticated owner and supports:
+
+```json
+{
+  "historyRetention": "off",
+  "defaultPresentationDepth": "guided"
+}
+```
+
+`historyRetention` is `off`, `1_day`, `3_days`, or `7_days` and defaults to
+`off`. `defaultPresentationDepth` is `quick`, `guided`, or `technical` and
+defaults to `guided`. A change to Off includes an explicit
+`deleteExistingHistory` choice. Lost-update-sensitive changes use ETag and
+`If-Match`.
+
+History endpoints expose only the authenticated owner's unexpired saved
+conversations. Deletion is idempotent and removes content from active AI context
+immediately; physical deletion and encrypted-backup expiry follow the approved
+privacy contract. Normal staff receive no general history endpoint.
 
 ## Historical Trends Contract
 
@@ -406,7 +439,7 @@ Initial p95 targets to validate:
 - Watchlist summary: below 500 ms within MVP limits
 - Historical first page: below 500 ms
 - Watchlist mutation excluding network retry: below 500 ms
-- Ask TradeEvidence: deferred to Workshop 7
+- Ask TradeEvidence simple explanations: approximately 3-6 seconds; complex comparisons: approximately 6-15 seconds; hard timeout approximately 20 seconds (controlled-beta targets to validate)
 
 Universal analytical representations may cache by endpoint, run ID, and representation version. Private responses never enter shared public caches and must include ownership in any private cache scope. Publication refreshes current aliases after the database transaction; run-specific historical responses remain immutable.
 
@@ -441,6 +474,10 @@ Critical scenarios prove:
 10. History remains like-for-like and revision-aware.
 11. AI failure leaves deterministic endpoints available.
 12. Errors reveal no internal or private details.
+13. AI history Off creates no saved conversation content; 1/3/7-day settings expire automatically and owner deletion removes content from active context immediately.
+14. Every AI response includes valid Data Status, grounding state, material counterpoint, and traceable supplied sources.
+15. Advisory, prompt-injection, proprietary-extraction, and cross-user attempts follow the approved disposition without leaking protected content.
+16. Idempotent retries create one provider call, one response identity, one allowance effect, and one billable effect.
 
 CI compares changes against the approved v1 baseline. Removing/renaming fields, changing required/null/type/unit/enum/order/authorization semantics, or moving universal data into personalized behavior requires compatibility review. New enum values also require client review.
 
@@ -456,7 +493,6 @@ No v1 endpoints are defined yet for:
 
 - Portfolio, holdings, or trades
 - Journal entries or Decision Snapshots
-- Persistent AI conversations
 - Brokerage integration
 - Alerts
 - Public partner API

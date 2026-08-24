@@ -31,8 +31,11 @@ TradeEvidence is decision preparation software for traders. The product emphasiz
 - [docs/engineering/AI-DLC-Phase-Gates.md](docs/engineering/AI-DLC-Phase-Gates.md)
 - [docs/engineering/Engineering-Specification-Index.md](docs/engineering/Engineering-Specification-Index.md)
 - [docs/engineering/Market-Data-Strategy.md](docs/engineering/Market-Data-Strategy.md)
+- [docs/engineering/Evidence-Engine-Specification.md](docs/engineering/Evidence-Engine-Specification.md)
+- [docs/engineering/AI-Workflow-Contract.md](docs/engineering/AI-Workflow-Contract.md)
 - [docs/workshops/Architecture-Workshop-Plan.md](docs/workshops/Architecture-Workshop-Plan.md)
 - [docs/workshops/Workshop-01-Summary.md](docs/workshops/Workshop-01-Summary.md)
+- [docs/workshops/Workshop-07-Summary.md](docs/workshops/Workshop-07-Summary.md)
 
 ## Product AI and Development AI Boundary
 

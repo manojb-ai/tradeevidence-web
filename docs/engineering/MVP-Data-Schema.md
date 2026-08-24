@@ -1,9 +1,9 @@
 # MVP Data Schema
 
 **Status:** Approved
-**Version:** 1.0
+**Version:** 1.1
 **Owner:** Founder and Chief Software Architect
-**Approved:** 2026-08-02
+**Approved:** 2026-08-02; AI workflow additive update 2026-08-23
 **AI-DLC Level:** Level 3 - Controlled
 
 ## Purpose
@@ -19,11 +19,18 @@ TradeEvidence preserves accepted analytical runs as immutable files, imports the
 | Plane | Responsibility | Authority |
 |---|---|---|
 | Immutable object storage | Source files, accepted run bundles, validation reports, reproducibility archive | Analytical system of record |
-| PostgreSQL-compatible database | Published run index, snapshots, factors, confidence, selections, outcomes, users, watchlists | Authoritative application read model |
+| PostgreSQL-compatible database | Published run index, snapshots, factors, confidence, selections, outcomes, users, watchlists, and opt-in short-lived AI history | Authoritative application read model |
 | Cache/CDN | Precomputed current views and common trends | Disposable; never authoritative |
 | Git | Code, migrations, schemas, documentation, and sanitized fixtures | Source and specification history; not market-data storage |
 
 Every imported analytical record must be traceable to an immutable run artifact. Provider selection remains deferred.
+
+All production database, object-storage, replica, snapshot, and backup data is
+encrypted at rest. All application, database, cache, storage, provider, and
+internal service connections use authenticated encrypted transport. Encryption
+keys and application secrets remain outside ordinary data and source control
+with restricted, auditable, rotatable access. Clear passwords, credentials,
+tokens, and secrets are prohibited from persistent data and logs.
 
 ## Domain Separation
 
@@ -69,6 +76,9 @@ erDiagram
     USER ||--o{ WATCHLIST : owns
     WATCHLIST ||--o{ WATCHLIST_ITEM : contains
     INSTRUMENT ||--o{ WATCHLIST_ITEM : references
+    USER ||--o{ AI_CONVERSATION : owns
+    AI_CONVERSATION ||--o{ AI_MESSAGE : contains
+    USER ||--o{ AI_INTERACTION_AUDIT : invokes
 ```
 
 ## Core Entity Catalog
@@ -301,11 +311,34 @@ Corrections append a new revision and preserve the earlier result. Missing or in
 
 #### `users`
 
-Stores the stable internal user ID, account status, and lifecycle timestamps. Email is not the permanent ownership key.
+Stores the stable internal user ID, account status, lifecycle timestamps,
+`ai_history_retention` (`off`, `1_day`, `3_days`, or `7_days`, default `off`),
+and `ai_explanation_depth` (`quick`, `guided`, or `technical`, default
+`guided`). Email is not the permanent ownership key.
 
 #### `auth_identities`
 
 Maps an internal user to an external authentication provider through unique `(provider, provider_subject)`. It may retain email at link time and authentication timestamps. Passwords, provider credentials, and authentication secrets are prohibited.
+
+#### `ai_conversations` and `ai_messages`
+
+Store encrypted owner-scoped conversation content only when the user's history
+preference is enabled. Required conversation fields include owner, session,
+created/last-activity/expiry timestamps, deletion state, and workflow identity.
+Messages retain role, encrypted content, presentation depth, source references,
+and timestamps. Expiry is 1, 3, or 7 days from last activity; seven days is the
+maximum. Off creates no saved history record. Conversations are never treated
+as verified profile facts and are loaded only when the owner explicitly opens
+or continues them.
+
+#### `ai_interaction_audits`
+
+Stores non-content operational metadata independently of saved history:
+response ID, owner, optional conversation, run/snapshot identity, workflow and
+component versions, provider/model identifier, disposition, Data Status,
+grounding/guardrail states, timestamps, latency, token usage, estimated cost,
+allowance effect, and failure category. Questions, answers, clear credentials,
+and unrestricted source text are prohibited when history is Off.
 
 #### `watchlists`
 
@@ -410,6 +443,9 @@ outcome_measurements(symbol_snapshot_id, measurement_definition_id, revision_num
 watchlists(user_id, updated_at desc)
 watchlist_items(watchlist_id, instrument_id)
 auth_identities(provider, provider_subject)
+ai_conversations(user_id, expires_at)
+ai_messages(conversation_id, created_at)
+ai_interaction_audits(user_id, created_at desc)
 ```
 
 Historical pagination uses stable cursors such as `(market_data_as_of, snapshot_id)`. Database partitioning is deferred until measured scale requires it. Current-view denormalization is allowed only for immutable publication-time summaries and never for request-time analytical recalculation.
@@ -441,11 +477,10 @@ Do not create speculative production tables yet for:
 
 - Portfolios, holdings, or trades
 - Journal entries or Decision Snapshots
-- Persistent AI conversations
 - Brokerage accounts
 - User-configured alert rules, alert events, or delivery attempts
 
-Alert lineage remains approved conceptually but awaits its product workflow. Authentication provider, database host, object-storage vendor, ORM, migration framework, API payloads, backend boundaries, final scoring weights, AI provider, personal-data retention periods, and release authorization remain deferred.
+Alert lineage remains approved conceptually but awaits its product workflow. Authentication provider, database host, object-storage vendor, ORM, migration framework, final scoring weights, AI provider/model, non-content operational retention beyond user history, pricing/allowances, and release authorization remain deferred.
 
 ## Implementation Acceptance Criteria
 
@@ -463,6 +498,8 @@ Alert lineage remains approved conceptually but awaits its product workflow. Aut
 12. Common query plans are reviewed against representative data.
 13. Sanitized fixtures cover current, stale, incomplete, rejected, redundant, corrected, and corporate-action review states.
 14. Backup and restore behavior is tested before production release.
+15. AI history defaults Off; opt-in content expires at 1, 3, or 7 days and owner deletion removes it from active context immediately.
+16. Saved AI content and backups are encrypted; clear passwords, tokens, credentials, and secrets are never persisted or logged.
 
 ## Risks and Human Approval Boundaries
 
