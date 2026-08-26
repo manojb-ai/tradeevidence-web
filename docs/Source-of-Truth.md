@@ -20,6 +20,11 @@ This document defines which TradeEvidence documents are authoritative for specif
 - Evidence Engine semantics, lifecycle, explanations, and validation: [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md)
 - Product AI role and philosophy: [08-AI-Strategy.md](08-AI-Strategy.md)
 - Ask TradeEvidence workflow, grounding, privacy, safety, cost, and evaluation: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md)
+- Testing evidence and quality gates: [engineering/Testing-Strategy.md](engineering/Testing-Strategy.md)
+- Security and privacy baseline: [engineering/Security-and-Privacy-Baseline.md](engineering/Security-and-Privacy-Baseline.md)
+- Observability, SLOs, alerts, and incident operations: [engineering/Observability-and-Operations.md](engineering/Observability-and-Operations.md)
+- Environments, deployment, capacity, backup, recovery, and release controls: [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md)
+- Completion gates and first implementation backlog: [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md)
 - Canonical Language: [Canonical-Terminology.md](Canonical-Terminology.md)
 - Workshop History and context: [workshops](workshops)
 
@@ -46,6 +51,7 @@ These documents are complementary. Product architecture defines intent and conce
 - MVP application structure and dependency authority: [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md)
 - Evidence Engine governance authority: [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md)
 - Grounded AI Workflow governance authority: [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md)
+- Delivery Readiness and controlled-beta governance authority: [governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
 - Architecture decision authority for the layered model: [governance/decisions/ADR-002-Master-System-Architecture.md](governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Boundary: Product AI vs Development AI

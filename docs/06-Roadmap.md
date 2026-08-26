@@ -59,6 +59,8 @@ Traceability Update (2026-08-23): Workshop #6 is completed with the approved [Ev
 
 Traceability Update (2026-08-23): Workshop #7 is completed with the approved [AI Workflow Contract](engineering/AI-Workflow-Contract.md), [Workshop #7 Summary](workshops/Workshop-07-Summary.md), and [ADR-009](governance/decisions/ADR-009-Grounded-AI-Workflow.md). Workshop #8 is Delivery Readiness.
 
+Traceability Update (2026-08-25): Workshop #8 and the eight-workshop architecture program are completed with the approved [Testing Strategy](engineering/Testing-Strategy.md), [Security and Privacy Baseline](engineering/Security-and-Privacy-Baseline.md), [Observability and Operations](engineering/Observability-and-Operations.md), [Deployment Architecture](engineering/Deployment-Architecture.md), [Definition of Done and First Implementation Backlog](engineering/Definition-of-Done.md), [Workshop #8 Summary](workshops/Workshop-08-Summary.md), and [ADR-010](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md). Construction begins with Delivery Foundation.
+
 ### v0.1 — Landing Page
 - establish the public website experience
 - communicate the product vision and value proposition

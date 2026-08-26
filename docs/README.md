@@ -69,12 +69,18 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [governance/decisions/ADR-003-Market-Data-Evolution.md](governance/decisions/ADR-003-Market-Data-Evolution.md) — approved ADR recording the CSV-first MVP decision and provider-abstraction evolution path.
 - [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md) — approved ADR recording deterministic Evidence Engine governance and lifecycle boundaries.
 - [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md) — approved ADR recording grounded Ask TradeEvidence behavior and release controls.
+- [governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md) — approved delivery, operations, release, and controlled-beta governance.
 - [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md) — authoritative layered architecture specification for the platform.
 - [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md) — authoritative shared symbol analytical foundation across engines and consumers.
 - [engineering/TradeEvidence-Engineering-Lifecycle.md](engineering/TradeEvidence-Engineering-Lifecycle.md) — approved lifecycle for implementation delivery and learning.
 - [engineering/AI-DLC-Phase-Gates.md](engineering/AI-DLC-Phase-Gates.md) — approved phase-gate readiness criteria.
 - [engineering/Engineering-Specification-Index.md](engineering/Engineering-Specification-Index.md) — approved index and order for architecture and implementation specifications.
 - [engineering/Market-Data-Strategy.md](engineering/Market-Data-Strategy.md) — authoritative engineering specification for market-data service abstraction and phased source evolution.
+- [engineering/Testing-Strategy.md](engineering/Testing-Strategy.md) — risk-based automated and human validation authority.
+- [engineering/Security-and-Privacy-Baseline.md](engineering/Security-and-Privacy-Baseline.md) — deny-by-default identity, privacy, encryption, secret, and threat-control baseline.
+- [engineering/Observability-and-Operations.md](engineering/Observability-and-Operations.md) — operational signals, SLOs, alerts, and incident response authority.
+- [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md) — environment, topology, capacity, recovery, and release architecture.
+- [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md) — feature/beta completion gates and first implementation backlog.
 
 ### Workshops
 - [workshops/2026-07-13-Homepage-Design-Workshop.md](workshops/2026-07-13-Homepage-Design-Workshop.md) — workshop notes from the homepage design session.
@@ -84,6 +90,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [workshops/Workshop-01-Summary.md](workshops/Workshop-01-Summary.md) — concise executive summary of Workshop #1 approved architecture baseline and deferred topics.
 - [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md) — durable summary of Workshop #6 Evidence Engine decisions, candidate findings, risks, and deferred scope.
 - [workshops/Workshop-07-Summary.md](workshops/Workshop-07-Summary.md) — durable summary of Workshop #7 AI Workflow decisions, risks, and deferred scope.
+- [workshops/Workshop-08-Summary.md](workshops/Workshop-08-Summary.md) — durable summary closing Delivery Readiness and the architecture workshop program.
 
 ### Prototypes
 - [prototypes/Dashboard-v1-Baseline.md](prototypes/Dashboard-v1-Baseline.md) — the approved homepage prototype and design baseline.

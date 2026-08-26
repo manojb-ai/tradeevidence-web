@@ -1,9 +1,9 @@
 # Architecture Workshop Plan
 
 **Status:** Approved  
-**Version:** 1.2
+**Version:** 1.3
 **Owner:** Founder and Chief Software Architect  
-**Last Updated:** 2026-08-23
+**Last Updated:** 2026-08-25
 **Related Documents:** [../engineering/Engineering-Specification-Index.md](../engineering/Engineering-Specification-Index.md), [../engineering/TradeEvidence-Engineering-Lifecycle.md](../engineering/TradeEvidence-Engineering-Lifecycle.md), [../engineering/Master-System-Architecture.md](../engineering/Master-System-Architecture.md), [../engineering/Canonical-Analytical-Model.md](../engineering/Canonical-Analytical-Model.md), [../governance/AI-DLC-Adoption-Policy.md](../governance/AI-DLC-Adoption-Policy.md), [../governance/decisions/ADR-001-Adopt-AI-DLC.md](../governance/decisions/ADR-001-Adopt-AI-DLC.md), [../governance/decisions/ADR-002-Master-System-Architecture.md](../governance/decisions/ADR-002-Master-System-Architecture.md)
 
 ## Objective
@@ -84,6 +84,24 @@ Completion Date: 2026-08-23
 - [../engineering/AI-Workflow-Contract.md](../engineering/AI-Workflow-Contract.md)
 - [../governance/decisions/ADR-009-Grounded-AI-Workflow.md](../governance/decisions/ADR-009-Grounded-AI-Workflow.md)
 - [Workshop-07-Summary.md](Workshop-07-Summary.md)
+
+## Workshop #8 Approved Outputs
+
+Status: Completed
+Completion Date: 2026-08-25
+
+- [../engineering/Testing-Strategy.md](../engineering/Testing-Strategy.md)
+- [../engineering/Security-and-Privacy-Baseline.md](../engineering/Security-and-Privacy-Baseline.md)
+- [../engineering/Observability-and-Operations.md](../engineering/Observability-and-Operations.md)
+- [../engineering/Deployment-Architecture.md](../engineering/Deployment-Architecture.md)
+- [../engineering/Definition-of-Done.md](../engineering/Definition-of-Done.md)
+- [../governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](../governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
+- [Workshop-08-Summary.md](Workshop-08-Summary.md)
+
+## Program Status
+
+All eight architecture workshops are completed. Construction begins with the
+approved first implementation backlog and continues through AI-DLC phase gates.
 
 ## Workshop Operating Pattern
 

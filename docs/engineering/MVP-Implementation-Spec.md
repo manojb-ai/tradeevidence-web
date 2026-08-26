@@ -157,7 +157,7 @@ These targets must be refined with representative environments and measured duri
 - Concrete frontend/backend framework boundaries and caching implementation (Workshop #5)
 - Production-approved score weights and outcome methodology (deferred until the approved Workshop #6 validation gates are satisfied)
 - AI provider/model selection, exact allowances/pricing, and measured latency/cost thresholds under the approved Workshop #7 contract
-- Authentication provider, production storage vendors, security controls, SLOs, and release approval (Workshop #8)
+- Authentication provider and production infrastructure vendors remain human selections under the approved Delivery Readiness controls. Security controls, internal beta SLOs, and release authority are defined by Workshop #8.
 
 ## Human Approval Boundaries
 

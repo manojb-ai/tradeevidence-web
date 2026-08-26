@@ -527,6 +527,97 @@ Each decision entry below includes:
 - Status: Active
 - Related Documents: [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md), [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md), [workshops/Workshop-07-Summary.md](workshops/Workshop-07-Summary.md)
 
+### Isolated Environment and Promotion Model
+- Decision: Local, test/preview, staging, and production are isolated; production data does not move down; one staging-approved immutable artifact is promoted; founder approval authorizes production release.
+- Reason: Realistic validation must not weaken production privacy or make merge equivalent to release.
+- Expected Product Impact: Controlled beta runs with production protections and reproducible releases.
+- Status: Active
+- Related Documents: [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md), [governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
+
+### Risk-Based Layered Testing
+- Decision: Unit, contract, real-database, integration, browser, accessibility, security, analytics, AI, performance, resilience, and human tests apply according to AI-DLC risk.
+- Reason: No single suite or coverage number demonstrates financial, privacy, security, and operational correctness.
+- Expected Product Impact: Claims of readiness are supported by behavior-specific evidence and critical failures block release.
+- Status: Active
+- Related Documents: [engineering/Testing-Strategy.md](engineering/Testing-Strategy.md)
+
+### Deny-by-Default Security and Privacy Baseline
+- Decision: Server-enforced ownership, no normal staff bypass, selective audited exceptional access, encryption, dedicated authentication, secret protection, minimization, threat review, and user-controlled short AI history are mandatory.
+- Reason: Cross-user access must be impossible through supported application behavior and reinforced across layers.
+- Expected Product Impact: Private data and proprietary logic remain protected by design and verification.
+- Status: Active
+- Related Documents: [engineering/Security-and-Privacy-Baseline.md](engineering/Security-and-Privacy-Baseline.md)
+
+### Protected Main and Controlled Change Review
+- Decision: Short-lived changes enter protected `main` through reviewed pull requests with baseline and risk-specific automated checks, synchronized documentation, and human Level 3 approval.
+- Reason: Integration must contain implementation, evidence, consequences, and durable context.
+- Expected Product Impact: Main remains releasable without making every merge an automatic production release.
+- Status: Active
+- Related Documents: [engineering/Testing-Strategy.md](engineering/Testing-Strategy.md), [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md)
+
+### Managed Provider-Neutral MVP Deployment
+- Decision: A managed edge, stateless Next.js modular monolith, PostgreSQL, object storage, queues/workers, measured shared cache, provider adapters, and separate analytics producer form production; MVP does not require microservices, Kubernetes, or in-memory authority.
+- Reason: The product needs low operational burden now and replaceable, scalable boundaries later.
+- Expected Product Impact: Core and background capabilities scale independently without premature distributed-system complexity.
+- Status: Active; vendors remain unselected
+- Related Documents: [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md)
+
+### Tested Migration, Backup, and Recovery
+- Decision: Ordered safe migrations, resumable backfills, encrypted isolated backups, point-in-time recovery, protected objects, pre-beta and quarterly restore tests, 15-minute RPO, and four-hour essential RTO govern recovery.
+- Reason: Backups are useful only when restoration and application integrity are proven.
+- Expected Product Impact: Data changes and incidents have bounded, rehearsed recovery paths.
+- Status: Active; targets require staging validation
+- Related Documents: [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md)
+
+### Outcome-Oriented Observability and SLOs
+- Decision: Privacy-safe metrics, logs, traces, audits, synthetic checks, and business-health signals measure core 99.5% availability, approved latency targets, evidence integrity, ownership isolation, and recovery readiness.
+- Reason: Server uptime alone cannot show that users receive current, complete, safe evidence.
+- Expected Product Impact: Releases and publications can be diagnosed, measured, and improved through error budgets.
+- Status: Active; internal beta objectives are not customer guarantees
+- Related Documents: [engineering/Observability-and-Operations.md](engineering/Observability-and-Operations.md)
+
+### Actionable Operational Alerts and Incident Response
+- Decision: Team operational alerts use owned SEV-1 through SEV-4 triggers, safe context, containment, escalation, audited access, exercises, and blameless reviews; continuous monitoring does not imply staffed 24/7 support.
+- Reason: Humans need useful, rehearsed signals without notification storms or false service claims.
+- Expected Product Impact: Material failures are contained and learned from while future user market alerts remain a separate domain.
+- Status: Active
+- Related Documents: [engineering/Observability-and-Operations.md](engineering/Observability-and-Operations.md)
+
+### Measured Capacity and Layered Abuse Protection
+- Decision: Bounded endpoints, edge/WAF/bot controls, identity-aware limits, dependency protection, load shedding, cost caps, and at least 100 representative concurrent-user beta tests protect core deterministic evidence.
+- Reason: Optional expensive features and attacks must not exhaust shared infrastructure.
+- Expected Product Impact: The beta meets measured needs and preserves a path to larger scale without buying 100,000-user capacity early.
+- Status: Active
+- Related Documents: [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md)
+
+### Separate Merge, Deploy, Enable, and Release Controls
+- Decision: Immutable releases, gradual server-controlled flags, independent capability kill switches, domain-appropriate rollback, observation, and founder approval govern production change.
+- Reason: Risky capabilities must be independently reversible without rewriting evidence history or disabling the whole product.
+- Expected Product Impact: TradeEvidence can contain a bad AI, provider, application, or publication change while preserving unaffected use.
+- Status: Active
+- Related Documents: [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md)
+
+### Feature, Release, and Beta Definitions of Done
+- Decision: Done requires aligned behavior, tests, states, security, operations, recovery, documentation, and human approvals; beta adds complete protected journeys and operational exercises. Candidate 2 remains experimental until separately approved.
+- Reason: Visual completion is not operational or financial-domain readiness.
+- Expected Product Impact: Trusted testers enter only after the complete service can be secured, observed, recovered, and honestly described.
+- Status: Active
+- Related Documents: [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md)
+
+### Dependency-Ordered First Implementation Backlog
+- Decision: Ten vertical slices deliver foundation, identity, publication, discovery, Workspace/Evidence, watchlists, privacy, optional AI, operations, and controlled beta; analytics validation proceeds in a parallel human-gated track.
+- Reason: Early end-to-end evidence reduces integration and Level 3 risk better than building entire technical layers in isolation.
+- Expected Product Impact: Construction can begin with a staging-capable path while AI and Candidate 2 remain independently gated.
+- Status: Active
+- Related Documents: [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md)
+
+### Workshop #8 and Architecture Program Closed
+- Decision: Delivery Readiness is approved and Workshops #1 through #8 are complete; construction begins with Delivery Foundation under the approved AI-DLC gates.
+- Reason: The MVP now has durable product, architecture, data, API, evidence, AI, security, operations, deployment, and release authorities.
+- Expected Product Impact: Future sessions can implement rather than reopen settled architecture, while material human gates remain explicit.
+- Status: Active
+- Related Documents: [workshops/Workshop-08-Summary.md](workshops/Workshop-08-Summary.md), [governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
@@ -550,6 +641,7 @@ Each decision entry below includes:
 - [governance/decisions/ADR-007-MVP-Application-Architecture.md](governance/decisions/ADR-007-MVP-Application-Architecture.md)
 - [governance/decisions/ADR-008-Evidence-Engine-Governance.md](governance/decisions/ADR-008-Evidence-Engine-Governance.md)
 - [governance/decisions/ADR-009-Grounded-AI-Workflow.md](governance/decisions/ADR-009-Grounded-AI-Workflow.md)
+- [governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
 - [governance/AI-DLC-Adoption-Policy.md](governance/AI-DLC-Adoption-Policy.md)
 - [engineering/Master-System-Architecture.md](engineering/Master-System-Architecture.md)
 - [engineering/Canonical-Analytical-Model.md](engineering/Canonical-Analytical-Model.md)
@@ -560,5 +652,11 @@ Each decision entry below includes:
 - [engineering/MVP-Application-Architecture.md](engineering/MVP-Application-Architecture.md)
 - [engineering/Evidence-Engine-Specification.md](engineering/Evidence-Engine-Specification.md)
 - [engineering/AI-Workflow-Contract.md](engineering/AI-Workflow-Contract.md)
+- [engineering/Testing-Strategy.md](engineering/Testing-Strategy.md)
+- [engineering/Security-and-Privacy-Baseline.md](engineering/Security-and-Privacy-Baseline.md)
+- [engineering/Observability-and-Operations.md](engineering/Observability-and-Operations.md)
+- [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md)
+- [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md)
 - [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md)
 - [workshops/Workshop-07-Summary.md](workshops/Workshop-07-Summary.md)
+- [workshops/Workshop-08-Summary.md](workshops/Workshop-08-Summary.md)

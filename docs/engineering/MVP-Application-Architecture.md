@@ -210,7 +210,7 @@ External calls use timeouts, bounded safe retries, jittered backoff, circuit bre
 
 Structured logs, metrics, traces, security events, and support-safe correlation IDs cover route/use-case outcomes, latency, dependencies, cache outcomes, safe run/publication identity, degraded states, retry/timeout/rate-limit events, authorization outcomes, and privileged access.
 
-Tokens, secrets, raw sensitive bodies, unnecessary personal information, and full AI prompts/responses are not logged by default. Liveness and readiness are distinct. Provider choices, thresholds, retention, and incident runbooks remain Workshop 8 work.
+Tokens, secrets, raw sensitive bodies, unnecessary personal information, and full AI prompts/responses are not logged by default. Liveness and readiness are distinct. Workshop #8 defines approved thresholds, retention, alerts, and incident controls; concrete providers remain human selections.
 
 ## 11. Verification and Acceptance
 
@@ -245,5 +245,5 @@ Human approval remains mandatory for scoring semantics, financial language, auth
 - Hosting, CDN/WAF, distributed-cache, observability, and queue vendors
 - User-created dashboard implementation and grid library
 - AI provider/model selection, exact pricing/allowances, and measured operational thresholds under the approved AI Workflow Contract
-- Concrete production rate limits, alerts, retention, and incident runbooks
+- Endpoint-specific production rate-limit values and vendor-specific operational configuration under the approved Delivery Readiness baseline
 - Portfolio, trades, journal, alerts, brokerage, staff administration, and public partner API

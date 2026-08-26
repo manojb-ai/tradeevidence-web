@@ -304,4 +304,4 @@ material revision; it is not an automatic milestone.
 - Historical outcome methodology and predictive-validation claims
 - Market, sector, fundamental, sentiment, and portfolio evidence engines
 - AI workflow and prompt/evaluation contract (Workshop 7)
-- Production release, observability, and operational thresholds (Workshop 8)
+- Production scoring/ruleset approval under the Workshop #8 release, observability, and operational controls

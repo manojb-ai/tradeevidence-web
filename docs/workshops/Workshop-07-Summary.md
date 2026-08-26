@@ -83,11 +83,10 @@ testable, and independent from analytical authority.
 - Automatic training or production changes from user conversations
 - Final provider, model, pricing, allowance, and operational thresholds
 
-## Next Workshop
+## Program Continuation
 
-Workshop #8 defines Delivery Readiness: testing, security, privacy,
-observability, deployment, environments, release controls, Definition of Done,
-and the first implementation backlog.
+Workshop #8 subsequently completed Delivery Readiness. See
+[Workshop #8 Summary](Workshop-08-Summary.md).
 
 ## Repository Closure
 
