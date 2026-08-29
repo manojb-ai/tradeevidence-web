@@ -618,6 +618,13 @@ Each decision entry below includes:
 - Status: Active
 - Related Documents: [workshops/Workshop-08-Summary.md](workshops/Workshop-08-Summary.md), [governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
 
+### Vertical Slice 01 Delivery Foundation Approved
+- Decision: Construction begins with the approved Delivery Foundation slice: reproducible local and CI validation, a network-independent production build, environment and secret boundaries, safe operational identity, disabled high-risk capabilities, protected staging, and rollback evidence.
+- Reason: Future product slices need one trustworthy path from clean checkout through review and staging before user, evidence, or AI features are added.
+- Expected Product Impact: TradeEvidence gains a repeatable delivery system without changing analytics behavior, approving Candidate 2, or authorizing production release.
+- Status: Active; staging vendor and final slice acceptance remain separate founder gates
+- Related Documents: [engineering/Vertical-Slice-01-Delivery-Foundation.md](engineering/Vertical-Slice-01-Delivery-Foundation.md), [governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
@@ -657,6 +664,7 @@ Each decision entry below includes:
 - [engineering/Observability-and-Operations.md](engineering/Observability-and-Operations.md)
 - [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md)
 - [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md)
+- [engineering/Vertical-Slice-01-Delivery-Foundation.md](engineering/Vertical-Slice-01-Delivery-Foundation.md)
 - [workshops/Workshop-06-Summary.md](workshops/Workshop-06-Summary.md)
 - [workshops/Workshop-07-Summary.md](workshops/Workshop-07-Summary.md)
 - [workshops/Workshop-08-Summary.md](workshops/Workshop-08-Summary.md)

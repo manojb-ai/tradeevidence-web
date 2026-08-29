@@ -81,6 +81,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [engineering/Observability-and-Operations.md](engineering/Observability-and-Operations.md) — operational signals, SLOs, alerts, and incident response authority.
 - [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md) — environment, topology, capacity, recovery, and release architecture.
 - [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md) — feature/beta completion gates and first implementation backlog.
+- [engineering/Vertical-Slice-01-Delivery-Foundation.md](engineering/Vertical-Slice-01-Delivery-Foundation.md) — approved active construction scope and acceptance criteria for the delivery foundation.
 
 ### Workshops
 - [workshops/2026-07-13-Homepage-Design-Workshop.md](workshops/2026-07-13-Homepage-Design-Workshop.md) — workshop notes from the homepage design session.

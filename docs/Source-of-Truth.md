@@ -25,6 +25,7 @@ This document defines which TradeEvidence documents are authoritative for specif
 - Observability, SLOs, alerts, and incident operations: [engineering/Observability-and-Operations.md](engineering/Observability-and-Operations.md)
 - Environments, deployment, capacity, backup, recovery, and release controls: [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md)
 - Completion gates and first implementation backlog: [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md)
+- Active construction requirements and acceptance criteria: [engineering/Vertical-Slice-01-Delivery-Foundation.md](engineering/Vertical-Slice-01-Delivery-Foundation.md)
 - Canonical Language: [Canonical-Terminology.md](Canonical-Terminology.md)
 - Workshop History and context: [workshops](workshops)
 

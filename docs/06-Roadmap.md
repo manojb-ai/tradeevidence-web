@@ -61,6 +61,8 @@ Traceability Update (2026-08-23): Workshop #7 is completed with the approved [AI
 
 Traceability Update (2026-08-25): Workshop #8 and the eight-workshop architecture program are completed with the approved [Testing Strategy](engineering/Testing-Strategy.md), [Security and Privacy Baseline](engineering/Security-and-Privacy-Baseline.md), [Observability and Operations](engineering/Observability-and-Operations.md), [Deployment Architecture](engineering/Deployment-Architecture.md), [Definition of Done and First Implementation Backlog](engineering/Definition-of-Done.md), [Workshop #8 Summary](workshops/Workshop-08-Summary.md), and [ADR-010](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md). Construction begins with Delivery Foundation.
 
+Traceability Update (2026-08-29): [Vertical Slice 01 - Delivery Foundation](engineering/Vertical-Slice-01-Delivery-Foundation.md) is approved for construction. Its first session established the repository baseline, twelve acceptance criteria, explicit exclusions, and the initial local-quality, CI, operations, staging, and closure sequence. Staging vendor selection and final slice acceptance remain founder gates.
+
 ### v0.1 — Landing Page
 - establish the public website experience
 - communicate the product vision and value proposition

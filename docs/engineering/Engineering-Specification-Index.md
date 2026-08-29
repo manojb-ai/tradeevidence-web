@@ -54,3 +54,7 @@ Testing, Security, Operations, Deployment
 ## Rule
 
 Do not produce every specification at maximum detail before implementation. Create enough detail to safely build the next vertical slice, then refine based on evidence.
+
+## Active Construction Specification
+
+- [Vertical Slice 01 - Delivery Foundation](Vertical-Slice-01-Delivery-Foundation.md) - Approved for Construction 2026-08-29
