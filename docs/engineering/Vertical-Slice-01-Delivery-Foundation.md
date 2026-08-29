@@ -1,7 +1,7 @@
 # Vertical Slice 01 - Delivery Foundation
 
 - **Status:** Approved for Construction
-- **Version:** 1.0
+- **Version:** 1.1
 - **Owner:** Founder and Chief Software Architect
 - **Last Updated:** 2026-08-29
 - **AI-DLC Level:** Level 3 - Controlled
@@ -273,3 +273,45 @@ Founder approval is required for:
   minimal and expand checks only with implemented dependencies.
 - Staging can drift from production intent if configured manually; capture
   configuration and procedures in version-controlled guidance where practical.
+
+## 12. Implementation Progress
+
+### Local Quality Foundation - 2026-08-29
+
+Implemented:
+
+- declared Node 24 and npm 11 toolchain boundaries;
+- upgraded Next.js and matching ESLint configuration from 16.2.10 to 16.3.3
+  after the dependency audit identified high-severity runtime advisories;
+- removed build-time Google Font downloads and used a local system-font stack;
+- replaced starter metadata with TradeEvidence product identity;
+- added Prettier checks, explicit lint and type-check commands, Vitest, React
+  Testing Library, a deterministic landing-page boundary test, and a watch mode;
+- added the cross-platform analytics test command without modifying the engine;
+- added a repository Markdown-link checker covering 119 files;
+- added one `npm run validate` path for source formatting, lint, types, web tests,
+  23 analytics tests, documentation links, and the production build; and
+- documented clean-checkout installation and local validation.
+
+Validation evidence:
+
+| Check | Result |
+| --- | --- |
+| Formatting | Pass |
+| ESLint | Pass |
+| Strict TypeScript | Pass |
+| Web tests | Pass, 1 test |
+| Analytics tests | Pass, 23 tests |
+| Markdown links | Pass, 119 files |
+| Next.js production build | Pass without remote font fetch |
+| `npm audit` | Zero known vulnerabilities after non-breaking fixes |
+
+Acceptance progress:
+
+- AC-02 is satisfied locally.
+- AC-03, AC-04, and AC-05 are satisfied locally and await CI execution.
+- AC-01 is partially satisfied and requires a clean CI checkout proof.
+- AC-06 through AC-12 remain future sessions.
+
+No analytics source, protected fingerprint, classification, weight, ruleset, or
+production-candidate status changed.

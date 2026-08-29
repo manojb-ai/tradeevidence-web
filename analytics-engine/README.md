@@ -18,9 +18,11 @@ This is a preserved behavioral baseline, not a validated production scoring
 model. Current weights are hand-tuned hypotheses. Do not represent the score as
 predictive, advisory, or historically validated.
 
-Workshop #2 will define the canonical Evidence Score, independent Decision
-Confidence, market and sector context, data contracts, and approved user-facing
-terminology before scoring behavior changes.
+The architecture workshops now define Evidence Score, separate Decision
+Confidence, lineage, data contracts, and approved language. The protected
+legacy baseline remains unchanged, and the direction-aware Candidate 2 remains
+experimental until its outcome methodology, ruleset, and production use receive
+explicit founder approval.
 
 ## Local use
 

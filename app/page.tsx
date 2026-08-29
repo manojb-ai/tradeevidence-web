@@ -20,7 +20,8 @@ export default function Home() {
           </a>
         </div>
         <p className="mt-8 text-sm leading-6 text-slate-500">
-          TradeEvidence provides educational research and journaling tools. It does not provide financial advice.
+          TradeEvidence provides educational research and journaling tools. It
+          does not provide financial advice.
         </p>
       </section>
     </main>

@@ -1,0 +1,8 @@
+.next/
+node_modules/
+analytics-engine/input/
+analytics-engine/output/
+analytics-engine/**/__pycache__/
+coverage/
+docs/
+public/

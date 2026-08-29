@@ -44,9 +44,27 @@ TradeEvidence is decision preparation software for traders. The product emphasiz
 
 ## Local Development
 
+Use Node.js 24 and Python 3.10 or later. From a clean checkout, install the
+locked JavaScript dependency graph:
+
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
 Open `http://localhost:3000` to run the application locally.
+
+## Local Validation
+
+Run the complete local merge-readiness path:
+
+```bash
+npm run validate
+```
+
+This checks formatting, ESLint, strict TypeScript, web tests, all protected
+analytics tests, local Markdown links, and the production Next.js build.
+Individual commands are available in `package.json` for focused development.
+
+Use `npm install` only when intentionally changing dependencies, and review both
+`package.json` and `package-lock.json` in the same change.
