@@ -63,8 +63,13 @@ npm run validate
 ```
 
 This checks formatting, ESLint, strict TypeScript, web tests, all protected
-analytics tests, local Markdown links, and the production Next.js build.
+analytics tests, local Markdown links, tracked-file secret patterns, and the
+production Next.js build.
 Individual commands are available in `package.json` for focused development.
 
 Use `npm install` only when intentionally changing dependencies, and review both
 `package.json` and `package-lock.json` in the same change.
+
+Pull requests and pushes to `main` run the same validation through the read-only
+GitHub `Quality` workflow. Passing CI means the change is technically eligible
+for human review; it does not authorize deployment or release.

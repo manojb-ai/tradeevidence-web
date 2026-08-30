@@ -58,3 +58,4 @@ Do not produce every specification at maximum detail before implementation. Crea
 ## Active Construction Specification
 
 - [Vertical Slice 01 - Delivery Foundation](Vertical-Slice-01-Delivery-Foundation.md) - Approved for Construction 2026-08-29
+- [GitHub Repository Controls](GitHub-Repository-Controls.md) - Approved implementation guidance 2026-08-30

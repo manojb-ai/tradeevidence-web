@@ -26,6 +26,7 @@ This document defines which TradeEvidence documents are authoritative for specif
 - Environments, deployment, capacity, backup, recovery, and release controls: [engineering/Deployment-Architecture.md](engineering/Deployment-Architecture.md)
 - Completion gates and first implementation backlog: [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md)
 - Active construction requirements and acceptance criteria: [engineering/Vertical-Slice-01-Delivery-Foundation.md](engineering/Vertical-Slice-01-Delivery-Foundation.md)
+- GitHub CI and repository change controls: [engineering/GitHub-Repository-Controls.md](engineering/GitHub-Repository-Controls.md)
 - Canonical Language: [Canonical-Terminology.md](Canonical-Terminology.md)
 - Workshop History and context: [workshops](workshops)
 

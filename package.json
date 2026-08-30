@@ -11,8 +11,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write \"app/**/*.{ts,tsx,css}\" \"scripts/**/*.mjs\" \"test/**/*.{ts,tsx}\" \"*.{json,mjs,ts}\"",
-    "format:check": "prettier --check \"app/**/*.{ts,tsx,css}\" \"scripts/**/*.mjs\" \"test/**/*.{ts,tsx}\" \"*.{json,mjs,ts}\"",
+    "format": "prettier --write \".github/**/*.{yml,yaml,md}\" \"app/**/*.{ts,tsx,css}\" \"scripts/**/*.mjs\" \"test/**/*.{ts,tsx}\" \"*.{json,mjs,ts}\"",
+    "format:check": "prettier --check \".github/**/*.{yml,yaml,md}\" \"app/**/*.{ts,tsx,css}\" \"scripts/**/*.mjs\" \"test/**/*.{ts,tsx}\" \"*.{json,mjs,ts}\"",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "npm run test:web",
@@ -20,7 +20,8 @@
     "test:web:watch": "vitest",
     "test:analytics": "python -m unittest discover -s analytics-engine/tests -v",
     "docs:check": "node scripts/check-markdown-links.mjs",
-    "validate": "npm run format:check && npm run lint && npm run typecheck && npm run test:web && npm run test:analytics && npm run docs:check && npm run build"
+    "secrets:check": "node scripts/check-tracked-secrets.mjs",
+    "validate": "npm run format:check && npm run lint && npm run typecheck && npm run test:web && npm run test:analytics && npm run docs:check && npm run secrets:check && npm run build"
   },
   "dependencies": {
     "next": "16.3.3",

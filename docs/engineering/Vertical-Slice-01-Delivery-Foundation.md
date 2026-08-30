@@ -1,7 +1,7 @@
 # Vertical Slice 01 - Delivery Foundation
 
 - **Status:** Approved for Construction
-- **Version:** 1.1
+- **Version:** 1.2
 - **Owner:** Founder and Chief Software Architect
 - **Last Updated:** 2026-08-29
 - **AI-DLC Level:** Level 3 - Controlled
@@ -315,3 +315,45 @@ Acceptance progress:
 
 No analytics source, protected fingerprint, classification, weight, ruleset, or
 production-candidate status changed.
+
+### GitHub Change Controls - 2026-08-30
+
+Implemented:
+
+- added a read-only `Quality` workflow for pull requests to `main`, pushes to
+  `main`, and manual diagnostics;
+- pinned official checkout, Node, Python, and cache actions to immutable signed-
+  release commit SHAs;
+- declared GitHub-hosted Ubuntu, Node 24, and Python 3.14 execution with no
+  deployment environment, secrets, write permission, or production authority;
+- added npm and Next.js build caching, locked installation with dependency
+  lifecycle scripts disabled, and a high-severity dependency audit;
+- connected CI to the same formatting, lint, type, web, 23-test analytics,
+  documentation, baseline secret, and production-build path used locally;
+- added a pull-request template for outcome, authority, AI-DLC level, scope,
+  acceptance, risk, data/contracts, operations, evidence, and human gates;
+- added a tracked-file secret checker that reports categories and filenames but
+  never matched values; and
+- documented the recommended `main` ruleset and repository security settings,
+  including the founder action required before direct-to-`main` work ends.
+
+Security rationale:
+
+- GitHub's workflow token has only `contents: read`.
+- Checkout does not persist credentials.
+- The workflow never uses `pull_request_target`, evaluates pull-request text in
+  a shell, accesses secrets, writes repository content, or deploys.
+- Full commit SHAs prevent action release tags from changing executed code.
+- The baseline secret checker complements rather than replaces GitHub secret
+  scanning and push protection.
+- Universal `npm audit` is used now; GitHub dependency review remains contingent
+  on repository visibility or Code Security entitlement.
+
+Acceptance progress:
+
+- AC-01 and the CI portions of AC-03 through AC-06 require the first successful
+  clean GitHub workflow run after this change is pushed.
+- AC-02 through AC-05 remain locally satisfied.
+- AC-07 through AC-12 remain future sessions.
+- Applying the documented `main` ruleset is a separate founder action because it
+  changes the current direct-push workflow.
