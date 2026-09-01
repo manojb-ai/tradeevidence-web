@@ -1,9 +1,9 @@
 # GitHub Repository Controls
 
-- **Status:** Approved Implementation Guidance
-- **Version:** 1.0
+- **Status:** Active
+- **Version:** 1.1
 - **Owner:** Founder and Chief Software Architect
-- **Last Updated:** 2026-08-30
+- **Last Updated:** 2026-09-01
 - **AI-DLC Level:** Level 3 - Controlled
 - **Related Documents:** [Vertical-Slice-01-Delivery-Foundation.md](Vertical-Slice-01-Delivery-Foundation.md), [Testing-Strategy.md](Testing-Strategy.md), [Security-and-Privacy-Baseline.md](Security-and-Privacy-Baseline.md), [Deployment-Architecture.md](Deployment-Architecture.md)
 
@@ -35,10 +35,11 @@ scope, acceptance, risk, data/contracts, operations, validation evidence,
 documentation, rollback, and human gates. CI success does not authorize merge,
 staging, production deployment, feature enablement, or release.
 
-## Recommended `main` Ruleset
+## Active `main` Ruleset
 
-After the first `Quality / Validate repository` check completes successfully,
-the founder should approve and apply a GitHub ruleset for `main`:
+The founder approved and activated the `TradeEvidence main protection` ruleset
+on 2026-09-01 after `Quality` run 1 completed successfully for commit `cd037d1`.
+The ruleset applies to `main` and:
 
 1. Require changes through pull requests for normal development.
 2. Require the `Validate repository` status check.
@@ -46,17 +47,17 @@ the founder should approve and apply a GitHub ruleset for `main`:
 4. Require all review conversations to be resolved.
 5. Block force pushes and branch deletion.
 6. Require linear history where compatible with the chosen merge method.
-7. Limit bypass to the founder's emergency use and record every bypass reason.
+7. Limits bypass to repository administrators for emergency use; every bypass
+   reason must be recorded in the related change record.
 
 For the current founder-led team, a mandatory second-person approval is deferred
 until another authorized reviewer is consistently available. Founder merge is
 the human acceptance action; Level 3 domain approvals remain recorded in the
 pull request or authoritative decision documents.
 
-Applying this ruleset changes the current direct-to-`main` working method and is
-therefore a separate founder action after the CI check name is visible in
-GitHub. Until then, direct commits remain exceptional implementation bootstrap
-work and must pass the same local validation before push.
+The active ruleset allows squash and rebase merges and disallows merge commits.
+Normal development now uses a branch and pull request. The administrator bypass
+is a recovery control, not the routine delivery path.
 
 ## Repository Security Settings
 
