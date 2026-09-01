@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TradeEvidence",
+  title: {
+    default: "TradeEvidence",
+    template: "%s | TradeEvidence",
+  },
   description: "Evidence-based trading intelligence for self-directed traders.",
 };
 

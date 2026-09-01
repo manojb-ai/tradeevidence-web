@@ -3,6 +3,10 @@
 ## [Unreleased]
 
 ### Added
+- Founder MVP preview with an illustrative Today's Briefing, deterministic
+  opportunity cards, and symbol-specific Decision Workspaces.
+- Approved founder-MVP delivery plan that advances product slices and assurance
+  controls in parallel while preserving Level 3 boundaries.
 - Approved Vertical Slice 01 Delivery Foundation construction contract.
 - Local formatting, type, web-test, analytics-test, documentation-link, and
   aggregate validation commands.
