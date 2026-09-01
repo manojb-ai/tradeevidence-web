@@ -11,6 +11,9 @@
   tracked-secret check, and repository-protection guidance.
 
 ### Changed
+- Refreshed the locked browser-compatibility toolchain to resolve newly
+  published high-severity `browserslist` advisories detected by the protected
+  pull-request dependency audit.
 - Activated the GitHub `main` protection ruleset after the first remote quality
   workflow passed, requiring pull requests, validation, current branches,
   resolved conversations, and linear history while blocking deletion and force
