@@ -1,9 +1,9 @@
 # Vertical Slice 01 - Delivery Foundation
 
 - **Status:** Approved for Construction
-- **Version:** 1.2
+- **Version:** 1.3
 - **Owner:** Founder and Chief Software Architect
-- **Last Updated:** 2026-08-29
+- **Last Updated:** 2026-09-01
 - **AI-DLC Level:** Level 3 - Controlled
 - **Related Documents:** [Definition-of-Done.md](Definition-of-Done.md), [Testing-Strategy.md](Testing-Strategy.md), [Security-and-Privacy-Baseline.md](Security-and-Privacy-Baseline.md), [Observability-and-Operations.md](Observability-and-Operations.md), [Deployment-Architecture.md](Deployment-Architecture.md), [AI-DLC-Phase-Gates.md](AI-DLC-Phase-Gates.md), [../governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](../governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
 
@@ -351,9 +351,13 @@ Security rationale:
 
 Acceptance progress:
 
-- AC-01 and the CI portions of AC-03 through AC-06 require the first successful
-  clean GitHub workflow run after this change is pushed.
-- AC-02 through AC-05 remain locally satisfied.
+- AC-01 and AC-03 through AC-06 are satisfied. GitHub `Quality` run 1 completed
+  successfully for commit `cd037d1` on 2026-08-30 in 41 seconds.
+- AC-02 through AC-05 remain locally and remotely satisfied.
 - AC-07 through AC-12 remain future sessions.
-- Applying the documented `main` ruleset is a separate founder action because it
-  changes the current direct-push workflow.
+- The founder approved and activated the `TradeEvidence main protection`
+  ruleset on 2026-09-01. It targets `main`, requires pull requests and the
+  `Validate repository` GitHub Actions check, requires the branch to be current
+  and review conversations resolved, enforces linear squash/rebase history, and
+  blocks deletion and force pushes. Repository administrators retain an
+  emergency bypass; normal development uses pull requests.
