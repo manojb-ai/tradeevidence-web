@@ -5,7 +5,7 @@
 - **Owner:** Founder and Chief Software Architect
 - **Last Updated:** 2026-09-01
 - **AI-DLC Level:** Level 3 - Controlled
-- **Related Documents:** [MVP-Delivery-Program-Plan.md](MVP-Delivery-Program-Plan.md), [MVP-Implementation-Spec.md](MVP-Implementation-Spec.md), [Evidence-Engine-Specification.md](Evidence-Engine-Specification.md)
+- **Related Documents:** [MVP-Delivery-Program-Plan.md](MVP-Delivery-Program-Plan.md), [M0-Data-Acquisition-Requirements.md](M0-Data-Acquisition-Requirements.md), [MVP-Implementation-Spec.md](MVP-Implementation-Spec.md), [Evidence-Engine-Specification.md](Evidence-Engine-Specification.md)
 
 ## Assessed Run
 
