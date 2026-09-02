@@ -140,6 +140,18 @@ Requirements:
 This history supports versioned trend, momentum, and each sector ETF's relative
 strength versus SPY. It does not change the symbol Technical Evidence Score.
 
+### Approved founder acquisition helper
+
+The read-only `analytics-engine/fetch_ibkr_history.py` adapter may obtain this
+file from a founder-operated, local Interactive Brokers TWS session. This does
+not change the Phase 1 authority of the resulting CSV and does not permit the
+Evidence Engine or website to depend directly on IBKR. The helper is restricted
+to loopback connections, the 14 approved context symbols, completed
+regular-session daily bars, and historical market-data requests. Account,
+portfolio, position, execution, and order data are outside its scope.
+The adapter records U.S. ETF volume in shares by converting IBKR's negotiated
+100-share lot values and documents that IBKR historical volume is filtered.
+
 ## File 4 — Instrument Reference
 
 **File:** `2026-08-21-instrument-reference.csv`
@@ -281,3 +293,13 @@ validation rule.
 - [ ] Run metadata contains one row and declares adjustment/source identity.
 - [ ] Files open successfully as UTF-8 CSV.
 - [ ] No file has been committed to Git.
+
+## Acquisition Progress
+
+On 2026-09-01, the approved IBKR helper produced the ignored local
+`2026-08-21-context-daily-history.csv` file from founder-operated TWS. The
+result contains all 14 approved symbols, 744 completed daily sessions per
+symbol (10,416 rows total), dates from 2023-09-05 through the canonical
+2026-08-21 close, no duplicate symbol/date keys, and no invalid OHLC ranges.
+This records validation evidence only; the local market-data file remains
+uncommitted and the other acquisition files remain open.
