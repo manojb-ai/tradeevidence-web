@@ -1,7 +1,7 @@
 # MVP Delivery Program Plan
 
-- **Status:** Proposed for Founder Review
-- **Version:** 0.1
+- **Status:** Approved for Execution
+- **Version:** 1.0
 - **Owner:** Founder and Chief Software Architect
 - **Last Updated:** 2026-09-01
 - **AI-DLC Level:** Level 3 - Controlled
@@ -18,6 +18,11 @@ beta, and finally becoming publicly available after measured acceptance.
 This is a delivery plan, not a replacement for the approved product,
 architecture, schema, API, evidence, AI, security, or operational contracts.
 Where those sources conflict, the conflict is a founder decision gate.
+
+The founder approved this program plan and delivery approach on 2026-09-01.
+That approval authorizes execution of safe, reversible delivery work. It does
+not approve D-01 through D-10, purchase subscriptions, transmit production
+data, accept vendor terms, or authorize a production release.
 
 ## 2. Planning Model
 
