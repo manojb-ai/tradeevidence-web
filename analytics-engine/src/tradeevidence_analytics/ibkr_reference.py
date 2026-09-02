@@ -48,13 +48,19 @@ def read_unique_symbols(path: Path) -> list[str]:
 
 
 def normalize_security_type(stock_type: str) -> str:
-    """Map only explicit IBKR stock types approved by the MVP contract."""
+    """Map explicit IBKR stock types to the approved canonical MVP values."""
     normalized = stock_type.strip().upper()
-    if normalized == "ETF":
-        return "ETF"
-    if normalized in {"COMMON", "COMMON STOCK", "REIT"}:
-        return "COMMON_STOCK"
-    return ""
+    return {
+        "COMMON": "COMMON_STOCK",
+        "COMMON STOCK": "COMMON_STOCK",
+        "ADR": "DEPOSITARY_RECEIPT",
+        "REIT": "REIT",
+        "ETF": "ETF",
+        "MLP": "MLP",
+        "NY REG SHRS": "REGISTERED_SHARE",
+        "CLOSED-END FUND": "CLOSED_END_FUND",
+        "TRACKING STK": "TRACKING_STOCK",
+    }.get(normalized, "")
 
 
 def to_ibkr_symbol(source_symbol: str) -> str:

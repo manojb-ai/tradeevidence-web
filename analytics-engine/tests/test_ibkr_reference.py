@@ -31,7 +31,13 @@ class IbkrReferenceTests(unittest.TestCase):
     def test_normalizes_only_explicit_supported_stock_types(self):
         self.assertEqual(normalize_security_type("ETF"), "ETF")
         self.assertEqual(normalize_security_type("COMMON"), "COMMON_STOCK")
-        self.assertEqual(normalize_security_type("ADR"), "")
+        self.assertEqual(normalize_security_type("ADR"), "DEPOSITARY_RECEIPT")
+        self.assertEqual(normalize_security_type("REIT"), "REIT")
+        self.assertEqual(normalize_security_type("MLP"), "MLP")
+        self.assertEqual(normalize_security_type("NY REG SHRS"), "REGISTERED_SHARE")
+        self.assertEqual(normalize_security_type("CLOSED-END FUND"), "CLOSED_END_FUND")
+        self.assertEqual(normalize_security_type("TRACKING STK"), "TRACKING_STOCK")
+        self.assertEqual(normalize_security_type("UNKNOWN PROVIDER TYPE"), "")
 
     def test_translates_thinkorswim_share_class_separator_for_lookup(self):
         self.assertEqual(to_ibkr_symbol("brk/b"), "BRK B")

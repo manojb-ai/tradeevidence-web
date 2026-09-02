@@ -172,7 +172,8 @@ Allowed requirements:
 - `CompanyName`: display/legal issuer or fund name from the source;
 - `Exchange`: canonical listing exchange such as `NYSE`, `NASDAQ`, or `NYSEARCA`;
 - `Currency`: ISO 4217 code, expected `USD` for this universe;
-- `SecurityType`: `COMMON_STOCK` or `ETF` for the current scope; and
+- `SecurityType`: one of `COMMON_STOCK`, `DEPOSITARY_RECEIPT`, `REIT`, `ETF`,
+  `MLP`, `REGISTERED_SHARE`, `CLOSED_END_FUND`, or `TRACKING_STOCK`; and
 - `IsActive`: `true` or `false`.
 
 Do not guess a company name, exchange, currency, or security type. Leave an
@@ -344,7 +345,26 @@ USD and includes company name, primary exchange, and IBKR stock type. ERIXF is
 the single explicit unresolved symbol because IBKR returned no security
 definition. The raw universe includes 543 common stocks, 53 ADRs, 29 REITs, 11
 ETFs, four MLPs, three New York registered shares, one closed-end fund, and one
-tracking stock. The current two-value `SecurityType` contract is therefore an
-open human decision: expand its canonical types or define documented inclusion
-and normalization rules. Until approval, non-COMMON/ETF types remain visible
-in raw discovery and are not falsely mapped.
+tracking stock. The founder approved preserving these eight canonical types on
+2026-09-01. The provider mapping is explicit and tested; an unknown future
+provider type remains blank and requires review rather than being guessed.
+
+After applying the approved mapping and provider-boundary share-class aliases,
+the current instrument-reference output contains 546 `COMMON_STOCK`, 54
+`DEPOSITARY_RECEIPT`, 29 `REIT`, 11 `ETF`, four `MLP`, three
+`REGISTERED_SHARE`, one `CLOSED_END_FUND`, one `TRACKING_STOCK`, and the one
+explicit unresolved ERIXF row.
+
+## Next Actions After 2026-09-01 Session Close
+
+1. Define and founder-review the versioned mapping from raw IBKR category,
+   subcategory, and industry into the 11 canonical TradeEvidence sectors.
+2. Generate and reconcile `2026-09-01-sector-membership.csv`, preserving
+   unavailable states and raw provider lineage.
+3. Replace the single-source run-metadata assumption with per-input source
+   lineage for the Thinkorswim snapshots and IBKR history/reference files.
+4. Implement the provider-independent context adapter and tests; context must
+   remain inspectable alongside Candidate 2 and must not silently rewrite its
+   classifications or Evidence Score.
+5. Integrate the validated local publication bundle into the M0 Homepage and
+   Decision Workspace adapter.

@@ -85,6 +85,7 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 
 ### Operations
 - [operations/TradeEvidence-IBKR-Acquisition-and-Candidate-2-Guide.docx](operations/TradeEvidence-IBKR-Acquisition-and-Candidate-2-Guide.docx) — founder operating guide for read-only IBKR historical-data acquisition, validation, and planned Candidate 2 context consumption.
+- [operations/TradeEvidence-Founder-Data-Practice-Run.docx](operations/TradeEvidence-Founder-Data-Practice-Run.docx) — short, repeatable practice runbook for Thinkorswim export, IBKR acquisition, reference discovery, Candidate 2 reporting, validation, and troubleshooting.
 
 ### Workshops
 - [workshops/2026-07-13-Homepage-Design-Workshop.md](workshops/2026-07-13-Homepage-Design-Workshop.md) — workshop notes from the homepage design session.

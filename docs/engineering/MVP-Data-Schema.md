@@ -92,7 +92,7 @@ The column lists below define the required contract. Implementations may add ope
 | Column | Type | Rules |
 |---|---|---|
 | `id` | `uuid` | Primary key, UUIDv7 |
-| `instrument_type` | `text` | Constrained enum-like value |
+| `instrument_type` | `text` | `COMMON_STOCK`, `DEPOSITARY_RECEIPT`, `REIT`, `ETF`, `MLP`, `REGISTERED_SHARE`, `CLOSED_END_FUND`, or `TRACKING_STOCK` |
 | `legal_name` | `text` | Required |
 | `status` | `text` | Active, inactive, delisted, acquired, or unknown |
 | `created_at` | `timestamptz` | Required |
@@ -100,6 +100,11 @@ The column lists below define the required contract. Implementations may add ope
 #### `instrument_listings`
 
 Stores dated ticker and exchange identity. Required fields: `id`, `instrument_id`, `symbol`, `exchange_code`, `valid_from`, `valid_to`, `source_id`, and `source_version`. Active listings are unique by exchange and symbol. Overlapping validity ranges for the same instrument/listing identity are prohibited.
+
+Instrument type preserves the economically relevant security form rather than
+collapsing every exchange-traded symbol into common stock. Provider-specific
+types are normalized through an explicit versioned mapping; unknown types
+remain unavailable and require review.
 
 #### `sectors` and `instrument_sector_memberships`
 

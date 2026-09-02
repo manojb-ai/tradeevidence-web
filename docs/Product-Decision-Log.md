@@ -625,6 +625,13 @@ Each decision entry below includes:
 - Status: Active; staging vendor and final slice acceptance remain separate founder gates
 - Related Documents: [engineering/Vertical-Slice-01-Delivery-Foundation.md](engineering/Vertical-Slice-01-Delivery-Foundation.md), [governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
 
+### Preserve Canonical Instrument Types in Founder Acquisition
+- Decision: The MVP reference model preserves `COMMON_STOCK`, `DEPOSITARY_RECEIPT`, `REIT`, `ETF`, `MLP`, `REGISTERED_SHARE`, `CLOSED_END_FUND`, and `TRACKING_STOCK` rather than collapsing the founder's exchange-traded universe into common stock and ETF only.
+- Reason: The 2026-09-01 IBKR discovery proved that the real variable universe contains materially different security forms. Explicit types protect identity, validation, interpretation, and later eligibility rules.
+- Expected Product Impact: TradeEvidence can ingest the founder's real universe without mislabeling ADRs, REITs, partnerships, funds, registered shares, or tracking stocks; unknown future provider types remain reviewable rather than guessed.
+- Status: Active; sector-normalization and instrument-eligibility rules remain separate decisions
+- Related Documents: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md), [engineering/M0-Data-Acquisition-Requirements.md](engineering/M0-Data-Acquisition-Requirements.md)
+
 ## Related Documents
 
 - [01a-Product-Philosophy.md](01a-Product-Philosophy.md)
