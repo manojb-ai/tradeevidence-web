@@ -1,11 +1,11 @@
 # M0 Data Acquisition Requirements
 
 - **Status:** Approved for Founder Data Collection
-- **Version:** 1.0
+- **Version:** 1.1
 - **Owner:** Founder and Chief Software Architect
 - **Last Updated:** 2026-09-01
 - **AI-DLC Level:** Level 3 - Controlled
-- **Target Market Date:** 2026-08-21
+- **Target Market Date:** 2026-09-01
 - **Related Documents:** [M0-Real-Data-Contract-Assessment.md](M0-Real-Data-Contract-Assessment.md), [MVP-Implementation-Spec.md](MVP-Implementation-Spec.md), [MVP-Data-Schema.md](MVP-Data-Schema.md)
 
 ## Purpose
@@ -23,31 +23,32 @@ templates and sanitized fixtures may be committed separately.
 Create this local folder:
 
 ```text
-analytics-engine/input/2026-08-21/
+analytics-engine/input/2026-09-01/
 ```
 
 Place these files in it:
 
 ```text
-2026-08-21-symbol-evidence.csv
-2026-08-21-context-snapshots.csv
-2026-08-21-context-daily-history.csv
-2026-08-21-instrument-reference.csv
-2026-08-21-sector-membership.csv
-2026-08-21-run-metadata.csv
+2026-09-01-symbol-evidence.csv
+2026-09-01-context-snapshots.csv
+2026-09-01-context-daily-history.csv
+2026-09-01-instrument-reference.csv
+2026-09-01-sector-membership.csv
+2026-09-01-run-metadata.csv
 ```
 
-The existing `2026-08-23-watchlist.csv` already satisfies the first file's
-purpose. Copying or renaming it locally to
-`2026-08-21-symbol-evidence.csv` makes the market date explicit; do not modify
-its values.
+Each acquisition uses the founder's current Thinkorswim universe export. The
+universe size is discovered from that file and is not fixed: one run may
+contain 500 symbols, another 633, and another 1,000. Downstream validation must
+reconcile to the exact unique symbols in the current source file rather than a
+historical expected count.
 
 ## File 1 — Symbol Technical Evidence
 
-**File:** `2026-08-21-symbol-evidence.csv`
+**File:** `2026-09-01-symbol-evidence.csv`
 
-**Symbols:** the exact 633 unique symbols already present in
-`2026-08-23-watchlist.csv`.
+**Symbols:** every unique symbol in the founder's current Thinkorswim export.
+There is no fixed required symbol count.
 
 Required existing headers:
 
@@ -61,7 +62,7 @@ change together.
 
 ## File 2 — Current Context Snapshots
 
-**File:** `2026-08-21-context-snapshots.csv`
+**File:** `2026-09-01-context-snapshots.csv`
 
 Export the same columns and indicator configuration used by the symbol file.
 
@@ -111,12 +112,12 @@ Roles:
 
 ## File 3 — Context Daily History
 
-**File:** `2026-08-21-context-daily-history.csv`
+**File:** `2026-09-01-context-daily-history.csv`
 
 **Symbols:** the same 14 context symbols listed above.
 
-**Range:** at least two completed years through 2026-08-21. A recommended
-capture range is 2024-08-01 through 2026-08-21 so later horizon definitions have
+**Range:** at least two completed years through 2026-09-01. A recommended
+capture range begins before 2024-09-01 so later horizon definitions have
 adequate warmup history.
 
 Required headers:
@@ -134,7 +135,7 @@ Requirements:
 - `AdjustedClose` must reflect the provider's consistent split/distribution
   adjustment policy;
 - unadjusted `Close` and `AdjustedClose` must remain separate;
-- newest date must be 2026-08-21, not the weekend export date; and
+- newest date must be 2026-09-01, the completed regular-session market date; and
 - missing values remain blank and are never replaced with zero.
 
 This history supports versioned trend, momentum, and each sector ETF's relative
@@ -154,10 +155,10 @@ The adapter records U.S. ETF volume in shares by converting IBKR's negotiated
 
 ## File 4 — Instrument Reference
 
-**File:** `2026-08-21-instrument-reference.csv`
+**File:** `2026-09-01-instrument-reference.csv`
 
-**Symbols:** all 633 symbol-evidence symbols plus the 14 context symbols. A
-symbol appearing in both groups is included once.
+**Symbols:** all unique symbols discovered in the current symbol-evidence file
+plus the 14 context symbols. A symbol appearing in both groups is included once.
 
 Required headers:
 
@@ -179,10 +180,11 @@ unknown field blank and retain its missing status for validation.
 
 ## File 5 — Sector Membership
 
-**File:** `2026-08-21-sector-membership.csv`
+**File:** `2026-09-01-sector-membership.csv`
 
-**Symbols:** every common-stock symbol in the 633-symbol evidence file. Context
-ETFs do not require issuer-sector membership in this file.
+**Symbols:** every common-stock symbol in the current symbol-evidence file,
+regardless of that file's total count. Context ETFs do not require issuer-sector
+membership in this file.
 
 Required headers:
 
@@ -221,7 +223,7 @@ enforce no more than two Homepage selections per sector.
 
 ## File 6 — Run Metadata
 
-**File:** `2026-08-21-run-metadata.csv`
+**File:** `2026-09-01-run-metadata.csv`
 
 Exactly one data row is required.
 
@@ -235,7 +237,7 @@ Required/expected values for this acquisition:
 
 | Field | Value or rule |
 |---|---|
-| MarketDate | `2026-08-21` |
+| MarketDate | `2026-09-01` |
 | AsOf | official-close timestamp with timezone/offset, preferably ISO 8601 |
 | ExchangeTimezone | `America/New_York` |
 | ObservationType | `eod` |
@@ -252,8 +254,8 @@ Required/expected values for this acquisition:
 - All current snapshots represent the same market date and regular-session
   close.
 - Symbols are uppercase, trimmed, and unique within each current snapshot file.
-- The 633-symbol evidence count and classification reconciliation remain
-  unchanged.
+- The imported unique-symbol count becomes the run's expected count; all
+  classifications and downstream reference coverage reconcile to that count.
 - All symbol-evidence records resolve to instrument reference rows.
 - All common stocks resolve to one active sector or an explicit unavailable
   state.
@@ -286,7 +288,7 @@ validation rule.
 
 - [ ] Six files use the exact filenames and header order.
 - [ ] Context snapshot contains exactly the 14 approved symbols.
-- [ ] Context history covers at least two years through 2026-08-21.
+- [x] Context history covers at least two years through 2026-09-01.
 - [ ] Instrument reference covers all unique symbol and context instruments.
 - [ ] Sector membership covers every common stock or explicitly records the
       unavailable gap.
@@ -303,3 +305,18 @@ symbol (10,416 rows total), dates from 2023-09-05 through the canonical
 2026-08-21 close, no duplicate symbol/date keys, and no invalid OHLC ranges.
 This records validation evidence only; the local market-data file remains
 uncommitted and the other acquisition files remain open.
+
+Also on 2026-09-01, after the regular session completed, the helper produced
+the ignored local `2026-09-01-context-daily-history.csv`. It contains all 14
+approved symbols, 751 completed daily sessions per symbol (10,514 rows total),
+dates from 2023-09-05 through the canonical 2026-09-01 close, no duplicate
+symbol/date keys, and no invalid OHLC ranges. This is the current target-date
+history for the founder export still to be supplied.
+
+The founder then supplied `2026-09-01-symbol-evidence.csv` with 650 rows and
+650 unique symbols. Candidate 2 consumed all 650 rows successfully; the run
+produced 645 classified snapshots and five explicit `incomplete` snapshots.
+The supplied context snapshot contains every approved context symbol and no
+duplicates, plus DIA as a reported extra. DIA is retained in the local source
+export but is outside the approved 14-symbol MVP context calculation unless a
+future decision expands that contract.

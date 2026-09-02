@@ -20,6 +20,9 @@
   tracked-secret check, and repository-protection guidance.
 
 ### Changed
+- Made the founder symbol universe explicitly variable per Thinkorswim export
+  and advanced the current M0 acquisition target to the completed 2026-09-01
+  session; the validated IBKR context history now contains 10,514 rows.
 - Refreshed the locked browser-compatibility toolchain to resolve newly
   published high-severity `browserslist` advisories detected by the protected
   pull-request dependency audit.
