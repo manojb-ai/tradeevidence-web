@@ -83,6 +83,9 @@ This directory is the long-term knowledge base for the TradeEvidence platform. I
 - [engineering/Definition-of-Done.md](engineering/Definition-of-Done.md) — feature/beta completion gates and first implementation backlog.
 - [engineering/Vertical-Slice-01-Delivery-Foundation.md](engineering/Vertical-Slice-01-Delivery-Foundation.md) — approved active construction scope and acceptance criteria for the delivery foundation.
 
+### Operations
+- [operations/TradeEvidence-IBKR-Acquisition-and-Candidate-2-Guide.docx](operations/TradeEvidence-IBKR-Acquisition-and-Candidate-2-Guide.docx) — founder operating guide for read-only IBKR historical-data acquisition, validation, and planned Candidate 2 context consumption.
+
 ### Workshops
 - [workshops/2026-07-13-Homepage-Design-Workshop.md](workshops/2026-07-13-Homepage-Design-Workshop.md) — workshop notes from the homepage design session.
 - [workshops/2026-07-14-Decision-Workspace-Workshop.md](workshops/2026-07-14-Decision-Workspace-Workshop.md) — workshop notes for the decision-workspace design session.

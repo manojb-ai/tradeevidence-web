@@ -6,6 +6,8 @@
 - Read-only, loopback-only IBKR historical-data acquisition adapter for the 14
   approved market and sector context ETFs, including deterministic CSV output,
   adjusted-close handling, validation tests, and founder operating guidance.
+- Word operating guide covering IBKR setup and acquisition, CSV validation,
+  Candidate 2's current consumption boundary, and the planned context adapter.
 - Founder MVP preview with an illustrative Today's Briefing, deterministic
   opportunity cards, and symbol-specific Decision Workspaces.
 - Approved founder-MVP delivery plan that advances product slices and assurance
