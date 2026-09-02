@@ -3,6 +3,10 @@
 ## [Unreleased]
 
 ### Added
+- Read-only, checkpointed IBKR contract-reference discovery for variable
+  Thinkorswim universes, with provider-boundary share-class translation, raw
+  classification lineage, ambiguity protection, and instrument-reference
+  output.
 - Read-only, loopback-only IBKR historical-data acquisition adapter for the 14
   approved market and sector context ETFs, including deterministic CSV output,
   adjusted-close handling, validation tests, and founder operating guidance.

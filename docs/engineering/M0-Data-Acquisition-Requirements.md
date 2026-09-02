@@ -178,6 +178,23 @@ Allowed requirements:
 Do not guess a company name, exchange, currency, or security type. Leave an
 unknown field blank and retain its missing status for validation.
 
+Currency remains required even when the current universe is expected to be
+USD. It is part of contract identity and guards against accidentally resolving
+a same-symbol foreign listing, ADR mismatch, or otherwise incomparable price
+series. A non-USD result is a validation exception and is never silently
+converted.
+
+### Approved founder reference-discovery helper
+
+The read-only `analytics-engine/fetch_ibkr_reference.py` adapter may derive the
+variable symbol universe from the current symbol-evidence CSV and request local
+IBKR contract details. It checkpoints the instrument-reference contract and a
+separate raw discovery file containing IBKR security type, stock type,
+category, subcategory, industry, conId, resolution status, and diagnostic
+message. Provider classifications are preserved as IBKR taxonomy and must not
+be represented as GICS. Thinkorswim share-class notation is translated only at
+the provider boundary; canonical source symbols remain unchanged.
+
 ## File 5 — Sector Membership
 
 **File:** `2026-09-01-sector-membership.csv`
@@ -320,3 +337,14 @@ The supplied context snapshot contains every approved context symbol and no
 duplicates, plus DIA as a reported extra. DIA is retained in the local source
 export but is outside the approved 14-symbol MVP context calculation unless a
 future decision expands that contract.
+
+The reference-discovery helper subsequently resolved 649 of the 650 current
+symbols through read-only IBKR contract details. Every resolved contract is
+USD and includes company name, primary exchange, and IBKR stock type. ERIXF is
+the single explicit unresolved symbol because IBKR returned no security
+definition. The raw universe includes 543 common stocks, 53 ADRs, 29 REITs, 11
+ETFs, four MLPs, three New York registered shares, one closed-end fund, and one
+tracking stock. The current two-value `SecurityType` contract is therefore an
+open human decision: expand its canonical types or define documented inclusion
+and normalization rules. Until approval, non-COMMON/ETF types remain visible
+in raw discovery and are not falsely mapped.

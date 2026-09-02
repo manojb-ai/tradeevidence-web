@@ -129,3 +129,22 @@ requests the latest adjusted duration window and deterministically excludes
 dates after `--through` when joining the two series.
 IBKR market-data permissions still apply. A first connection may produce a TWS
 confirmation dialog; accept only the local `127.0.0.1` connection.
+
+### Instrument and classification discovery
+
+The separate read-only reference collector derives its variable symbol universe
+from the current Thinkorswim export and requests only IBKR contract details. It
+checkpoints an exact instrument-reference CSV and a raw provider-discovery CSV:
+
+```powershell
+py fetch_ibkr_reference.py `
+  --symbols-file "input/2026-09-01/2026-09-01-symbol-evidence.csv" `
+  --market-date 2026-09-01
+```
+
+Use `--limit 3` for an initial smoke test. Raw IBKR category, subcategory, and
+industry values are preserved for review and are not represented as GICS.
+Unknown or ambiguous identity and security-type values remain blank rather than
+being guessed. Currency is retained as an identity and price-validation guard;
+the current universe is expected to resolve to USD, and exceptions require
+review.
