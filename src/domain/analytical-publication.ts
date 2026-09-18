@@ -9,6 +9,7 @@ export type CandidateClassification =
 export type EvidenceFactor = {
   code: string;
   group: string;
+  observedState: string;
   effect: string;
   explanation: string;
   unavailableReason: string | null;

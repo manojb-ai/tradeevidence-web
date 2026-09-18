@@ -30,6 +30,9 @@
   tracked-secret check, and repository-protection guidance.
 
 ### Changed
+- Reworked Devil's Advocate and Thesis Invalidation into beginner-first guided
+  explanations with plain-language takeaways, why-it-matters context, and
+  expandable exact engine wording.
 - Added publication-time price, company, exchange, and currency to the
   candidate Decision Workspace and reorganized it around the approved
   context-first Decision Workspace section hierarchy.

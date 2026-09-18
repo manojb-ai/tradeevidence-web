@@ -29,6 +29,7 @@ function result(symbol: string, score: number) {
       {
         factor_code: "trend_structure",
         group: "trend",
+        observed_state: "bull_aligned",
         effect: "supporting",
         explanation: `${symbol} trend explanation`,
         unavailable_reason: null,
@@ -44,7 +45,7 @@ function result(symbol: string, score: number) {
   };
 }
 
-function artifact(results: ReturnType<typeof result>[]) {
+function artifact(results: unknown[]) {
   return {
     generatedAt: "2026-09-02T02:43:11Z",
     summary: { rowsEvaluated: results.length },
@@ -81,6 +82,33 @@ describe("file-backed candidate publication", () => {
     ]);
     expect(review.featured.map(({ alignmentScore }) => alignmentScore)).toEqual(
       [90, 90, 80],
+    );
+  });
+
+  it("translates weakening momentum into guided language without inventing a price level", () => {
+    const abbv = {
+      ...result("ABBV", 71),
+      principal_contradiction: "daily_momentum",
+      factors: [
+        {
+          factor_code: "daily_momentum",
+          group: "momentum",
+          observed_state: "bullish_weakening",
+          effect: "supporting",
+          explanation: "Daily Momentum evaluated as bullish weakening.",
+          unavailable_reason: null,
+        },
+      ],
+    };
+    const record = buildFounderReview(parseArtifact(artifact([abbv]))).all[0];
+
+    expect(record.devilsAdvocateTakeaway).toMatch(
+      /still supported.*weakening/i,
+    );
+    expect(record.devilsAdvocateWhyItMatters).toMatch(/not.*proof.*reversed/i);
+    expect(record.invalidationTakeaway).toMatch(/later.*end-of-day analysis/i);
+    expect(record.invalidationWhyItMatters).toMatch(
+      /does not calculate a stop price/i,
     );
   });
 

@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { getFounderReview } from "@/src/application/get-founder-review";
+import {
+  FOUNDER_REVIEW_PRESENTATION_VERSION,
+  getFounderReview,
+} from "@/src/application/get-founder-review";
 
 export default async function WorkspacePage({
   params,
@@ -144,9 +147,11 @@ export default async function WorkspacePage({
               <h2 className="mt-3 text-2xl font-semibold">
                 What could challenge this interpretation?
               </h2>
-              <p className="mt-4 max-w-3xl leading-7 text-slate-300">
-                {opportunity.keyConstraintText}
-              </p>
+              <ExplanationSection
+                takeaway={opportunity.devilsAdvocateTakeaway}
+                whyItMatters={opportunity.devilsAdvocateWhyItMatters}
+                technical={opportunity.contradictionTechnical}
+              />
             </article>
 
             <article className="rounded-3xl border border-rose-300/20 bg-rose-300/[0.04] p-6 sm:p-8">
@@ -156,9 +161,11 @@ export default async function WorkspacePage({
               <h2 className="mt-3 text-2xl font-semibold">
                 When should this evidence be reassessed?
               </h2>
-              <p className="mt-4 max-w-3xl leading-7 text-slate-300">
-                {opportunity.invalidation}
-              </p>
+              <ExplanationSection
+                takeaway={opportunity.invalidationTakeaway}
+                whyItMatters={opportunity.invalidationWhyItMatters}
+                technical={opportunity.invalidation}
+              />
             </article>
           </div>
 
@@ -207,6 +214,12 @@ export default async function WorkspacePage({
                   <dt>Coverage</dt>
                   <dd>{opportunity.coverage}%</dd>
                 </div>
+                <div className="flex justify-between gap-4">
+                  <dt>Explanation</dt>
+                  <dd className="text-right text-xs">
+                    {FOUNDER_REVIEW_PRESENTATION_VERSION}
+                  </dd>
+                </div>
               </dl>
             </section>
           </aside>
@@ -246,6 +259,41 @@ function EvidenceBlock({ label, value }: { label: string; value: string }) {
     <div className="rounded-2xl border border-white/10 p-5">
       <h3 className="font-medium text-slate-100">{label}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-400">{value}</p>
+    </div>
+  );
+}
+
+function ExplanationSection({
+  takeaway,
+  whyItMatters,
+  technical,
+}: {
+  takeaway: string;
+  whyItMatters: string;
+  technical: string;
+}) {
+  return (
+    <div className="mt-5 space-y-4">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+          Plain-English takeaway
+        </p>
+        <p className="mt-2 max-w-3xl leading-7 text-slate-200">{takeaway}</p>
+      </div>
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+          Why this matters
+        </p>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+          {whyItMatters}
+        </p>
+      </div>
+      <details className="rounded-xl border border-white/10 px-4 py-3 text-sm">
+        <summary className="cursor-pointer font-medium text-slate-300">
+          Show technical rule
+        </summary>
+        <p className="mt-3 leading-6 text-slate-500">{technical}</p>
+      </details>
     </div>
   );
 }

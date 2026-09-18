@@ -140,3 +140,9 @@ reference inputs by exact symbol. This supplies the publication-time price,
 company name, exchange, and currency without altering the Candidate 2 score or
 factor record. Missing or duplicate join records fail explicitly rather than
 being guessed.
+
+Beginner-facing Devil's Advocate and invalidation copy is versioned separately
+as `founder-review-guided-v1`. It deterministically translates the recorded
+factor code/state and engine invalidation condition while retaining the exact
+Candidate 2 text for technical inspection. This presentation layer does not
+change the ruleset, score, classification, or authoritative engine template.

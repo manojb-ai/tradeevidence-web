@@ -184,6 +184,7 @@ function parseFactor(
   return {
     code: text(raw.factor_code, `${label}.factor_code`),
     group: text(raw.group, `${label}.group`),
+    observedState: text(raw.observed_state, `${label}.observed_state`),
     effect: text(raw.effect, `${label}.effect`),
     explanation: text(raw.explanation, `${label}.explanation`),
     unavailableReason: nullableText(raw.unavailable_reason),
@@ -374,6 +375,7 @@ function illustrativeFallback(): CandidatePublication {
         {
           code: "trend_structure",
           group: "trend",
+          observedState: "illustrative",
           effect: "supporting",
           explanation: item.trendEvidence,
           unavailableReason: null,
@@ -381,6 +383,7 @@ function illustrativeFallback(): CandidatePublication {
         {
           code: "daily_momentum",
           group: "momentum",
+          observedState: "illustrative",
           effect: "supporting",
           explanation: item.momentumEvidence,
           unavailableReason: null,
@@ -388,6 +391,7 @@ function illustrativeFallback(): CandidatePublication {
         {
           code: "timeframe_tension",
           group: "higher_timeframe",
+          observedState: "illustrative",
           effect: "contradicting",
           explanation: item.contradiction,
           unavailableReason: null,

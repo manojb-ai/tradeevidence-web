@@ -149,3 +149,11 @@ The current implementation therefore follows this concept specification and
 the approved design-system principles, but pixel-level comparison with an
 earlier visual prototype remains open until that prototype is recovered and
 committed under `docs/prototypes/`.
+
+The Devil's Advocate and Thesis Invalidation cards use presentation version
+`founder-review-guided-v1`. Each card leads with a plain-English takeaway and a
+short why-it-matters explanation, then preserves the Candidate 2 wording in an
+expandable technical disclosure. The guided layer may translate recorded
+facts, but it may not add a price target, stop, prediction, or unrecorded
+factor. Invalidation explicitly distinguishes a later comparable end-of-day
+classification change from an intraday price fluctuation.
