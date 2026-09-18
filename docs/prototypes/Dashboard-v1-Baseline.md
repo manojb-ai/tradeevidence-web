@@ -2,6 +2,7 @@
 
 **Status:** Approved Baseline  
 **Approved:** 2026-07-14  
+**Requirement Amendment:** 2026-09-17
 **Image:** [Dashboard-v1-Baseline.png](Dashboard-v1-Baseline.png)
 
 ## Purpose
@@ -11,6 +12,12 @@ This prototype is the first approved authenticated homepage for TradeEvidence.
 It is an orientation and navigation experience, not the full research product. Its purpose is to help a user quickly understand today's market, identify a small number of relevant items, and choose what they want to accomplish next.
 
 ## Approved Layout
+
+### Direct Symbol Lookup
+
+The prominent search control in the page header is an approved MVP research entry point. A user can enter a symbol and open its Decision Workspace when that symbol exists in the latest accepted analytical run. The control is not limited to filtering the opportunity cards shown on the page.
+
+MVP lookup uses existing published evidence only. It does not run the analytics engine or fetch new market data during the request. The interface must clearly distinguish a resolved symbol from an invalid symbol, a symbol not present in the current run, incomplete evidence, or an unavailable run.
 
 ### Today's Briefing
 
@@ -34,7 +41,7 @@ A clear set of intent-driven actions, such as:
 - Journal and reflect
 - Ask TradeEvidence
 
-### Highest Conviction Opportunities
+### Evidence-Aligned Opportunities
 
 A wide, compact section containing a small number of opportunities and why each deserves review.
 
@@ -62,6 +69,7 @@ The AI experience is not duplicated elsewhere on the homepage.
 - Market context is universal.
 - The homepage translates data into understanding.
 - User intent is a first-class navigation mechanism.
+- Direct symbol research is available from the homepage header.
 - AI assistance is prominent.
 - Homepage content is summarized.
 - Dedicated workspaces contain detail.
@@ -76,6 +84,7 @@ The AI experience is not duplicated elsewhere on the homepage.
 - No personalized decision queue.
 - No user-profile adaptation.
 - Opportunity cards require further content design.
+- Direct lookup covers the latest published analytical universe, not the full market or on-demand analysis.
 
 ## Future Evolution
 

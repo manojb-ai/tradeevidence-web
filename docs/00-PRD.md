@@ -96,7 +96,7 @@ The product experience will be organized around a small set of core modules that
 Public-facing product overview, positioning, and onboarding entry points.
 
 ### Homepage
-Primary authenticated workspace for research, market context, and quick analysis.
+Primary authenticated workspace for research, market context, quick analysis, and direct access to the current published evidence for a user-entered symbol.
 
 ### Market Summary
 Broader market context including index and sector awareness.
@@ -221,9 +221,11 @@ Workflows
 
 Workflow 1 - User lands on the homepage -> views Today's Briefing -> reviews market context -> evaluates opportunities
 Workflow 2 - Users are encouraged to create their user profile to get additional features
-Workflow 3 - User signs in -> opens the Homepage -> reviews Highest Conviction Opportunities -> enters the Decision Workspace -> adds to a watchlist
+Workflow 3 - User signs in -> opens the Homepage -> reviews Evidence-Aligned Opportunities -> enters the Decision Workspace -> adds to a watchlist
 Workflow 4 - Review and Maintain Watchlist
 Workflow 5 - Query Individual Stock -> Review Evidence -> Review Option Strategies -> Review Risk, Pros & Cons -> Add to Watchlist
+
+For MVP, Query Individual Stock resolves symbols already included in the latest accepted analytical run. It does not fetch new market data or execute the analytical engine during a website request, and unavailable coverage is stated explicitly.
 Workflow 6 - Open Journal -> Add Trade -> Upload Screenshot -> Write Notes
 
 Modules

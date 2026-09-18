@@ -129,6 +129,14 @@ Each decision entry below includes:
 - Date: 2026-07-13
 - Related Documents: [product/Dashboard.md](product/Dashboard.md)
 
+### Direct Symbol Lookup from the Homepage
+- Decision: The Homepage v1 header includes a prominent direct symbol lookup that opens the Decision Workspace for any symbol present in the latest accepted analytical run, including symbols not selected for the homepage opportunity summary.
+- Reason: Users must be able to begin research with a symbol they already have in mind rather than being limited to system-selected opportunities.
+- Expected Product Impact: Lookup resolves existing published evidence, preserves same-run consistency, and presents explicit invalid, absent, incomplete, or unavailable states. It does not fetch data or run analytics on demand, and it does not imply that every market symbol is covered.
+- Status: Active
+- Date: 2026-09-17
+- Related Documents: [product/Dashboard.md](product/Dashboard.md), [prototypes/Dashboard-v1-Baseline.md](prototypes/Dashboard-v1-Baseline.md), [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md)
+
 ### Homepage Summarizes; Workspaces Provide Detail
 - Decision: Homepage modules show concise summaries and contextual links rather than large tables.
 - Reason: The homepage should reduce cognitive load and direct users into focused workspaces.

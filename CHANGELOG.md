@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 ### Added
+- Approved Homepage direct-symbol lookup requirement for opening same-run,
+  already-published evidence, with explicit invalid, absent, incomplete, and
+  unavailable states and no request-time analytics.
 - Founder guided-language v2 with standardized Trend Structure, Daily Momentum,
   Weekly Momentum, multi-timeframe education, and symbol-specific 21 EMA/50
   SMA reassessment references; founder verification accepted this version as
