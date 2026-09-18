@@ -134,3 +134,9 @@ negative route/disclosure coverage. Items 6 and 7 remain release gates. The
 next delivery slice is sector normalization and the provider-independent
 context adapter; neither may silently rewrite Candidate 2 classifications or
 scores.
+
+The founder review now joins the September 1 symbol-evidence and instrument
+reference inputs by exact symbol. This supplies the publication-time price,
+company name, exchange, and currency without altering the Candidate 2 score or
+factor record. Missing or duplicate join records fail explicitly rather than
+being guessed.

@@ -1,7 +1,14 @@
+import { mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import { buildFounderReview } from "@/src/application/get-founder-review";
-import { parseArtifact } from "./file-candidate-publication";
+import {
+  enrichPublicationFromFiles,
+  parseArtifact,
+} from "./file-candidate-publication";
 
 function result(symbol: string, score: number) {
   return {
@@ -75,5 +82,43 @@ describe("file-backed candidate publication", () => {
     expect(review.featured.map(({ alignmentScore }) => alignmentScore)).toEqual(
       [90, 90, 80],
     );
+  });
+
+  it("joins canonical price and instrument identity by symbol", () => {
+    const directory = mkdtempSync(join(tmpdir(), "tradeevidence-publication-"));
+    const prices = join(directory, "prices.csv");
+    const references = join(directory, "references.csv");
+    writeFileSync(prices, "Symbol,Last\nAAA,131.71\n", "utf8");
+    writeFileSync(
+      references,
+      'Symbol,CompanyName,Exchange,Currency\nAAA,"ALPHA, INC",NASDAQ,USD\n',
+      "utf8",
+    );
+
+    const publication = enrichPublicationFromFiles(
+      parseArtifact(artifact([result("AAA", 90)])),
+      prices,
+      references,
+    );
+
+    expect(publication.results[0]).toMatchObject({
+      canonicalPrice: 131.71,
+      companyName: "ALPHA, INC",
+      exchange: "NASDAQ",
+      currency: "USD",
+    });
+
+    writeFileSync(
+      references,
+      "Symbol,CompanyName,Exchange,Currency\nBBB,BETA INC,NYSE,USD\n",
+      "utf8",
+    );
+    expect(() =>
+      enrichPublicationFromFiles(
+        parseArtifact(artifact([result("AAA", 90)])),
+        prices,
+        references,
+      ),
+    ).toThrow(/no instrument reference row/i);
   });
 });

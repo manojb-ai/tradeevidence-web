@@ -61,6 +61,8 @@ artifact without changing code, set this server-side environment variable in
 
 ```text
 TRADEEVIDENCE_ANALYTICS_ARTIFACT=C:\path\to\evidence_v2_<timestamp>.json
+TRADEEVIDENCE_SYMBOL_EVIDENCE_FILE=C:\path\to\symbol-evidence.csv
+TRADEEVIDENCE_INSTRUMENT_REFERENCE_FILE=C:\path\to\instrument-reference.csv
 ```
 
 If the configured file is absent, the application visibly falls back to its

@@ -30,6 +30,9 @@
   tracked-secret check, and repository-protection guidance.
 
 ### Changed
+- Added publication-time price, company, exchange, and currency to the
+  candidate Decision Workspace and reorganized it around the approved
+  context-first Decision Workspace section hierarchy.
 - Expanded the approved canonical instrument types to preserve the security
   forms observed in the founder's real IBKR discovery instead of mislabeling
   them as common stock or ETF.

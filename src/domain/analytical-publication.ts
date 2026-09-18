@@ -16,6 +16,10 @@ export type EvidenceFactor = {
 
 export type CandidateEvidence = {
   symbol: string;
+  companyName: string | null;
+  exchange: string | null;
+  currency: string | null;
+  canonicalPrice: number | null;
   status: "complete" | "incomplete";
   classification: CandidateClassification;
   direction: "bullish" | "bearish" | "neutral" | "incomplete";

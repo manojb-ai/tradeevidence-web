@@ -134,3 +134,18 @@ Focus on:
 - Thesis invalidation
 - Decision Checklist
 - Future Decision Snapshot and Journal integration
+
+## Implementation Alignment — 2026-09-17
+
+The local founder-review slice follows the approved section order beginning
+with Market Context, then Security Summary, Technical Evidence, Devil's
+Advocate, Thesis Invalidation, Decision Confidence, Before You Decide,
+Position Sizing, Education, and Ask TradeEvidence. It displays the exact
+publication-time price and available instrument identity from the same local
+acquisition set; unavailable context remains visibly unavailable.
+
+No Decision Workspace visual mockup is currently preserved in the repository.
+The current implementation therefore follows this concept specification and
+the approved design-system principles, but pixel-level comparison with an
+earlier visual prototype remains open until that prototype is recovered and
+committed under `docs/prototypes/`.

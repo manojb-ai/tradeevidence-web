@@ -36,8 +36,33 @@ export default async function WorkspacePage({
           ← Today&apos;s Briefing
         </Link>
 
+        <section className="mt-7 rounded-3xl border border-white/10 bg-[#0b1728] p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+            Market context
+          </p>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["Broad market", "SPY, QQQ, and IWM context unavailable"],
+              ["Risk environment", "Not evaluated in this candidate run"],
+              ["Sector context", "Sector mapping is not yet integrated"],
+              ["Important events", "Not evaluated in this candidate run"],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className="rounded-2xl border border-white/10 p-4"
+              >
+                <p className="text-sm font-medium text-slate-200">{label}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-500">{value}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="mt-7 grid gap-7 border-b border-white/10 pb-9 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              Security summary
+            </p>
             <div className="flex flex-wrap items-center gap-3">
               <h1 className="text-5xl font-semibold tracking-[-0.04em]">
                 {opportunity.symbol}
@@ -50,23 +75,40 @@ export default async function WorkspacePage({
               </span>
             </div>
             <p className="mt-3 text-slate-500">
-              Company, sector, and current price unavailable in this artifact
+              {opportunity.companyName ?? "Company unavailable"}
+              {opportunity.exchange ? ` · ${opportunity.exchange}` : ""}
             </p>
             <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-300">
               {opportunity.principalSupportText}
             </p>
           </div>
-          <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.06] px-7 py-5 text-center">
-            <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">
-              Evidence Score
-            </p>
-            <p className="mt-2 text-5xl font-semibold">
-              {opportunity.alignmentScore ?? "—"}
-              <span className="text-xl text-slate-500">/100</span>
-            </p>
-            <p className="mt-2 text-xs text-slate-500">
-              Alignment, not probability
-            </p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-7 py-5 text-center">
+              <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                Current price
+              </p>
+              <p className="mt-2 text-4xl font-semibold">
+                {opportunity.canonicalPrice === null
+                  ? "—"
+                  : `$${opportunity.canonicalPrice.toFixed(2)}`}
+              </p>
+              <p className="mt-2 text-xs text-slate-500">
+                {opportunity.currency ?? "Currency unavailable"} · close{" "}
+                {review.publication.marketDate}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.06] px-7 py-5 text-center">
+              <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">
+                Evidence Score
+              </p>
+              <p className="mt-2 text-4xl font-semibold">
+                {opportunity.alignmentScore ?? "—"}
+                <span className="text-lg text-slate-500">/100</span>
+              </p>
+              <p className="mt-2 text-xs text-slate-500">
+                Alignment, not probability
+              </p>
+            </div>
           </div>
         </section>
 
@@ -92,10 +134,6 @@ export default async function WorkspacePage({
                   label="Timeframe tension"
                   value={opportunity.timeframeEvidence}
                 />
-                <EvidenceBlock
-                  label="Reassessment condition"
-                  value={opportunity.invalidation}
-                />
               </div>
             </article>
 
@@ -110,6 +148,18 @@ export default async function WorkspacePage({
                 {opportunity.keyConstraintText}
               </p>
             </article>
+
+            <article className="rounded-3xl border border-rose-300/20 bg-rose-300/[0.04] p-6 sm:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-200">
+                Thesis invalidation
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold">
+                When should this evidence be reassessed?
+              </h2>
+              <p className="mt-4 max-w-3xl leading-7 text-slate-300">
+                {opportunity.invalidation}
+              </p>
+            </article>
           </div>
 
           <aside className="space-y-6">
@@ -121,6 +171,9 @@ export default async function WorkspacePage({
               <p className="mt-3 text-sm leading-6 text-slate-400">
                 This candidate artifact does not contain market context, sector
                 context, or the separate Decision Confidence calculation.
+              </p>
+              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                Before You Decide
               </p>
               <ul className="mt-5 space-y-3 text-sm text-slate-300">
                 <li className="rounded-xl border border-white/10 p-3">
@@ -159,6 +212,24 @@ export default async function WorkspacePage({
           </aside>
         </section>
 
+        <section className="grid gap-6 border-t border-white/10 py-9 lg:grid-cols-3">
+          <WorkspacePlaceholder
+            eyebrow="Position sizing"
+            title="Risk fit remains yours"
+            value="Portfolio exposure, volatility-based sizing, and maximum acceptable loss are not available in this candidate run. No position size is suggested."
+          />
+          <WorkspacePlaceholder
+            eyebrow="Education"
+            title="Understand before acting"
+            value="Strategy comparisons and concept explanations will appear here once their approved deterministic inputs are available."
+          />
+          <WorkspacePlaceholder
+            eyebrow="Ask TradeEvidence"
+            title="Grounded explanations coming later"
+            value="The AI assistant is not connected in this slice. Technical evidence remains available without it."
+          />
+        </section>
+
         <footer className="border-t border-white/10 py-7 text-sm leading-6 text-slate-500">
           Educational research only—not financial advice.{" "}
           {review.isCandidate
@@ -176,5 +247,25 @@ function EvidenceBlock({ label, value }: { label: string; value: string }) {
       <h3 className="font-medium text-slate-100">{label}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-400">{value}</p>
     </div>
+  );
+}
+
+function WorkspacePlaceholder({
+  eyebrow,
+  title,
+  value,
+}: {
+  eyebrow: string;
+  title: string;
+  value: string;
+}) {
+  return (
+    <article className="rounded-3xl border border-white/10 bg-[#0b1728] p-6">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+        {eyebrow}
+      </p>
+      <h2 className="mt-3 text-xl font-semibold">{title}</h2>
+      <p className="mt-3 text-sm leading-6 text-slate-400">{value}</p>
+    </article>
   );
 }

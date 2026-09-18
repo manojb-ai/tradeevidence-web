@@ -120,7 +120,7 @@ export default function Home() {
                       {opportunity.symbol}
                     </p>
                     <p className="mt-1 text-sm text-slate-500">
-                      Company and sector unavailable
+                      {opportunity.companyName ?? "Company unavailable"}
                     </p>
                   </div>
                   <span

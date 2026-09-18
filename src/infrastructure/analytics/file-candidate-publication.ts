@@ -14,6 +14,10 @@ import {
 
 const DEFAULT_ARTIFACT =
   "analytics-engine/output/2026-09-01-candidate-2/evidence_v2_20260902_024311Z.json";
+const DEFAULT_SYMBOL_EVIDENCE =
+  "analytics-engine/input/2026-09-01/2026-09-01-symbol-evidence.csv";
+const DEFAULT_INSTRUMENT_REFERENCE =
+  "analytics-engine/input/2026-09-01/2026-09-01-instrument-reference.csv";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -29,7 +33,8 @@ export function loadCandidatePublication(
   if (!existsSync(artifactPath)) return illustrativeFallback();
 
   const parsed: unknown = JSON.parse(readFileSync(artifactPath, "utf8"));
-  return parseArtifact(parsed, artifactPath);
+  const publication = parseArtifact(parsed, artifactPath);
+  return enrichPublication(publication);
 }
 
 export function parseArtifact(
@@ -148,6 +153,10 @@ function parseResult(value: unknown, index: number): CandidateEvidence {
       raw.symbol_at_observation,
       `results[${index}].symbol_at_observation`,
     ),
+    companyName: null,
+    exchange: null,
+    currency: null,
+    canonicalPrice: null,
     status,
     classification,
     direction,
@@ -181,6 +190,149 @@ function parseFactor(
   };
 }
 
+function enrichPublication(
+  publication: CandidatePublication,
+): CandidatePublication {
+  const useSeptemberDefaults = publication.marketDate === "2026-09-01";
+  const symbolPath = optionalInputPath(
+    process.env.TRADEEVIDENCE_SYMBOL_EVIDENCE_FILE,
+    useSeptemberDefaults ? DEFAULT_SYMBOL_EVIDENCE : undefined,
+  );
+  const referencePath = optionalInputPath(
+    process.env.TRADEEVIDENCE_INSTRUMENT_REFERENCE_FILE,
+    useSeptemberDefaults ? DEFAULT_INSTRUMENT_REFERENCE : undefined,
+  );
+
+  if (!symbolPath && !referencePath) return publication;
+
+  return enrichPublicationFromFiles(publication, symbolPath, referencePath);
+}
+
+export function enrichPublicationFromFiles(
+  publication: CandidatePublication,
+  symbolPath: string | null,
+  referencePath: string | null,
+): CandidatePublication {
+  const prices = symbolPath
+    ? csvBySymbol(symbolPath, ["Symbol", "Last"])
+    : new Map<string, Record<string, string>>();
+  const references = referencePath
+    ? csvBySymbol(referencePath, [
+        "Symbol",
+        "CompanyName",
+        "Exchange",
+        "Currency",
+      ])
+    : new Map<string, Record<string, string>>();
+
+  return {
+    ...publication,
+    results: publication.results.map((result) => {
+      const priceRow = prices.get(result.symbol);
+      const reference = references.get(result.symbol);
+      if (symbolPath && !priceRow) {
+        throw new Error(`No current price row exists for ${result.symbol}.`);
+      }
+      if (referencePath && !reference) {
+        throw new Error(
+          `No instrument reference row exists for ${result.symbol}.`,
+        );
+      }
+      const price = priceRow ? Number(priceRow.Last) : null;
+      if (price !== null && (!Number.isFinite(price) || price < 0)) {
+        throw new Error(`Current price for ${result.symbol} is invalid.`);
+      }
+      return {
+        ...result,
+        canonicalPrice: price,
+        companyName: nonEmpty(reference?.CompanyName),
+        exchange: nonEmpty(reference?.Exchange),
+        currency: nonEmpty(reference?.Currency),
+      };
+    }),
+  };
+}
+
+function optionalInputPath(
+  configuredPath: string | undefined,
+  defaultPath: string | undefined,
+): string | null {
+  const selected = configuredPath ?? defaultPath;
+  if (!selected) return null;
+  const path = resolve(
+    /* turbopackIgnore: true */
+    process.cwd(),
+    selected,
+  );
+  return existsSync(path) ? path : null;
+}
+
+function csvBySymbol(
+  path: string,
+  requiredHeaders: string[],
+): Map<string, Record<string, string>> {
+  const lines = readFileSync(path, "utf8")
+    .replace(/^\uFEFF/, "")
+    .split(/\r?\n/)
+    .filter((line) => line.length > 0);
+  if (lines.length < 2) throw new Error(`${path} contains no data rows.`);
+
+  const headers = parseCsvLine(lines[0]);
+  for (const header of requiredHeaders) {
+    if (!headers.includes(header))
+      throw new Error(`${path} is missing ${header}.`);
+  }
+
+  const rows = new Map<string, Record<string, string>>();
+  for (const [lineIndex, line] of lines.slice(1).entries()) {
+    const values = parseCsvLine(line);
+    if (values.length !== headers.length) {
+      throw new Error(
+        `${path} row ${lineIndex + 2} has an invalid column count.`,
+      );
+    }
+    const row = Object.fromEntries(
+      headers.map((header, index) => [header, values[index]]),
+    );
+    const symbol = row.Symbol?.trim().toUpperCase();
+    if (!symbol) throw new Error(`${path} row ${lineIndex + 2} has no Symbol.`);
+    if (rows.has(symbol))
+      throw new Error(`${path} contains duplicate symbol ${symbol}.`);
+    rows.set(symbol, row);
+  }
+  return rows;
+}
+
+function parseCsvLine(line: string): string[] {
+  const values: string[] = [];
+  let current = "";
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index];
+    if (character === '"') {
+      if (quoted && line[index + 1] === '"') {
+        current += '"';
+        index += 1;
+      } else {
+        quoted = !quoted;
+      }
+    } else if (character === "," && !quoted) {
+      values.push(current.trim());
+      current = "";
+    } else {
+      current += character;
+    }
+  }
+  if (quoted) throw new Error("CSV row contains an unterminated quoted value.");
+  values.push(current.trim());
+  return values;
+}
+
+function nonEmpty(value: string | undefined): string | null {
+  const normalized = value?.trim();
+  return normalized ? normalized : null;
+}
+
 function illustrativeFallback(): CandidatePublication {
   return {
     source: "illustrative-fallback",
@@ -194,6 +346,10 @@ function illustrativeFallback(): CandidatePublication {
     completeCount: demoOpportunities.length,
     results: demoOpportunities.map((item) => ({
       symbol: item.symbol,
+      companyName: item.name,
+      exchange: null,
+      currency: null,
+      canonicalPrice: null,
       status: "complete",
       classification:
         item.direction === "Bullish"
