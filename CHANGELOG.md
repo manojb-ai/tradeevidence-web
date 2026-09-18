@@ -5,7 +5,8 @@
 ### Added
 - Founder guided-language v2 with standardized Trend Structure, Daily Momentum,
   Weekly Momentum, multi-timeframe education, and symbol-specific 21 EMA/50
-  SMA reassessment references.
+  SMA reassessment references; founder verification accepted this version as
+  the continuing MVP presentation baseline.
 - Server-only, file-backed Candidate 2 publication adapter with contract and
   run-integrity validation, deterministic CI fallback, and focused tests.
 - Real-data founder-review Homepage and symbol Workspace for the September 1

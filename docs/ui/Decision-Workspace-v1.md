@@ -2,7 +2,8 @@
 
 ## Status
 
-Concept development in progress.
+Founder guided-language v2 approved for continued MVP implementation on
+2026-09-17. Full Workspace implementation remains in progress.
 
 ## Purpose
 
@@ -165,3 +166,8 @@ factor. The founder hypothesis uses a direction-opposing close across the
 21-day EMA as an early warning and two consecutive direction-opposing closes
 across the 50-day SMA as a stronger reassessment reference. These are
 educational references, not stops or Candidate 2 scoring rules.
+
+Founder verification on 2026-09-17 found the v2 terminology, multi-timeframe
+education, and symbol-specific reassessment language good enough to continue
+the MVP. This approval closes the founder language experiment; it does not
+promote Candidate 2 or the two-close hypothesis to a production scoring rule.

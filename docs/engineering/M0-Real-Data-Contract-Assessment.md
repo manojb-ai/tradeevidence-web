@@ -149,3 +149,8 @@ change the ruleset, score, classification, or authoritative engine template.
 The founder version reads the actual 21-day EMA and 50-day SMA from the same
 symbol input row. Its two-close persistence convention is an explicit testing
 hypothesis and is not represented as an already-observed condition.
+
+The founder accepted `founder-review-guided-v2` verification on 2026-09-17 as
+good enough to resume the full website agenda. The presentation version is now
+the MVP baseline. Candidate 2 production approval, formal publication, market
+and sector context, and Decision Confidence remain separate open gates.
