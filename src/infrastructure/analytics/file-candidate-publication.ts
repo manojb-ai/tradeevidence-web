@@ -157,6 +157,8 @@ function parseResult(value: unknown, index: number): CandidateEvidence {
     exchange: null,
     currency: null,
     canonicalPrice: null,
+    ema21: null,
+    sma50: null,
     status,
     classification,
     direction,
@@ -215,7 +217,7 @@ export function enrichPublicationFromFiles(
   referencePath: string | null,
 ): CandidatePublication {
   const prices = symbolPath
-    ? csvBySymbol(symbolPath, ["Symbol", "Last"])
+    ? csvBySymbol(symbolPath, ["Symbol", "Last", "EMA21", "SMA50"])
     : new Map<string, Record<string, string>>();
   const references = referencePath
     ? csvBySymbol(referencePath, [
@@ -243,9 +245,21 @@ export function enrichPublicationFromFiles(
       if (price !== null && (!Number.isFinite(price) || price < 0)) {
         throw new Error(`Current price for ${result.symbol} is invalid.`);
       }
+      const ema21 = optionalNonnegativeNumber(
+        priceRow?.EMA21,
+        result.symbol,
+        "EMA21",
+      );
+      const sma50 = optionalNonnegativeNumber(
+        priceRow?.SMA50,
+        result.symbol,
+        "SMA50",
+      );
       return {
         ...result,
         canonicalPrice: price,
+        ema21,
+        sma50,
         companyName: nonEmpty(reference?.CompanyName),
         exchange: nonEmpty(reference?.Exchange),
         currency: nonEmpty(reference?.Currency),
@@ -334,6 +348,24 @@ function nonEmpty(value: string | undefined): string | null {
   return normalized ? normalized : null;
 }
 
+function optionalNonnegativeNumber(
+  value: string | undefined,
+  symbol: string,
+  field: string,
+): number | null {
+  if (
+    value === undefined ||
+    value.trim() === "" ||
+    value.trim().toLowerCase() === "nan"
+  )
+    return null;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 0) {
+    throw new Error(`${field} for ${symbol} is invalid.`);
+  }
+  return parsed;
+}
+
 function illustrativeFallback(): CandidatePublication {
   return {
     source: "illustrative-fallback",
@@ -351,6 +383,8 @@ function illustrativeFallback(): CandidatePublication {
       exchange: null,
       currency: null,
       canonicalPrice: null,
+      ema21: null,
+      sma50: null,
       status: "complete",
       classification:
         item.direction === "Bullish"

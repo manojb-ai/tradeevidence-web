@@ -13,14 +13,15 @@ export type FounderReviewRecord = CandidateEvidence & {
   devilsAdvocateWhyItMatters: string;
   contradictionTechnical: string;
   trendEvidence: string;
-  momentumEvidence: string;
-  timeframeEvidence: string;
+  dailyMomentumEvidence: string;
+  weeklyMomentumEvidence: string;
+  momentumRelationship: string;
   invalidation: string;
   invalidationTakeaway: string;
   invalidationWhyItMatters: string;
 };
 
-export const FOUNDER_REVIEW_PRESENTATION_VERSION = "founder-review-guided-v1";
+export const FOUNDER_REVIEW_PRESENTATION_VERSION = "founder-review-guided-v2";
 
 export type ClassificationLabel =
   | "Bullish"
@@ -98,12 +99,15 @@ function toReviewRecord(record: CandidateEvidence): FounderReviewRecord {
     trendEvidence:
       record.factors.find((item) => item.group === "trend")?.explanation ??
       "Trend evidence is unavailable.",
-    momentumEvidence:
-      record.factors.find((item) => item.group === "momentum")?.explanation ??
-      "Momentum evidence is unavailable.",
-    timeframeEvidence:
-      record.factors.find((item) => item.group === "higher_timeframe")
-        ?.explanation ?? "Higher-timeframe evidence is unavailable.",
+    dailyMomentumEvidence: momentumSentence(
+      "Daily momentum",
+      record.factors.find((item) => item.group === "momentum"),
+    ),
+    weeklyMomentumEvidence: momentumSentence(
+      "Weekly momentum",
+      record.factors.find((item) => item.group === "higher_timeframe"),
+    ),
+    momentumRelationship: momentumRelationship(record),
     invalidation:
       record.invalidationConditions[0] ??
       "No deterministic reassessment condition was recorded.",
@@ -149,6 +153,10 @@ function devilWhyItMatters(
 
 function invalidationTakeaway(record: CandidateEvidence): string {
   if (record.direction === "bullish" || record.direction === "bearish") {
+    const relation = record.direction === "bullish" ? "below" : "above";
+    if (record.ema21 !== null && record.sma50 !== null) {
+      return `Treat a regular-session close ${relation} the 21-day EMA (${money(record.ema21)}) as an early warning. Reassess more seriously after two consecutive regular-session closes ${relation} the 50-day SMA (${money(record.sma50)}).`;
+    }
     return `Reassess this ${record.direction} interpretation if a later, comparable end-of-day analysis no longer qualifies as ${record.direction} under the same ruleset.`;
   }
   return "This snapshot did not establish a directional thesis, so there is no bullish or bearish thesis to invalidate.";
@@ -156,9 +164,39 @@ function invalidationTakeaway(record: CandidateEvidence): string {
 
 function invalidationWhyItMatters(record: CandidateEvidence): string {
   if (record.direction === "bullish" || record.direction === "bearish") {
-    return "This snapshot does not calculate a stop price or an intraday trigger. Reassessment means comparing a later closing-price snapshot using the same rules—not reacting to every price fluctuation.";
+    return "For this founder version, “remains” means two consecutive regular-session daily closes. These are educational reassessment references—not a stop-loss instruction—and this snapshot has not evaluated whether the future persistence condition occurred.";
   }
   return "Review later comparable snapshots to see whether a complete directional evidence pattern develops.";
+}
+
+function momentumRelationship(record: CandidateEvidence): string {
+  const daily = record.factors.find((item) => item.group === "momentum");
+  const weekly = record.factors.find(
+    (item) => item.group === "higher_timeframe",
+  );
+  if (!daily || !weekly) {
+    return "Daily momentum is the faster view; weekly momentum is the slower, broader view. One or both are unavailable in this snapshot.";
+  }
+  return `Daily momentum is ${statePhrase(daily.observedState)}; weekly momentum is ${statePhrase(weekly.observedState)}. Daily momentum reacts faster to recent price changes, while weekly momentum changes more slowly and supplies broader context. Weekly momentum does not mechanically drive daily momentum, but agreement across both timeframes strengthens confirmation and disagreement deserves additional scrutiny.`;
+}
+
+function momentumSentence(
+  label: "Daily momentum" | "Weekly momentum",
+  factor: EvidenceFactor | undefined,
+): string {
+  return factor
+    ? `${label} is ${statePhrase(factor.observedState)}.`
+    : `${label} is unavailable.`;
+}
+
+function statePhrase(state: string): string {
+  if (state === "bullish_weakening") return "bullish but weakening";
+  if (state === "bearish_weakening") return "bearish but weakening";
+  return state.replaceAll("_", " ");
+}
+
+function money(value: number): string {
+  return `$${value.toFixed(2)}`;
 }
 
 function factorLabel(code: string): string {

@@ -21,6 +21,8 @@ export type CandidateEvidence = {
   exchange: string | null;
   currency: string | null;
   canonicalPrice: number | null;
+  ema21: number | null;
+  sma50: number | null;
   status: "complete" | "incomplete";
   classification: CandidateClassification;
   direction: "bullish" | "bearish" | "neutral" | "incomplete";

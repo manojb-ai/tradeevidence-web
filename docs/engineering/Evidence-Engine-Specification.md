@@ -1,9 +1,9 @@
 # Evidence Engine Specification
 
 - **Status:** Approved
-- **Version:** 1.0
+- **Version:** 1.1
 - **Owner:** Founder and Chief Software Architect
-- **Last Updated:** 2026-08-23
+- **Last Updated:** 2026-09-17
 - **AI-DLC Level:** Level 3 - Controlled
 - **Related Documents:** [MVP-Implementation-Spec.md](MVP-Implementation-Spec.md), [MVP-Data-Schema.md](MVP-Data-Schema.md), [Canonical-Analytical-Model.md](Canonical-Analytical-Model.md), [../Evidence-History-and-Validation.md](../Evidence-History-and-Validation.md), [../governance/decisions/ADR-008-Evidence-Engine-Governance.md](../governance/decisions/ADR-008-Evidence-Engine-Governance.md), [../workshops/Workshop-06-Summary.md](../workshops/Workshop-06-Summary.md)
 
@@ -188,6 +188,35 @@ The product uses progressive disclosure over one canonical explanation:
   coverage, versions, and invalidation conditions.
 
 Presentation depth never changes the underlying facts or score.
+
+### Standard Presentation Terminology
+
+User-facing evidence language uses these terms consistently:
+
+- **Trend Structure:** the directional ordering of price and the evaluated
+  moving averages;
+- **Daily Momentum:** the faster view of recent directional force from the
+  daily Stellar Orbit factor;
+- **Weekly Momentum:** the slower, broader directional context from weekly
+  Stellar Orbit; this is the display name for Candidate 2's transitional
+  `weekly_trend` factor code;
+- **Multi-Timeframe Alignment:** whether daily and weekly momentum support the
+  same direction; weekly momentum does not mechanically cause or override
+  daily momentum;
+- **Early Warning:** a condition that merits attention but does not by itself
+  invalidate a thesis;
+- **Reassessment Trigger:** a defined condition that prompts a fresh review of
+  later comparable evidence; and
+- **Thesis Invalidation:** a ruleset-defined condition showing that the
+  original evidence thesis is no longer supported.
+
+Founder presentation `founder-review-guided-v2` treats a direction-opposing
+regular-session close across the 21-day EMA as an educational early warning
+and two consecutive direction-opposing regular-session closes across the
+50-day SMA as a stronger reassessment reference. This is a founder-testing
+presentation hypothesis, not a Candidate 2 scoring rule, stop-loss instruction,
+or engine-computed invalidation event. Production promotion requires explicit
+validation and human approval.
 
 ## 10. Immutable Evidence Snapshots
 

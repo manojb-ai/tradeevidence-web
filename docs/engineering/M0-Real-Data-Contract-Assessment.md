@@ -141,8 +141,11 @@ company name, exchange, and currency without altering the Candidate 2 score or
 factor record. Missing or duplicate join records fail explicitly rather than
 being guessed.
 
-Beginner-facing Devil's Advocate and invalidation copy is versioned separately
-as `founder-review-guided-v1`. It deterministically translates the recorded
+Beginner-facing evidence, Devil's Advocate, and invalidation copy is versioned
+separately as `founder-review-guided-v2`. It deterministically translates the recorded
 factor code/state and engine invalidation condition while retaining the exact
 Candidate 2 text for technical inspection. This presentation layer does not
 change the ruleset, score, classification, or authoritative engine template.
+The founder version reads the actual 21-day EMA and 50-day SMA from the same
+symbol input row. Its two-close persistence convention is an explicit testing
+hypothesis and is not represented as an already-observed condition.

@@ -124,19 +124,27 @@ export default async function WorkspacePage({
               <h2 className="mt-3 text-2xl font-semibold">
                 Why this setup surfaced
               </h2>
-              <div className="mt-7 grid gap-5 sm:grid-cols-2">
+              <div className="mt-7 space-y-5">
                 <EvidenceBlock
-                  label="Trend"
+                  label="Trend Structure"
                   value={opportunity.trendEvidence}
                 />
-                <EvidenceBlock
-                  label="Momentum"
-                  value={opportunity.momentumEvidence}
-                />
-                <EvidenceBlock
-                  label="Timeframe tension"
-                  value={opportunity.timeframeEvidence}
-                />
+                <div className="rounded-2xl border border-white/10 p-5">
+                  <h3 className="font-medium text-slate-100">Momentum</h3>
+                  <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                    <EvidenceDetail
+                      label="Daily Momentum"
+                      value={opportunity.dailyMomentumEvidence}
+                    />
+                    <EvidenceDetail
+                      label="Weekly Momentum"
+                      value={opportunity.weeklyMomentumEvidence}
+                    />
+                  </div>
+                  <p className="mt-4 border-t border-white/10 pt-4 text-sm leading-6 text-slate-400">
+                    {opportunity.momentumRelationship}
+                  </p>
+                </div>
               </div>
             </article>
 
@@ -152,6 +160,14 @@ export default async function WorkspacePage({
                 whyItMatters={opportunity.devilsAdvocateWhyItMatters}
                 technical={opportunity.contradictionTechnical}
               />
+              <div className="mt-5 rounded-2xl border border-white/10 bg-black/10 p-5">
+                <h3 className="font-medium text-slate-200">
+                  How daily and weekly momentum work together
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  {opportunity.momentumRelationship}
+                </p>
+              </div>
             </article>
 
             <article className="rounded-3xl border border-rose-300/20 bg-rose-300/[0.04] p-6 sm:p-8">
@@ -259,6 +275,17 @@ function EvidenceBlock({ label, value }: { label: string; value: string }) {
     <div className="rounded-2xl border border-white/10 p-5">
       <h3 className="font-medium text-slate-100">{label}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-400">{value}</p>
+    </div>
+  );
+}
+
+function EvidenceDetail({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl bg-white/[0.03] p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+        {label}
+      </p>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{value}</p>
     </div>
   );
 }

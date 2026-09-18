@@ -150,10 +150,18 @@ the approved design-system principles, but pixel-level comparison with an
 earlier visual prototype remains open until that prototype is recovered and
 committed under `docs/prototypes/`.
 
+The Technical Evidence section uses Trend Structure plus one Momentum group
+with explicit Daily Momentum and Weekly Momentum rows. It explains that daily
+momentum reacts faster while weekly momentum changes more slowly and supplies
+broader context; neither timeframe is described as mechanically driving the
+other.
+
 The Devil's Advocate and Thesis Invalidation cards use presentation version
-`founder-review-guided-v1`. Each card leads with a plain-English takeaway and a
+`founder-review-guided-v2`. Each card leads with a plain-English takeaway and a
 short why-it-matters explanation, then preserves the Candidate 2 wording in an
 expandable technical disclosure. The guided layer may translate recorded
 facts, but it may not add a price target, stop, prediction, or unrecorded
-factor. Invalidation explicitly distinguishes a later comparable end-of-day
-classification change from an intraday price fluctuation.
+factor. The founder hypothesis uses a direction-opposing close across the
+21-day EMA as an early warning and two consecutive direction-opposing closes
+across the 50-day SMA as a stronger reassessment reference. These are
+educational references, not stops or Candidate 2 scoring rules.

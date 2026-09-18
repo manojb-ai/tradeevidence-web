@@ -85,7 +85,7 @@ describe("file-backed candidate publication", () => {
     );
   });
 
-  it("translates weakening momentum into guided language without inventing a price level", () => {
+  it("translates ABBV-like momentum and supplied averages into guided language", () => {
     const abbv = {
       ...result("ABBV", 71),
       principal_contradiction: "daily_momentum",
@@ -98,25 +98,41 @@ describe("file-backed candidate publication", () => {
           explanation: "Daily Momentum evaluated as bullish weakening.",
           unavailable_reason: null,
         },
+        {
+          factor_code: "weekly_trend",
+          group: "higher_timeframe",
+          observed_state: "bullish",
+          effect: "supporting",
+          explanation: "Weekly Trend evaluated as bullish.",
+          unavailable_reason: null,
+        },
       ],
     };
-    const record = buildFounderReview(parseArtifact(artifact([abbv]))).all[0];
+    const publication = parseArtifact(artifact([abbv]));
+    publication.results[0].ema21 = 256.85;
+    publication.results[0].sma50 = 253.17;
+    const record = buildFounderReview(publication).all[0];
 
     expect(record.devilsAdvocateTakeaway).toMatch(
       /still supported.*weakening/i,
     );
     expect(record.devilsAdvocateWhyItMatters).toMatch(/not.*proof.*reversed/i);
-    expect(record.invalidationTakeaway).toMatch(/later.*end-of-day analysis/i);
-    expect(record.invalidationWhyItMatters).toMatch(
-      /does not calculate a stop price/i,
+    expect(record.momentumRelationship).toMatch(
+      /daily momentum is bullish but weakening; weekly momentum is bullish/i,
     );
+    expect(record.invalidationTakeaway).toMatch(/\$256\.85.*\$253\.17/i);
+    expect(record.invalidationWhyItMatters).toMatch(/two consecutive/i);
   });
 
   it("joins canonical price and instrument identity by symbol", () => {
     const directory = mkdtempSync(join(tmpdir(), "tradeevidence-publication-"));
     const prices = join(directory, "prices.csv");
     const references = join(directory, "references.csv");
-    writeFileSync(prices, "Symbol,Last\nAAA,131.71\n", "utf8");
+    writeFileSync(
+      prices,
+      "Symbol,Last,EMA21,SMA50\nAAA,131.71,129.46,126.44\n",
+      "utf8",
+    );
     writeFileSync(
       references,
       'Symbol,CompanyName,Exchange,Currency\nAAA,"ALPHA, INC",NASDAQ,USD\n',
@@ -131,10 +147,25 @@ describe("file-backed candidate publication", () => {
 
     expect(publication.results[0]).toMatchObject({
       canonicalPrice: 131.71,
+      ema21: 129.46,
+      sma50: 126.44,
       companyName: "ALPHA, INC",
       exchange: "NASDAQ",
       currency: "USD",
     });
+
+    writeFileSync(
+      prices,
+      "Symbol,Last,EMA21,SMA50\nAAA,131.71,129.46,NaN\n",
+      "utf8",
+    );
+    expect(
+      enrichPublicationFromFiles(
+        parseArtifact(artifact([result("AAA", 90)])),
+        prices,
+        references,
+      ).results[0].sma50,
+    ).toBeNull();
 
     writeFileSync(
       references,
