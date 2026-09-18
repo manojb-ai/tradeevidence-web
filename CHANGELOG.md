@@ -3,6 +3,10 @@
 ## [Unreleased]
 
 ### Added
+- Server-only, file-backed Candidate 2 publication adapter with contract and
+  run-integrity validation, deterministic CI fallback, and focused tests.
+- Real-data founder-review Homepage and symbol Workspace for the September 1
+  Candidate 2 run, with explicit unavailable context and publication warnings.
 - Read-only, checkpointed IBKR contract-reference discovery for variable
   Thinkorswim universes, with provider-boundary share-class translation, raw
   classification lineage, ambiguity protection, and instrument-reference

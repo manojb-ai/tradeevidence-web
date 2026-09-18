@@ -1,17 +1,23 @@
 import Link from "next/link";
 
-import {
-  demoOpportunities,
-  demoSnapshot,
-} from "@/src/features/opportunities/demo-data";
+import { getFounderReview } from "@/src/application/get-founder-review";
 
 const directionStyles = {
   Bullish: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
   Bearish: "border-rose-400/30 bg-rose-400/10 text-rose-300",
-  Watch: "border-amber-400/30 bg-amber-400/10 text-amber-200",
-} as const;
+  "Bullish watch": "border-amber-400/30 bg-amber-400/10 text-amber-200",
+  "Bearish watch": "border-amber-400/30 bg-amber-400/10 text-amber-200",
+  Neutral: "border-slate-400/30 bg-slate-400/10 text-slate-300",
+  Incomplete: "border-slate-400/30 bg-slate-400/10 text-slate-300",
+} satisfies Record<string, string>;
 
 export default function Home() {
+  const review = getFounderReview();
+  const { publication } = review;
+  const coverage = Math.round(
+    (publication.completeCount / publication.rowsEvaluated) * 100,
+  );
+
   return (
     <main className="min-h-screen bg-[#07111f] text-slate-100">
       <header className="border-b border-white/10 bg-[#07111f]/90">
@@ -20,12 +26,12 @@ export default function Home() {
             Trade<span className="text-cyan-400">Evidence</span>
           </Link>
           <div className="flex items-center gap-3 text-sm text-slate-400">
-            <span className="hidden sm:inline">Founder preview</span>
+            <span className="hidden sm:inline">Founder review</span>
             <span
               className="h-2 w-2 rounded-full bg-amber-300"
               aria-hidden="true"
             />
-            Illustrative data
+            {review.isCandidate ? "Candidate 2 data" : "Illustrative fallback"}
           </div>
         </div>
       </header>
@@ -34,7 +40,7 @@ export default function Home() {
         <section className="grid gap-8 border-b border-white/10 pb-10 lg:grid-cols-[1.5fr_0.8fr] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400">
-              Today&apos;s briefing · {demoSnapshot.marketDate}
+              Technical evidence review · {publication.marketDate}
             </p>
             <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.04em] sm:text-6xl">
               Start with the evidence. Make the decision yours.
@@ -50,27 +56,33 @@ export default function Home() {
             <div className="flex items-center justify-between">
               <span className="text-sm text-slate-400">Analysis snapshot</span>
               <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
-                Complete fixture
+                {review.isCandidate
+                  ? "Candidate—not published"
+                  : "Fallback fixture"}
               </span>
             </div>
             <dl className="mt-5 grid grid-cols-2 gap-4 text-sm">
               <div>
                 <dt className="text-slate-500">Ruleset</dt>
                 <dd className="mt-1 font-medium">
-                  {demoSnapshot.rulesetVersion}
+                  {publication.rulesetVersion}
                 </dd>
               </div>
               <div>
                 <dt className="text-slate-500">Coverage</dt>
-                <dd className="mt-1 font-medium">{demoSnapshot.coverage}%</dd>
+                <dd className="mt-1 font-medium">{coverage}% complete</dd>
               </div>
               <div>
                 <dt className="text-slate-500">Universe</dt>
-                <dd className="mt-1 font-medium">Demo watchlist</dd>
+                <dd className="mt-1 font-medium">
+                  {publication.rowsEvaluated} symbols
+                </dd>
               </div>
               <div>
                 <dt className="text-slate-500">Freshness</dt>
-                <dd className="mt-1 font-medium">Illustrative</dd>
+                <dd className="mt-1 font-medium">
+                  As of {publication.marketDate}
+                </dd>
               </div>
             </dl>
           </div>
@@ -80,23 +92,24 @@ export default function Home() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm text-slate-500">
-                Evidence-aligned opportunities
+                Candidate technical evidence
               </p>
               <h2
                 id="opportunities-heading"
                 className="mt-1 text-2xl font-semibold"
               >
-                Three setups worth a closer look
+                Strongest directional records to review
               </h2>
             </div>
             <p className="max-w-lg text-sm leading-6 text-slate-500">
-              Ranked deterministically from one analysis run. A high score is
-              stronger evidence alignment—not a prediction or recommendation.
+              Ordered deterministically by the engine&apos;s existing score.
+              These are review records—not approved opportunities, predictions,
+              or recommendations.
             </p>
           </div>
 
           <div className="mt-7 grid gap-5 lg:grid-cols-3">
-            {demoOpportunities.map((opportunity) => (
+            {review.featured.map((opportunity) => (
               <article
                 key={opportunity.symbol}
                 className="group flex flex-col rounded-3xl border border-white/10 bg-[#0b1728] p-6 transition hover:-translate-y-0.5 hover:border-cyan-400/30"
@@ -107,13 +120,13 @@ export default function Home() {
                       {opportunity.symbol}
                     </p>
                     <p className="mt-1 text-sm text-slate-500">
-                      {opportunity.name}
+                      Company and sector unavailable
                     </p>
                   </div>
                   <span
-                    className={`rounded-full border px-3 py-1 text-xs font-semibold ${directionStyles[opportunity.direction]}`}
+                    className={`rounded-full border px-3 py-1 text-xs font-semibold ${directionStyles[opportunity.classificationLabel]}`}
                   >
-                    {opportunity.direction}
+                    {opportunity.classificationLabel}
                   </span>
                 </div>
 
@@ -123,14 +136,13 @@ export default function Home() {
                       Evidence Score
                     </p>
                     <p className="mt-2 text-4xl font-semibold">
-                      {opportunity.evidenceScore}
+                      {opportunity.alignmentScore}
                       <span className="text-lg text-slate-600">/100</span>
                     </p>
                   </div>
                   <p className="text-right text-sm leading-6 text-slate-400">
-                    {opportunity.timeframe}
-                    <br />
-                    timeframe
+                    {opportunity.coverage}%<br />
+                    coverage
                   </p>
                 </div>
 
@@ -140,7 +152,7 @@ export default function Home() {
                       Principal support
                     </dt>
                     <dd className="mt-1 text-slate-400">
-                      {opportunity.principalSupport}
+                      {opportunity.principalSupportText}
                     </dd>
                   </div>
                   <div>
@@ -148,7 +160,7 @@ export default function Home() {
                       Key constraint
                     </dt>
                     <dd className="mt-1 text-slate-400">
-                      {opportunity.keyConstraint}
+                      {opportunity.keyConstraintText}
                     </dd>
                   </div>
                 </dl>
@@ -165,7 +177,9 @@ export default function Home() {
         </section>
 
         <footer className="border-t border-white/10 py-7 text-sm leading-6 text-slate-500">
-          This founder preview uses fictional, illustrative records.
+          {review.isCandidate
+            ? "Founder-only review of experimental Candidate 2 technical evidence. Market context, sector context, and Decision Confidence are unavailable."
+            : "The configured local artifact was not found, so this page uses fictional illustrative records."}{" "}
           TradeEvidence provides educational research tools and does not provide
           financial advice.
         </footer>

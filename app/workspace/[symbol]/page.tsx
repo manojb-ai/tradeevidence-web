@@ -1,17 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import {
-  demoOpportunities,
-  demoSnapshot,
-  findDemoOpportunity,
-} from "@/src/features/opportunities/demo-data";
-
-export function generateStaticParams() {
-  return demoOpportunities.map(({ symbol }) => ({
-    symbol: symbol.toLowerCase(),
-  }));
-}
+import { getFounderReview } from "@/src/application/get-founder-review";
 
 export default async function WorkspacePage({
   params,
@@ -19,7 +9,10 @@ export default async function WorkspacePage({
   params: Promise<{ symbol: string }>;
 }) {
   const { symbol } = await params;
-  const opportunity = findDemoOpportunity(symbol);
+  const review = getFounderReview();
+  const opportunity = review.all.find(
+    (record) => record.symbol.toLowerCase() === symbol.toLowerCase(),
+  );
 
   if (!opportunity) notFound();
 
@@ -31,7 +24,9 @@ export default async function WorkspacePage({
             Trade<span className="text-cyan-400">Evidence</span>
           </Link>
           <span className="text-sm text-slate-500">
-            Illustrative founder preview
+            {review.isCandidate
+              ? "Candidate 2 founder review"
+              : "Illustrative fallback"}
           </span>
         </div>
       </header>
@@ -48,15 +43,17 @@ export default async function WorkspacePage({
                 {opportunity.symbol}
               </h1>
               <span className="rounded-full border border-white/15 px-3 py-1 text-sm text-slate-300">
-                {opportunity.direction}
+                {opportunity.classificationLabel}
               </span>
               <span className="rounded-full border border-white/15 px-3 py-1 text-sm text-slate-400">
-                {opportunity.timeframe}
+                Candidate evidence
               </span>
             </div>
-            <p className="mt-3 text-slate-500">{opportunity.name}</p>
+            <p className="mt-3 text-slate-500">
+              Company, sector, and current price unavailable in this artifact
+            </p>
             <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-300">
-              {opportunity.principalSupport}
+              {opportunity.principalSupportText}
             </p>
           </div>
           <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.06] px-7 py-5 text-center">
@@ -64,7 +61,7 @@ export default async function WorkspacePage({
               Evidence Score
             </p>
             <p className="mt-2 text-5xl font-semibold">
-              {opportunity.evidenceScore}
+              {opportunity.alignmentScore ?? "—"}
               <span className="text-xl text-slate-500">/100</span>
             </p>
             <p className="mt-2 text-xs text-slate-500">
@@ -93,7 +90,7 @@ export default async function WorkspacePage({
                 />
                 <EvidenceBlock
                   label="Timeframe tension"
-                  value={opportunity.contradiction}
+                  value={opportunity.timeframeEvidence}
                 />
                 <EvidenceBlock
                   label="Reassessment condition"
@@ -110,7 +107,7 @@ export default async function WorkspacePage({
                 What could challenge this interpretation?
               </h2>
               <p className="mt-4 max-w-3xl leading-7 text-slate-300">
-                {opportunity.keyConstraint} {opportunity.contradiction}
+                {opportunity.keyConstraintText}
               </p>
             </article>
           </div>
@@ -120,10 +117,10 @@ export default async function WorkspacePage({
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-300">
                 Decision Confidence
               </p>
-              <h2 className="mt-3 text-xl font-semibold">Not assessed</h2>
+              <h2 className="mt-3 text-xl font-semibold">Unavailable</h2>
               <p className="mt-3 text-sm leading-6 text-slate-400">
-                This belongs to you. Evidence strength cannot determine whether
-                a setup fits your plan, timing, or risk limits.
+                This candidate artifact does not contain market context, sector
+                context, or the separate Decision Confidence calculation.
               </p>
               <ul className="mt-5 space-y-3 text-sm text-slate-300">
                 <li className="rounded-xl border border-white/10 p-3">
@@ -142,16 +139,20 @@ export default async function WorkspacePage({
               <p className="font-medium text-slate-200">Snapshot integrity</p>
               <dl className="mt-4 space-y-2">
                 <div className="flex justify-between gap-4">
-                  <dt>Run</dt>
-                  <dd>{demoSnapshot.analysisRunId}</dd>
+                  <dt>Artifact</dt>
+                  <dd className="font-mono text-xs">
+                    {review.publication.sourceChecksum.slice(0, 10)}…
+                  </dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt>Ruleset</dt>
-                  <dd>{demoSnapshot.rulesetVersion}</dd>
+                  <dd className="text-right text-xs">
+                    {review.publication.rulesetVersion}
+                  </dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt>Coverage</dt>
-                  <dd>{demoSnapshot.coverage}%</dd>
+                  <dd>{opportunity.coverage}%</dd>
                 </div>
               </dl>
             </section>
@@ -159,8 +160,10 @@ export default async function WorkspacePage({
         </section>
 
         <footer className="border-t border-white/10 py-7 text-sm leading-6 text-slate-500">
-          Educational research only—not financial advice. This page uses
-          fictional illustrative data.
+          Educational research only—not financial advice.{" "}
+          {review.isCandidate
+            ? "This is experimental Candidate 2 technical evidence, not an approved publication."
+            : "This page uses fictional illustrative data."}
         </footer>
       </div>
     </main>

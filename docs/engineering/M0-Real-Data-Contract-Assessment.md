@@ -110,3 +110,27 @@ M0 may load this bundle locally for founder review if every relevant screen:
 7. Obtain founder approval of the production ruleset and first formal
    publication before changing the candidate-review surface into the approved
    Homepage opportunity experience.
+
+## Implementation Update — 2026-09-17
+
+The file-backed adapter and founder-review surface now load the ignored
+September 1 Candidate 2 artifact. The adapter validates root shape, row-count
+reconciliation, same-run market/version/checksum fields, and each result's
+directional ledger before creating application view models. The Homepage shows
+at most five complete directional records in stable score-then-symbol review
+order without recalculating an Evidence Score. This ordering is only a founder
+review aid; it is not the approved Homepage qualification model.
+
+The Decision Workspace resolves every artifact symbol and displays the
+engine-provided factor explanations and reassessment condition. Both screens
+label Candidate 2 experimental, distinguish it from a published run, and show
+market context, sector context, and Decision Confidence as unavailable. A
+fictional fallback keeps clean-checkout validation operable when ignored local
+data is absent.
+
+Sequence items 1 and 4 are complete. Items 2, 3, and 5 have their first tested
+slice but still require the formal manifest/checksums, review filters, and full
+negative route/disclosure coverage. Items 6 and 7 remain release gates. The
+next delivery slice is sector normalization and the provider-independent
+context adapter; neither may silently rewrite Candidate 2 classifications or
+scores.

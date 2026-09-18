@@ -54,6 +54,19 @@ npm run dev
 
 Open `http://localhost:3000` to run the application locally.
 
+The founder review automatically loads the ignored September 1 Candidate 2
+artifact when it exists at its documented local output path. To review another
+artifact without changing code, set this server-side environment variable in
+`.env.local` and restart the development server:
+
+```text
+TRADEEVIDENCE_ANALYTICS_ARTIFACT=C:\path\to\evidence_v2_<timestamp>.json
+```
+
+If the configured file is absent, the application visibly falls back to its
+fictional deterministic fixture. Local market-data and generated analytical
+artifacts remain ignored and must not be committed.
+
 ## Local Validation
 
 Run the complete local merge-readiness path:
