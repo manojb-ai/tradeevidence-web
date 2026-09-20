@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- Local Market & Sector Snapshot on the founder Homepage: the existing Evidence Engine v2 candidate run against the approved 14-symbol broad-market and sector context export, rendered as a compact sector heat map and broad-market summary, plus the Highest Conviction Opportunities section regrouped into YES/WATCH/NO columns. Local-only and experimental; not part of the published analytics contract.
 - Approved Homepage direct-symbol lookup requirement for opening same-run,
   already-published evidence, with explicit invalid, absent, incomplete, and
   unavailable states and no request-time analytics.

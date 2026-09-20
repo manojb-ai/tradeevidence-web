@@ -217,7 +217,7 @@ function strongest(
   return record.factors.find((item) => item.effect === effect);
 }
 
-function classificationLabel(
+export function classificationLabel(
   classification: CandidateEvidence["classification"],
 ): ClassificationLabel {
   switch (classification) {
@@ -234,4 +234,98 @@ function classificationLabel(
     case "incomplete":
       return "Incomplete";
   }
+}
+
+export type BreadthSummary = {
+  bullish: number;
+  bullishWatch: number;
+  neutral: number;
+  bearishWatch: number;
+  bearish: number;
+  incomplete: number;
+  total: number;
+};
+
+export function getBreadth(all: FounderReviewRecord[]): BreadthSummary {
+  const summary: BreadthSummary = {
+    bullish: 0,
+    bullishWatch: 0,
+    neutral: 0,
+    bearishWatch: 0,
+    bearish: 0,
+    incomplete: 0,
+    total: all.length,
+  };
+  for (const record of all) {
+    switch (record.classification) {
+      case "bullish":
+        summary.bullish += 1;
+        break;
+      case "bullish_watch":
+        summary.bullishWatch += 1;
+        break;
+      case "neutral":
+        summary.neutral += 1;
+        break;
+      case "bearish_watch":
+        summary.bearishWatch += 1;
+        break;
+      case "bearish":
+        summary.bearish += 1;
+        break;
+      case "incomplete":
+        summary.incomplete += 1;
+        break;
+    }
+  }
+  return summary;
+}
+
+export type OpportunityColumns = {
+  yes: FounderReviewRecord[];
+  watch: FounderReviewRecord[];
+  no: FounderReviewRecord[];
+};
+
+/**
+ * Groups complete, scored records into the approved YES / WATCH / NO
+ * Highest Conviction Opportunities columns (Dashboard v1 Baseline), each
+ * ordered by score and capped to a small homepage-appropriate count.
+ */
+export function getOpportunityColumns(
+  all: FounderReviewRecord[],
+  limit = 3,
+): OpportunityColumns {
+  const complete = all.filter(
+    (record) => record.status === "complete" && record.alignmentScore !== null,
+  );
+
+  return {
+    yes: complete
+      .filter((record) => record.classification === "bullish")
+      .sort(byScoreDesc)
+      .slice(0, limit),
+    watch: complete
+      .filter(
+        (record) =>
+          record.classification === "bullish_watch" ||
+          record.classification === "bearish_watch",
+      )
+      .sort(byScoreDesc)
+      .slice(0, limit),
+    no: complete
+      .filter((record) => record.classification === "bearish")
+      .sort(byScoreDesc)
+      .slice(0, limit),
+  };
+}
+
+function byScoreDesc(
+  left: FounderReviewRecord,
+  right: FounderReviewRecord,
+): number {
+  return (
+    (right.alignmentScore ?? -1) - (left.alignmentScore ?? -1) ||
+    left.symbol.localeCompare(right.symbol)
+  );
 }

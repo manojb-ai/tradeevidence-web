@@ -27,12 +27,22 @@ describe("TradeEvidence founder preview", () => {
     expect(
       screen.getByText(/does not provide financial advice/i),
     ).toBeInTheDocument();
-    expect(screen.getAllByText("Evidence Score")).toHaveLength(2);
+    expect(screen.getByRole("heading", { name: "YES" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "WATCH" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "NO" })).toBeInTheDocument();
     expect(
       screen.getAllByRole("link", { name: /open decision workspace/i }),
-    ).toHaveLength(2);
+    ).toHaveLength(3);
     expect(
       screen.getByText(/configured local artifact was not found/i),
     ).toBeInTheDocument();
+  });
+
+  it("does not render market/sector context when no context artifact is configured", () => {
+    render(<Home />);
+
+    expect(
+      screen.queryByRole("heading", { name: /market & sector snapshot/i }),
+    ).not.toBeInTheDocument();
   });
 });

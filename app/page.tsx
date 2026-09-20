@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-import { getFounderReview } from "@/src/application/get-founder-review";
+import {
+  getBreadth,
+  getFounderReview,
+  getOpportunityColumns,
+  type FounderReviewRecord,
+} from "@/src/application/get-founder-review";
+import { getMarketContext } from "@/src/application/get-market-context";
 import {
   reviewIdentity,
   workspaceHref,
@@ -15,6 +21,12 @@ const directionStyles = {
   Incomplete: "border-slate-400/30 bg-slate-400/10 text-slate-300",
 } satisfies Record<string, string>;
 
+const columnTone = {
+  YES: "border-emerald-400/30 bg-emerald-400/5",
+  WATCH: "border-amber-400/30 bg-amber-400/5",
+  NO: "border-rose-400/30 bg-rose-400/5",
+} satisfies Record<string, string>;
+
 export default function Home() {
   const review = getFounderReview();
   const { publication } = review;
@@ -22,6 +34,9 @@ export default function Home() {
   const coverage = Math.round(
     (publication.completeCount / publication.rowsEvaluated) * 100,
   );
+  const breadth = getBreadth(review.all);
+  const columns = getOpportunityColumns(review.all);
+  const marketContext = getMarketContext();
 
   return (
     <main className="min-h-screen bg-[#07111f] text-slate-100">
@@ -122,102 +137,205 @@ export default function Home() {
           </div>
         </section>
 
+        {marketContext && (
+          <section
+            className="border-b border-white/10 py-10"
+            aria-labelledby="market-context-heading"
+          >
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm text-slate-500">
+                  Same evidence methodology, broader universe
+                </p>
+                <h2
+                  id="market-context-heading"
+                  className="mt-1 text-2xl font-semibold"
+                >
+                  Market &amp; sector snapshot
+                </h2>
+              </div>
+              <p className="max-w-lg text-sm leading-6 text-slate-500">
+                The engine evaluated the same technical factors against the
+                broad market and the sector ETFs from today&apos;s context
+                export. Experimental and not published.
+              </p>
+            </div>
+
+            {marketContext.broadMarket.length > 0 && (
+              <div className="mt-7 grid gap-4 sm:grid-cols-3">
+                {marketContext.broadMarket.map((item) => (
+                  <div
+                    key={item.symbol}
+                    className="rounded-2xl border border-white/10 bg-[#0b1728] p-5"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="font-semibold">{item.label}</p>
+                      <span
+                        className={`shrink-0 rounded-full border px-3 py-1 text-xs font-semibold ${directionStyles[item.classificationLabel]}`}
+                      >
+                        {item.classificationLabel}
+                      </span>
+                    </div>
+                    {item.alignmentScore !== null && (
+                      <p className="mt-3 text-3xl font-semibold">
+                        {item.alignmentScore}
+                        <span className="text-base text-slate-600">/100</span>
+                      </p>
+                    )}
+                    <p className="mt-3 text-sm leading-6 text-slate-400">
+                      {item.summaryText}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {marketContext.sectors.length > 0 && (
+              <div className="mt-6">
+                <p className="text-sm font-medium text-slate-300">
+                  Sector heat map
+                </p>
+                <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                  {marketContext.sectors.map((sector) => (
+                    <div
+                      key={sector.symbol}
+                      className={`rounded-xl border px-4 py-3 ${directionStyles[sector.classificationLabel]}`}
+                    >
+                      <p className="text-sm font-semibold text-slate-100">
+                        {sector.label}
+                      </p>
+                      <div className="mt-1 flex items-baseline justify-between">
+                        <span className="text-xs">
+                          {sector.classificationLabel}
+                        </span>
+                        {sector.alignmentScore !== null && (
+                          <span className="text-sm font-semibold">
+                            {sector.alignmentScore}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+
         <section className="py-10" aria-labelledby="opportunities-heading">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm text-slate-500">
-                Candidate technical evidence
+                Candidate technical evidence · {breadth.total} symbols evaluated
               </p>
               <h2
                 id="opportunities-heading"
                 className="mt-1 text-2xl font-semibold"
               >
-                Strongest directional records to review
+                Highest conviction opportunities
               </h2>
             </div>
             <p className="max-w-lg text-sm leading-6 text-slate-500">
-              Ordered deterministically by the engine&apos;s existing score.
-              These are review records—not approved opportunities, predictions,
-              or recommendations.
+              Grouped by the engine&apos;s existing classification. These are
+              review records—not approved opportunities, predictions, or
+              recommendations.
             </p>
           </div>
 
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-xs text-slate-500">
+            <span>{breadth.bullish} bullish</span>
+            <span>{breadth.bullishWatch} bullish watch</span>
+            <span>{breadth.neutral} neutral</span>
+            <span>{breadth.bearishWatch} bearish watch</span>
+            <span>{breadth.bearish} bearish</span>
+            <span>{breadth.incomplete} incomplete</span>
+          </div>
+
           <div className="mt-7 grid gap-5 lg:grid-cols-3">
-            {review.featured.map((opportunity) => (
-              <article
-                key={opportunity.symbol}
-                className="group flex flex-col rounded-3xl border border-white/10 bg-[#0b1728] p-6 transition hover:-translate-y-0.5 hover:border-cyan-400/30"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-2xl font-semibold tracking-tight">
-                      {opportunity.symbol}
-                    </p>
-                    <p className="mt-1 text-sm text-slate-500">
-                      {opportunity.companyName ?? "Company unavailable"}
-                    </p>
-                  </div>
-                  <span
-                    className={`rounded-full border px-3 py-1 text-xs font-semibold ${directionStyles[opportunity.classificationLabel]}`}
-                  >
-                    {opportunity.classificationLabel}
-                  </span>
-                </div>
-
-                <div className="mt-7 flex items-end justify-between border-b border-white/10 pb-6">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                      Evidence Score
-                    </p>
-                    <p className="mt-2 text-4xl font-semibold">
-                      {opportunity.alignmentScore}
-                      <span className="text-lg text-slate-600">/100</span>
-                    </p>
-                  </div>
-                  <p className="text-right text-sm leading-6 text-slate-400">
-                    {opportunity.coverage}%<br />
-                    coverage
-                  </p>
-                </div>
-
-                <dl className="mt-5 space-y-4 text-sm leading-6">
-                  <div>
-                    <dt className="font-medium text-slate-200">
-                      Principal support
-                    </dt>
-                    <dd className="mt-1 text-slate-400">
-                      {opportunity.principalSupportText}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium text-slate-200">
-                      Key constraint
-                    </dt>
-                    <dd className="mt-1 text-slate-400">
-                      {opportunity.keyConstraintText}
-                    </dd>
-                  </div>
-                </dl>
-
-                <Link
-                  href={workspaceHref(opportunity.symbol, run)}
-                  className="mt-7 inline-flex items-center justify-between rounded-xl bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition group-hover:bg-cyan-300"
-                >
-                  Open Decision Workspace <span aria-hidden="true">→</span>
-                </Link>
-              </article>
-            ))}
+            <OpportunityColumn
+              title="YES"
+              tone={columnTone.YES}
+              count={breadth.bullish}
+              records={columns.yes}
+              run={run}
+            />
+            <OpportunityColumn
+              title="WATCH"
+              tone={columnTone.WATCH}
+              count={breadth.bullishWatch + breadth.bearishWatch}
+              records={columns.watch}
+              run={run}
+            />
+            <OpportunityColumn
+              title="NO"
+              tone={columnTone.NO}
+              count={breadth.bearish}
+              records={columns.no}
+              run={run}
+            />
           </div>
         </section>
 
         <footer className="border-t border-white/10 py-7 text-sm leading-6 text-slate-500">
           {review.isCandidate
-            ? "Founder-only review of experimental Candidate 2 technical evidence. Market context, sector context, and Decision Confidence are unavailable."
+            ? marketContext
+              ? "Founder-only review of experimental Candidate 2 technical evidence. The market and sector snapshot uses the same experimental methodology. Decision Confidence remains unavailable."
+              : "Founder-only review of experimental Candidate 2 technical evidence. Market context, sector context, and Decision Confidence are unavailable."
             : "The configured local artifact was not found, so this page uses fictional illustrative records."}{" "}
           TradeEvidence provides educational research tools and does not provide
           financial advice.
         </footer>
       </div>
     </main>
+  );
+}
+
+function OpportunityColumn({
+  title,
+  tone,
+  count,
+  records,
+  run,
+}: {
+  title: string;
+  tone: string;
+  count: number;
+  records: FounderReviewRecord[];
+  run: string;
+}) {
+  return (
+    <div className={`rounded-3xl border p-5 ${tone}`}>
+      <div className="flex items-baseline justify-between">
+        <h3 className="text-lg font-semibold">{title}</h3>
+        <span className="text-sm text-slate-400">{count}</span>
+      </div>
+      {records.length === 0 ? (
+        <p className="mt-4 text-sm text-slate-500">
+          No symbols currently fall in this group.
+        </p>
+      ) : (
+        <ul className="mt-4 space-y-3">
+          {records.map((record) => (
+            <li key={record.symbol}>
+              <Link
+                href={workspaceHref(record.symbol, run)}
+                aria-label={`Open Decision Workspace for ${record.symbol}`}
+                className="flex items-start justify-between gap-3 rounded-xl border border-white/10 bg-[#0b1728] p-4 transition hover:border-cyan-400/30"
+              >
+                <div className="min-w-0">
+                  <p className="font-semibold">{record.symbol}</p>
+                  <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-400">
+                    {record.principalSupportText}
+                  </p>
+                </div>
+                <span className="shrink-0 text-sm font-semibold text-slate-200">
+                  {record.alignmentScore}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
