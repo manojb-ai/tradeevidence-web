@@ -71,11 +71,13 @@ Factors are classified as supporting, contradicting, neutral, unavailable, or no
 
 The primary user is an authenticated self-directed trader evaluating a new bullish stock opportunity. Existing-position review is deferred because it requires thesis history, entry price, position size, portfolio exposure, and journal context.
 
-The homepage shows the current analytical timestamp, Today's Briefing, and a small set of Evidence-Aligned Opportunities. `Review evidence` opens `/workspace/{symbol}`. The workspace exposes context, Technical Evidence Score, all material contradictions, Devil's Advocate analysis, thesis-invalidation conditions already present in the snapshot, Decision Confidence, educational strategy comparisons, Ask TradeEvidence, and a non-transactional Before You Decide checklist.
+The homepage shows the current analytical timestamp, Today's Briefing, a small set of Evidence-Aligned Opportunities, and a prominent direct symbol lookup. `Review evidence` or a successfully resolved symbol opens `/workspace/{symbol}`. Direct lookup is not limited to homepage selections: it resolves any symbol in the latest accepted analytical run while preserving that run's publication identity. It never acquires data or invokes scoring during the request. The workspace exposes context, canonical price and freshness, Technical Evidence Score, all material contradictions, Devil's Advocate analysis, thesis-invalidation conditions already present in the snapshot, Decision Confidence, educational strategy comparisons, Ask TradeEvidence, and a non-transactional Before You Decide checklist.
 
 Phase 1 exit actions are add to research watchlist, export or print a Decision Summary, return home, or review another symbol. Execution, persisted Decision Snapshots, journal entries, portfolio-aware sizing, brokerage integration, and public sharing are deferred.
 
 Required states include current, stale, incomplete, missing market context, missing sector context, symbol not found, rejected analytical run, unavailable AI, no qualifying opportunity, and unauthenticated user. Deterministic evidence remains usable when AI is unavailable.
+
+Direct symbol lookup must trim input, compare symbols case-insensitively, and require a non-empty syntactically valid value. A resolved symbol routes to its same-run Workspace. A malformed symbol, a valid symbol absent from the current run, or an unavailable run receives a distinct plain-language response and does not silently substitute another instrument. The lookup is keyboard operable, has an accessible name, and supports submission with Enter and an explicit control. Full-market discovery, company-name autocomplete, request-time market-data acquisition, and request-time analytics are deferred.
 
 ### W2-06 — Versioned Universe Strategy
 

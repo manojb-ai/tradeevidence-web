@@ -2,7 +2,8 @@
 
 ## Status
 
-Concept development in progress.
+Founder guided-language v2 approved for continued MVP implementation on
+2026-09-17. Full Workspace implementation remains in progress.
 
 ## Purpose
 
@@ -134,3 +135,39 @@ Focus on:
 - Thesis invalidation
 - Decision Checklist
 - Future Decision Snapshot and Journal integration
+
+## Implementation Alignment — 2026-09-17
+
+The local founder-review slice follows the approved section order beginning
+with Market Context, then Security Summary, Technical Evidence, Devil's
+Advocate, Thesis Invalidation, Decision Confidence, Before You Decide,
+Position Sizing, Education, and Ask TradeEvidence. It displays the exact
+publication-time price and available instrument identity from the same local
+acquisition set; unavailable context remains visibly unavailable.
+
+No Decision Workspace visual mockup is currently preserved in the repository.
+The current implementation therefore follows this concept specification and
+the approved design-system principles, but pixel-level comparison with an
+earlier visual prototype remains open until that prototype is recovered and
+committed under `docs/prototypes/`.
+
+The Technical Evidence section uses Trend Structure plus one Momentum group
+with explicit Daily Momentum and Weekly Momentum rows. It explains that daily
+momentum reacts faster while weekly momentum changes more slowly and supplies
+broader context; neither timeframe is described as mechanically driving the
+other.
+
+The Devil's Advocate and Thesis Invalidation cards use presentation version
+`founder-review-guided-v2`. Each card leads with a plain-English takeaway and a
+short why-it-matters explanation, then preserves the Candidate 2 wording in an
+expandable technical disclosure. The guided layer may translate recorded
+facts, but it may not add a price target, stop, prediction, or unrecorded
+factor. The founder hypothesis uses a direction-opposing close across the
+21-day EMA as an early warning and two consecutive direction-opposing closes
+across the 50-day SMA as a stronger reassessment reference. These are
+educational references, not stops or Candidate 2 scoring rules.
+
+Founder verification on 2026-09-17 found the v2 terminology, multi-timeframe
+education, and symbol-specific reassessment language good enough to continue
+the MVP. This approval closes the founder language experiment; it does not
+promote Candidate 2 or the two-close hypothesis to a production scoring rule.

@@ -16,11 +16,18 @@ The homepage should summarize rather than reproduce the full product. It teaches
 ### User Intent Section
 A prominent “What would you like to do today?” section allows users to choose the next step based on their immediate need. Typical intents include research, review, portfolio review, learning, journaling, or asking TradeEvidence for help.
 
+### Direct Symbol Lookup
+A prominent symbol lookup in the homepage header lets a user open the current published evidence for a symbol directly. This is a research entry point, not merely a filter for the opportunities shown on the homepage.
+
+For MVP, lookup is limited to symbols included in the latest accepted analytical run. It normalizes a submitted symbol, resolves it against that run, and opens the symbol's Decision Workspace even when the symbol was not selected as an Evidence-Aligned Opportunity. It does not acquire market data, invoke the analytics engine, or generate a classification during the website request.
+
+The experience must identify the symbol and show its available price and evidence freshness in the Decision Workspace. Invalid symbols, symbols absent from the published run, incomplete evidence, and an unavailable published run must produce explicit states rather than guessed, substituted, or fabricated information.
+
 ### AI Panel
 The homepage includes one prominent AI experience, centered around Ask TradeEvidence. The AI experience is visible and useful at entry, but it remains supportive rather than prescriptive.
 
-### Highest Conviction Opportunities
-The homepage highlights a small number of highest-conviction opportunities with plain-English reasons. The goal is to support attention and focus rather than reproduce a full watchlist or security table.
+### Evidence-Aligned Opportunities
+The homepage highlights a small number of Evidence-Aligned Opportunities with plain-English reasons and visible constraints. The goal is to support attention and focus rather than imply conviction or reproduce a full watchlist or security table.
 
 ### Supporting Intelligence
 Supporting modules sit below the primary actions and include market statistics, recent alerts, interesting setups, sector heat, and compact breadth indicators. These modules add context without competing with the main briefing and intent sections.

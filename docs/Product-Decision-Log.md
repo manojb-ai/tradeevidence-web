@@ -129,6 +129,14 @@ Each decision entry below includes:
 - Date: 2026-07-13
 - Related Documents: [product/Dashboard.md](product/Dashboard.md)
 
+### Direct Symbol Lookup from the Homepage
+- Decision: The Homepage v1 header includes a prominent direct symbol lookup that opens the Decision Workspace for any symbol present in the latest accepted analytical run, including symbols not selected for the homepage opportunity summary.
+- Reason: Users must be able to begin research with a symbol they already have in mind rather than being limited to system-selected opportunities.
+- Expected Product Impact: Lookup resolves existing published evidence, preserves same-run consistency, and presents explicit invalid, absent, incomplete, or unavailable states. It does not fetch data or run analytics on demand, and it does not imply that every market symbol is covered.
+- Status: Active
+- Date: 2026-09-17
+- Related Documents: [product/Dashboard.md](product/Dashboard.md), [prototypes/Dashboard-v1-Baseline.md](prototypes/Dashboard-v1-Baseline.md), [engineering/MVP-Implementation-Spec.md](engineering/MVP-Implementation-Spec.md)
+
 ### Homepage Summarizes; Workspaces Provide Detail
 - Decision: Homepage modules show concise summaries and contextual links rather than large tables.
 - Reason: The homepage should reduce cognitive load and direct users into focused workspaces.
@@ -624,6 +632,13 @@ Each decision entry below includes:
 - Expected Product Impact: TradeEvidence gains a repeatable delivery system without changing analytics behavior, approving Candidate 2, or authorizing production release.
 - Status: Active; staging vendor and final slice acceptance remain separate founder gates
 - Related Documents: [engineering/Vertical-Slice-01-Delivery-Foundation.md](engineering/Vertical-Slice-01-Delivery-Foundation.md), [governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md](governance/decisions/ADR-010-Delivery-Readiness-and-Controlled-Beta.md)
+
+### Preserve Canonical Instrument Types in Founder Acquisition
+- Decision: The MVP reference model preserves `COMMON_STOCK`, `DEPOSITARY_RECEIPT`, `REIT`, `ETF`, `MLP`, `REGISTERED_SHARE`, `CLOSED_END_FUND`, and `TRACKING_STOCK` rather than collapsing the founder's exchange-traded universe into common stock and ETF only.
+- Reason: The 2026-09-01 IBKR discovery proved that the real variable universe contains materially different security forms. Explicit types protect identity, validation, interpretation, and later eligibility rules.
+- Expected Product Impact: TradeEvidence can ingest the founder's real universe without mislabeling ADRs, REITs, partnerships, funds, registered shares, or tracking stocks; unknown future provider types remain reviewable rather than guessed.
+- Status: Active; sector-normalization and instrument-eligibility rules remain separate decisions
+- Related Documents: [engineering/MVP-Data-Schema.md](engineering/MVP-Data-Schema.md), [engineering/M0-Data-Acquisition-Requirements.md](engineering/M0-Data-Acquisition-Requirements.md)
 
 ## Related Documents
 

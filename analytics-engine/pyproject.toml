@@ -9,6 +9,9 @@ description = "Deterministic Phase 1 analytical-engine baseline for TradeEvidenc
 requires-python = ">=3.10"
 dependencies = []
 
+[project.optional-dependencies]
+ibkr = ["ibapi>=9.81.1.post1"]
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 

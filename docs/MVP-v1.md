@@ -4,6 +4,7 @@ Status: Approved for Planning
 
 ## Included
 - Authenticated Homepage
+- Direct symbol lookup for the latest published analytical universe
 - Today's Briefing
 - Decision Workspace
 - Evidence Score
