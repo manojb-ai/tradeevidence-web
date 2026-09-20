@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { reviewIdentity } from "@/src/application/review-navigation";
 
 import {
   FOUNDER_REVIEW_PRESENTATION_VERSION,
@@ -8,11 +9,31 @@ import {
 
 export default async function WorkspacePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ symbol: string }>;
+  searchParams?: Promise<{ run?: string | string[] }>;
 }) {
   const { symbol } = await params;
   const review = getFounderReview();
+  const query = await searchParams;
+  if (
+    query?.run !== undefined &&
+    query.run !== reviewIdentity(review.publication)
+  ) {
+    return (
+      <main className="min-h-screen bg-[#07111f] p-8 text-slate-100">
+        <h1 className="text-2xl">Analytical run unavailable</h1>
+        <p className="my-6">
+          The analytical run has changed. Return to the Homepage to review the
+          current evidence.
+        </p>
+        <Link href="/" className="text-cyan-300">
+          Return to Homepage
+        </Link>
+      </main>
+    );
+  }
   const opportunity = review.all.find(
     (record) => record.symbol.toLowerCase() === symbol.toLowerCase(),
   );
@@ -35,6 +56,16 @@ export default async function WorkspacePage({
       </header>
 
       <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
+        {opportunity.status === "incomplete" && (
+          <p
+            role="status"
+            className="mb-6 rounded-xl border border-amber-300/30 p-4 text-amber-200"
+          >
+            Evidence for {opportunity.symbol} is incomplete. Review the
+            available factors and missing inputs below; a complete directional
+            assessment is unavailable.
+          </p>
+        )}
         <Link href="/" className="text-sm text-cyan-300 hover:text-cyan-200">
           ← Today&apos;s Briefing
         </Link>

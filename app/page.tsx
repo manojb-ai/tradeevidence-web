@@ -1,6 +1,10 @@
 import Link from "next/link";
 
 import { getFounderReview } from "@/src/application/get-founder-review";
+import {
+  reviewIdentity,
+  workspaceHref,
+} from "@/src/application/review-navigation";
 
 const directionStyles = {
   Bullish: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
@@ -14,6 +18,7 @@ const directionStyles = {
 export default function Home() {
   const review = getFounderReview();
   const { publication } = review;
+  const run = reviewIdentity(publication);
   const coverage = Math.round(
     (publication.completeCount / publication.rowsEvaluated) * 100,
   );
@@ -37,6 +42,35 @@ export default function Home() {
       </header>
 
       <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-12">
+        <form
+          action="/lookup"
+          method="get"
+          className="mb-8 rounded-2xl border border-white/10 p-5"
+        >
+          <label htmlFor="symbol" className="block font-semibold">
+            Research a symbol
+          </label>
+          <p id="symbol-help" className="my-2 text-sm text-slate-400">
+            Search all symbols in this candidate run. Evidence is experimental
+            and not published.
+          </p>
+          <input type="hidden" name="run" value={run} />
+          <div className="flex flex-wrap gap-3">
+            <input
+              id="symbol"
+              name="symbol"
+              aria-describedby="symbol-help"
+              placeholder="e.g. AAPL"
+              className="min-w-0 rounded-lg border border-white/20 bg-slate-900 px-4 py-3"
+            />
+            <button
+              type="submit"
+              className="rounded-lg bg-cyan-300 px-4 py-3 font-semibold text-slate-950"
+            >
+              Review symbol
+            </button>
+          </div>
+        </form>
         <section className="grid gap-8 border-b border-white/10 pb-10 lg:grid-cols-[1.5fr_0.8fr] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400">
@@ -166,7 +200,7 @@ export default function Home() {
                 </dl>
 
                 <Link
-                  href={`/workspace/${opportunity.symbol.toLowerCase()}`}
+                  href={workspaceHref(opportunity.symbol, run)}
                   className="mt-7 inline-flex items-center justify-between rounded-xl bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition group-hover:bg-cyan-300"
                 >
                   Open Decision Workspace <span aria-hidden="true">→</span>

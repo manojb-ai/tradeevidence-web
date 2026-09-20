@@ -154,3 +154,36 @@ The founder accepted `founder-review-guided-v2` verification on 2026-09-17 as
 good enough to resume the full website agenda. The presentation version is now
 the MVP baseline. Candidate 2 production approval, formal publication, market
 and sector context, and Decision Confidence remain separate open gates.
+
+## Implementation Update — 2026-09-20
+
+Resumed from clean commit `b0a57eb`. Homepage GET lookup now covers the full
+candidate universe, including unfeatured and incomplete records. Input is
+trimmed and case-normalized, with explicit invalid, absent, unavailable, and
+incomplete states. Navigation carries candidate run identity; the Workspace
+rejects a changed run. Fictional fallback records cannot satisfy market-symbol
+lookup. This remains founder preview, not a production publication lifecycle.
+
+Added `analytics-engine/audit_acquisition_inputs.py` for per-input SHA-256
+identity, row counts, and CSV-shape checks. It prints an inventory without
+modifying inputs or inferring source policy. A present file is not an approved
+input. Run from `analytics-engine` with:
+
+```powershell
+py audit_acquisition_inputs.py input/2026-09-01 --market-date 2026-09-01
+```
+
+The local audit confirms 650 symbol rows, 650 reference rows, and 10,514 history
+rows. Sector membership and run metadata are missing. Context snapshots retain
+a Thinkorswim report preamble and need normalization before strict ingestion.
+Raw data remains ignored. No new market session was acquired.
+
+Next: normalize context input with lineage retained, prepare sector mapping
+for founder review, define per-input metadata, and implement the context
+adapter. Scores and classifications remain unchanged. Formal publication,
+authentication, context integration, and release approval remain open.
+
+Validation: `npm run validate` passed (14 web tests, 34 analytics tests,
+formatting, lint, TypeScript, documentation links, tracked-secret checks, and
+production build); `git diff --check` passed. Browser interaction and visual
+verification remain outstanding. Changes are local and uncommitted.
