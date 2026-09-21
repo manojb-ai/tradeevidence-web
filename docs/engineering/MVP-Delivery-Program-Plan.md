@@ -418,32 +418,42 @@ recovery/export procedures.
 |---|---|---|---|---|
 | Source control/CI | GitHub | Existing | Active | Protected `main`, required validation |
 | Web hosting/CDN/WAF | Vercel | Pro | Before persistent staging | Existing deployment path; commercial use, previews, CDN, WAF, spend controls |
-| PostgreSQL | Neon | Launch usage-based | E2 | Separate staging/production projects or branches; pooled connections; configure and test restore |
-| Identity | Clerk | Pro monthly | E3 | Dedicated auth, invitations, MFA/passkeys, recovery; internal IDs remain provider-neutral |
-| Object storage | Vercel Blob | Pro usage-based | E4 | Low operational overhead for immutable bundles/exports; portability through object-storage port |
+| PostgreSQL | Supabase Postgres | Launch usage-based | E2 | Changed from Neon (D-03, approved 2026-09-20) to consolidate with Supabase Auth/Storage under one vendor; separate staging/production projects; pooled connections; configure and test restore |
+| Identity | Supabase Auth | Pro monthly | E3 | Changed from Clerk (D-04, approved 2026-09-20) to consolidate with Supabase Postgres/Storage under one vendor; invitations, MFA/passkeys, recovery; internal IDs remain provider-neutral |
+| Object storage | Supabase Storage | Pro usage-based | E4 | Changed from Vercel Blob (D-05, approved 2026-09-20) to consolidate with Supabase Postgres/Auth under one vendor; portability through object-storage port |
 | Durable background work | Inngest | Hobby, then Pro if measured | E4/E9 | Ingestion, reports, AI and notification jobs; do not upgrade before free limits/reliability need require it |
 | Transactional email | Resend | Free, then Pro | E3 | Verification/invitation/recovery/operational mail; authenticate domain with SPF/DKIM/DMARC |
 | Error/performance monitoring | Sentry | Developer locally; Team for beta | E1/E10 | Scrub sensitive content; safe release/error/performance telemetry |
 | Product/infrastructure telemetry | Vercel + structured app telemetry | Included/usage-based | E1 | Add OpenTelemetry-compatible export when retention or cross-provider analysis requires it |
-| AI | OpenAI API behind internal gateway | Usage-based with hard project budget | E9 | Model selection follows evaluation; use low-cost model for simple intents and evaluated escalation only |
+| AI | OpenAI API (GPT-5.6-Luna) behind internal gateway | Usage-based; hard site-wide budget, no auto-overage: $50/month now, $250/month at controlled beta | E9 | Decided 2026-09-20 (D-09); Luna chosen for ~9x more budget headroom per dollar vs. Claude Haiku 4.5; site-wide cap, not per-user; spot-check output against non-advisory language standard before production use |
 | DNS/edge | Existing registrar + Vercel DNS initially | Existing | E1/E11 | Cloudflare becomes an option only if additional edge/DNS controls materially justify another vendor |
 | Cache/rate-limit store | None initially; Upstash when measured | Free or pay-as-you-go | E10 or scale trigger | PostgreSQL remains authoritative; add only for multi-instance coordination or measured traffic |
-| Market data | Thinkorswim CSV | Existing | E4 | Approved Phase 1 source; confirm display/redistribution rights before external beta |
+| Market data | Thinkorswim CSV | Existing | E4 | Approved Phase 1 source for founder-only use (D-10, decided 2026-09-20); display/redistribution rights check still open before any external beta invite |
 | Payments | Deferred | None | After beta unless founder expands MVP | Avoid pricing/billing work before usefulness and AI cost are measured |
 
-### Provider decisions that require explicit founder approval
+### Provider decisions — approved 2026-09-20
 
-- D-02: Vercel Pro as hosting and primary edge platform.
-- D-03: Neon Launch as managed PostgreSQL.
-- D-04: Clerk Pro as identity provider.
-- D-05: Vercel Blob as immutable object storage.
-- D-06: Inngest as the durable background-work provider, initially free.
-- D-07: Resend as transactional email provider.
-- D-08: Sentry Team for controlled-beta application monitoring.
-- D-09: OpenAI API as the first evaluated AI provider with a founder-set monthly
-  ceiling and per-user beta allowance.
-- D-10: Thinkorswim CSV remains the MVP market-data source, subject to documented
-  permission for the intended beta/public display.
+See the founder's D-01–D-10 decision brief for full reasoning. Summary:
+
+- D-02: Vercel Pro as hosting and primary edge platform. Approved as proposed.
+- D-03: Supabase Postgres as managed PostgreSQL. Changed from Neon, to consolidate with D-04/D-05 onto Supabase.
+- D-04: Supabase Auth as identity provider. Changed from Clerk.
+- D-05: Supabase Storage as immutable object storage. Changed from Vercel Blob.
+- D-06: Inngest as the durable background-work provider, initially free. Approved as proposed — kept separate from the Supabase consolidation, since background-job durability (IBKR pulls, analytics runs) is a different need than DB/auth/storage.
+- D-07: Resend as transactional email provider. Approved as proposed.
+- D-08: Sentry Team for controlled-beta application monitoring (Developer tier locally now). Approved as proposed.
+- D-09: OpenAI API, GPT-5.6-Luna model, behind the internal gateway. Hard
+  site-wide monthly ceiling (not per-user), no auto-overage: $50/month now,
+  rising to $250/month when a real controlled beta actually opens
+  (event-triggered, not a fixed date). Luna chosen over Claude Haiku 4.5 for
+  roughly 9x more budget headroom per dollar; output quality should be
+  spot-checked against the product's non-advisory language standard before
+  relying on it in production.
+- D-10: Thinkorswim CSV remains the MVP market-data source. Founder-only local
+  use proceeds unblocked. Displaying data to anyone else, including a small
+  invite-only beta, stays blocked until the Thinkorswim/broker
+  terms-of-service rights check is actually completed — that check has not
+  started yet and is tracked as an open follow-up.
 
 ## 7. Subscription and Cost Envelope
 

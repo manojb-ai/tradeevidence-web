@@ -10,11 +10,11 @@ Status: Approved for Planning
 - Evidence Score
 - Decision Confidence
 - Watchlists
-- Portfolio (basic)
 - AI Assistant
 - CSV market data
 
 ## Deferred
+- Portfolio (basic) — deferred per D-01 (see `MVP-Delivery-Program-Plan.md` and the founder's D-01–D-10 decision brief, 2026-09-20); schema/API/AI contracts from Workshop 3+ already assumed this
 - Decision Journal persistence
 - Community
 - Social Sharing
