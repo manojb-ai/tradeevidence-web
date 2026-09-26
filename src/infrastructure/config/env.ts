@@ -40,6 +40,15 @@ const serverEnvSchema = z.object({
     .string()
     .min(1, "TRADEEVIDENCE_CONTEXT_ARTIFACT must not be empty if set")
     .optional(),
+  // Postgres connection string (Epic E2). Optional for now: no code path
+  // depends on it yet outside src/infrastructure/db, which is not wired
+  // into the app until Epic E4. Points at the Supabase project's pooled
+  // connection string once one exists; unset in local/CI test runs, which
+  // use an in-memory Postgres (pglite) instead.
+  DATABASE_URL: z
+    .string()
+    .min(1, "DATABASE_URL must not be empty if set")
+    .optional(),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -53,6 +62,7 @@ function parseServerEnv(): ServerEnv {
     TRADEEVIDENCE_INSTRUMENT_REFERENCE_FILE:
       process.env.TRADEEVIDENCE_INSTRUMENT_REFERENCE_FILE,
     TRADEEVIDENCE_CONTEXT_ARTIFACT: process.env.TRADEEVIDENCE_CONTEXT_ARTIFACT,
+    DATABASE_URL: process.env.DATABASE_URL,
   });
 
   if (!result.success) {

@@ -1,0 +1,1348 @@
+{
+  "id": "29590db5-e97c-4143-b8cf-95229366d4f9",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.instruments": {
+      "name": "instruments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "instrument_type": {
+          "name": "instrument_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "legal_name": {
+          "name": "legal_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "instruments_instrument_type_check": {
+          "name": "instruments_instrument_type_check",
+          "value": "\"instruments\".\"instrument_type\" in ('COMMON_STOCK', 'DEPOSITARY_RECEIPT', 'REIT', 'ETF', 'MLP', 'REGISTERED_SHARE', 'CLOSED_END_FUND', 'TRACKING_STOCK')"
+        },
+        "instruments_status_check": {
+          "name": "instruments_status_check",
+          "value": "\"instruments\".\"status\" in ('active', 'inactive', 'delisted', 'acquired', 'unknown')"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.sectors": {
+      "name": "sectors",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "sectors_code_unique": {
+          "name": "sectors_code_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.universe_versions": {
+      "name": "universe_versions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "universe_id": {
+          "name": "universe_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "version": {
+          "name": "version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "as_of": {
+          "name": "as_of",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "selection_method": {
+          "name": "selection_method",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "eligibility_rules": {
+          "name": "eligibility_rules",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "exclusion_rules": {
+          "name": "exclusion_rules",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "requested_count": {
+          "name": "requested_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content_fingerprint": {
+          "name": "content_fingerprint",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "universe_versions_universe_id_universes_id_fk": {
+          "name": "universe_versions_universe_id_universes_id_fk",
+          "tableFrom": "universe_versions",
+          "tableTo": "universes",
+          "columnsFrom": [
+            "universe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "universe_versions_content_fingerprint_unique": {
+          "name": "universe_versions_content_fingerprint_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "content_fingerprint"
+          ]
+        },
+        "universe_versions_universe_id_version": {
+          "name": "universe_versions_universe_id_version",
+          "nullsNotDistinct": false,
+          "columns": [
+            "universe_id",
+            "version"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.universes": {
+      "name": "universes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "universes_code_unique": {
+          "name": "universes_code_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.market_data_sources": {
+      "name": "market_data_sources",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "market_data_sources_code_unique": {
+          "name": "market_data_sources_code_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.market_data_versions": {
+      "name": "market_data_versions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "market_data_source_id": {
+          "name": "market_data_source_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "version_label": {
+          "name": "version_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imported_at": {
+          "name": "imported_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content_fingerprint": {
+          "name": "content_fingerprint",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "market_data_versions_market_data_source_id_market_data_sources_id_fk": {
+          "name": "market_data_versions_market_data_source_id_market_data_sources_id_fk",
+          "tableFrom": "market_data_versions",
+          "tableTo": "market_data_sources",
+          "columnsFrom": [
+            "market_data_source_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "market_data_versions_content_fingerprint_unique": {
+          "name": "market_data_versions_content_fingerprint_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "content_fingerprint"
+          ]
+        },
+        "market_data_versions_source_id_version_label": {
+          "name": "market_data_versions_source_id_version_label",
+          "nullsNotDistinct": false,
+          "columns": [
+            "market_data_source_id",
+            "version_label"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.market_observations": {
+      "name": "market_observations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "instrument_id": {
+          "name": "instrument_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "market_data_version_id": {
+          "name": "market_data_version_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "observation_type": {
+          "name": "observation_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "trading_session": {
+          "name": "trading_session",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bar_interval": {
+          "name": "bar_interval",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "observation_point": {
+          "name": "observation_point",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "market_date": {
+          "name": "market_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "observed_at": {
+          "name": "observed_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "exchange_timezone": {
+          "name": "exchange_timezone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "open": {
+          "name": "open",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "high": {
+          "name": "high",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "low": {
+          "name": "low",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "close": {
+          "name": "close",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "volume": {
+          "name": "volume",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "canonical_price": {
+          "name": "canonical_price",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "adjustment_policy": {
+          "name": "adjustment_policy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "corporate_action_version": {
+          "name": "corporate_action_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "market_observations_instrument_id_instruments_id_fk": {
+          "name": "market_observations_instrument_id_instruments_id_fk",
+          "tableFrom": "market_observations",
+          "tableTo": "instruments",
+          "columnsFrom": [
+            "instrument_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "market_observations_market_data_version_id_market_data_versions_id_fk": {
+          "name": "market_observations_market_data_version_id_market_data_versions_id_fk",
+          "tableFrom": "market_observations",
+          "tableTo": "market_data_versions",
+          "columnsFrom": [
+            "market_data_version_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "market_observations_identity": {
+          "name": "market_observations_identity",
+          "nullsNotDistinct": false,
+          "columns": [
+            "instrument_id",
+            "observation_type",
+            "trading_session",
+            "bar_interval",
+            "observation_point",
+            "observed_at",
+            "market_data_version_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "market_observations_observation_type_check": {
+          "name": "market_observations_observation_type_check",
+          "value": "\"market_observations\".\"observation_type\" in ('eod', 'intraday', 'realtime')"
+        },
+        "market_observations_trading_session_check": {
+          "name": "market_observations_trading_session_check",
+          "value": "\"market_observations\".\"trading_session\" in ('regular', 'premarket', 'afterhours')"
+        },
+        "market_observations_nonnegative_check": {
+          "name": "market_observations_nonnegative_check",
+          "value": "\"market_observations\".\"open\" >= 0 and \"market_observations\".\"high\" >= 0 and \"market_observations\".\"low\" >= 0 and \"market_observations\".\"close\" >= 0 and \"market_observations\".\"volume\" >= 0 and \"market_observations\".\"canonical_price\" >= 0"
+        },
+        "market_observations_ohlc_consistency_check": {
+          "name": "market_observations_ohlc_consistency_check",
+          "value": "\"market_observations\".\"high\" >= \"market_observations\".\"open\" and \"market_observations\".\"high\" >= \"market_observations\".\"close\" and \"market_observations\".\"high\" >= \"market_observations\".\"low\" and \"market_observations\".\"low\" <= \"market_observations\".\"open\" and \"market_observations\".\"low\" <= \"market_observations\".\"close\""
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.analysis_runs": {
+      "name": "analysis_runs",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "universe_version_id": {
+          "name": "universe_version_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "snapshot_type": {
+          "name": "snapshot_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "market_data_as_of": {
+          "name": "market_data_as_of",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "generated_at": {
+          "name": "generated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "staged_at": {
+          "name": "staged_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "validated_at": {
+          "name": "validated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "approved_at": {
+          "name": "approved_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "approved_by": {
+          "name": "approved_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "published_at": {
+          "name": "published_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "superseded_at": {
+          "name": "superseded_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "superseded_by_run_id": {
+          "name": "superseded_by_run_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "engine_version": {
+          "name": "engine_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ruleset_version": {
+          "name": "ruleset_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "decision_confidence_model_version": {
+          "name": "decision_confidence_model_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "selection_model_version": {
+          "name": "selection_model_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "strategy_alignment_version": {
+          "name": "strategy_alignment_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "payload_schema_version": {
+          "name": "payload_schema_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bundle_checksum": {
+          "name": "bundle_checksum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "analytical_fingerprint": {
+          "name": "analytical_fingerprint",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "equivalent_run_id": {
+          "name": "equivalent_run_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "failure_stage": {
+          "name": "failure_stage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "failure_category": {
+          "name": "failure_category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "analysis_runs_universe_version_id_universe_versions_id_fk": {
+          "name": "analysis_runs_universe_version_id_universe_versions_id_fk",
+          "tableFrom": "analysis_runs",
+          "tableTo": "universe_versions",
+          "columnsFrom": [
+            "universe_version_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "analysis_runs_superseded_by_run_id_analysis_runs_id_fk": {
+          "name": "analysis_runs_superseded_by_run_id_analysis_runs_id_fk",
+          "tableFrom": "analysis_runs",
+          "tableTo": "analysis_runs",
+          "columnsFrom": [
+            "superseded_by_run_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "analysis_runs_equivalent_run_id_analysis_runs_id_fk": {
+          "name": "analysis_runs_equivalent_run_id_analysis_runs_id_fk",
+          "tableFrom": "analysis_runs",
+          "tableTo": "analysis_runs",
+          "columnsFrom": [
+            "equivalent_run_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "analysis_runs_status_check": {
+          "name": "analysis_runs_status_check",
+          "value": "\"analysis_runs\".\"status\" in ('generated', 'staged', 'validated', 'approved', 'published', 'superseded', 'rejected', 'redundant')"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.publication_pointers": {
+      "name": "publication_pointers",
+      "schema": "",
+      "columns": {
+        "channel": {
+          "name": "channel",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "current_analysis_run_id": {
+          "name": "current_analysis_run_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "publication_pointers_current_analysis_run_id_analysis_runs_id_fk": {
+          "name": "publication_pointers_current_analysis_run_id_analysis_runs_id_fk",
+          "tableFrom": "publication_pointers",
+          "tableTo": "analysis_runs",
+          "columnsFrom": [
+            "current_analysis_run_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.evidence_factor_results": {
+      "name": "evidence_factor_results",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "symbol_snapshot_id": {
+          "name": "symbol_snapshot_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "factor_code": {
+          "name": "factor_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "factor_definition_version": {
+          "name": "factor_definition_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "observed_state": {
+          "name": "observed_state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "effect": {
+          "name": "effect",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contribution": {
+          "name": "contribution",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "explanation_code": {
+          "name": "explanation_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "template_version": {
+          "name": "template_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rendered_text": {
+          "name": "rendered_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "display_order": {
+          "name": "display_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "evidence_factor_results_symbol_snapshot_id_symbol_evidence_snapshots_id_fk": {
+          "name": "evidence_factor_results_symbol_snapshot_id_symbol_evidence_snapshots_id_fk",
+          "tableFrom": "evidence_factor_results",
+          "tableTo": "symbol_evidence_snapshots",
+          "columnsFrom": [
+            "symbol_snapshot_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "evidence_factor_results_snapshot_factor_code": {
+          "name": "evidence_factor_results_snapshot_factor_code",
+          "nullsNotDistinct": false,
+          "columns": [
+            "symbol_snapshot_id",
+            "factor_code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "evidence_factor_results_effect_check": {
+          "name": "evidence_factor_results_effect_check",
+          "value": "\"evidence_factor_results\".\"effect\" in ('supporting', 'contradicting', 'neutral', 'unavailable', 'not_evaluated')"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.market_context_snapshots": {
+      "name": "market_context_snapshots",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "analysis_run_id": {
+          "name": "analysis_run_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "regime": {
+          "name": "regime",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "risk_environment": {
+          "name": "risk_environment",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "freshness_status": {
+          "name": "freshness_status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "supporting_summary": {
+          "name": "supporting_summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contradicting_summary": {
+          "name": "contradicting_summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "observation_refs": {
+          "name": "observation_refs",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rendered_explanation": {
+          "name": "rendered_explanation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "market_context_snapshots_analysis_run_id_analysis_runs_id_fk": {
+          "name": "market_context_snapshots_analysis_run_id_analysis_runs_id_fk",
+          "tableFrom": "market_context_snapshots",
+          "tableTo": "analysis_runs",
+          "columnsFrom": [
+            "analysis_run_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.sector_context_snapshots": {
+      "name": "sector_context_snapshots",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "analysis_run_id": {
+          "name": "analysis_run_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sector_id": {
+          "name": "sector_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "representative_benchmark_instrument_id": {
+          "name": "representative_benchmark_instrument_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "trend": {
+          "name": "trend",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "momentum": {
+          "name": "momentum",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "relative_strength": {
+          "name": "relative_strength",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "evidence_state": {
+          "name": "evidence_state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "freshness_status": {
+          "name": "freshness_status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "observation_refs": {
+          "name": "observation_refs",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "factors": {
+          "name": "factors",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rendered_explanation": {
+          "name": "rendered_explanation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "sector_context_snapshots_analysis_run_id_analysis_runs_id_fk": {
+          "name": "sector_context_snapshots_analysis_run_id_analysis_runs_id_fk",
+          "tableFrom": "sector_context_snapshots",
+          "tableTo": "analysis_runs",
+          "columnsFrom": [
+            "analysis_run_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "sector_context_snapshots_sector_id_sectors_id_fk": {
+          "name": "sector_context_snapshots_sector_id_sectors_id_fk",
+          "tableFrom": "sector_context_snapshots",
+          "tableTo": "sectors",
+          "columnsFrom": [
+            "sector_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "sector_context_snapshots_representative_benchmark_instrument_id_instruments_id_fk": {
+          "name": "sector_context_snapshots_representative_benchmark_instrument_id_instruments_id_fk",
+          "tableFrom": "sector_context_snapshots",
+          "tableTo": "instruments",
+          "columnsFrom": [
+            "representative_benchmark_instrument_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "sector_context_snapshots_run_sector": {
+          "name": "sector_context_snapshots_run_sector",
+          "nullsNotDistinct": false,
+          "columns": [
+            "analysis_run_id",
+            "sector_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.symbol_evidence_snapshots": {
+      "name": "symbol_evidence_snapshots",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "analysis_run_id": {
+          "name": "analysis_run_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "instrument_id": {
+          "name": "instrument_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "symbol_at_publication": {
+          "name": "symbol_at_publication",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "market_observation_id": {
+          "name": "market_observation_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "market_context_snapshot_id": {
+          "name": "market_context_snapshot_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sector_context_snapshot_id": {
+          "name": "sector_context_snapshot_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "snapshot_type": {
+          "name": "snapshot_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "session": {
+          "name": "session",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bar_interval": {
+          "name": "bar_interval",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "market_data_as_of": {
+          "name": "market_data_as_of",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "canonical_price": {
+          "name": "canonical_price",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "technical_evidence_score": {
+          "name": "technical_evidence_score",
+          "type": "numeric(5, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "evidence_band": {
+          "name": "evidence_band",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "evidence_status": {
+          "name": "evidence_status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "coverage_percent": {
+          "name": "coverage_percent",
+          "type": "numeric(5, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "freshness_status": {
+          "name": "freshness_status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "symbol_evidence_snapshots_analysis_run_id_analysis_runs_id_fk": {
+          "name": "symbol_evidence_snapshots_analysis_run_id_analysis_runs_id_fk",
+          "tableFrom": "symbol_evidence_snapshots",
+          "tableTo": "analysis_runs",
+          "columnsFrom": [
+            "analysis_run_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "symbol_evidence_snapshots_instrument_id_instruments_id_fk": {
+          "name": "symbol_evidence_snapshots_instrument_id_instruments_id_fk",
+          "tableFrom": "symbol_evidence_snapshots",
+          "tableTo": "instruments",
+          "columnsFrom": [
+            "instrument_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "symbol_evidence_snapshots_market_observation_id_market_observations_id_fk": {
+          "name": "symbol_evidence_snapshots_market_observation_id_market_observations_id_fk",
+          "tableFrom": "symbol_evidence_snapshots",
+          "tableTo": "market_observations",
+          "columnsFrom": [
+            "market_observation_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "symbol_evidence_snapshots_market_context_snapshot_id_market_context_snapshots_id_fk": {
+          "name": "symbol_evidence_snapshots_market_context_snapshot_id_market_context_snapshots_id_fk",
+          "tableFrom": "symbol_evidence_snapshots",
+          "tableTo": "market_context_snapshots",
+          "columnsFrom": [
+            "market_context_snapshot_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "symbol_evidence_snapshots_sector_context_snapshot_id_sector_context_snapshots_id_fk": {
+          "name": "symbol_evidence_snapshots_sector_context_snapshot_id_sector_context_snapshots_id_fk",
+          "tableFrom": "symbol_evidence_snapshots",
+          "tableTo": "sector_context_snapshots",
+          "columnsFrom": [
+            "sector_context_snapshot_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "symbol_evidence_snapshots_run_instrument_type": {
+          "name": "symbol_evidence_snapshots_run_instrument_type",
+          "nullsNotDistinct": false,
+          "columns": [
+            "analysis_run_id",
+            "instrument_id",
+            "snapshot_type"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "symbol_evidence_snapshots_status_check": {
+          "name": "symbol_evidence_snapshots_status_check",
+          "value": "\"symbol_evidence_snapshots\".\"evidence_status\" in ('complete', 'incomplete')"
+        },
+        "symbol_evidence_snapshots_freshness_check": {
+          "name": "symbol_evidence_snapshots_freshness_check",
+          "value": "\"symbol_evidence_snapshots\".\"freshness_status\" in ('current', 'stale', 'superseded')"
+        },
+        "symbol_evidence_snapshots_score_range_check": {
+          "name": "symbol_evidence_snapshots_score_range_check",
+          "value": "\"symbol_evidence_snapshots\".\"technical_evidence_score\" is null or (\"symbol_evidence_snapshots\".\"technical_evidence_score\" >= 0 and \"symbol_evidence_snapshots\".\"technical_evidence_score\" <= 100)"
+        },
+        "symbol_evidence_snapshots_coverage_range_check": {
+          "name": "symbol_evidence_snapshots_coverage_range_check",
+          "value": "\"symbol_evidence_snapshots\".\"coverage_percent\" >= 0 and \"symbol_evidence_snapshots\".\"coverage_percent\" <= 100"
+        },
+        "symbol_evidence_snapshots_incomplete_has_no_score_check": {
+          "name": "symbol_evidence_snapshots_incomplete_has_no_score_check",
+          "value": "\"symbol_evidence_snapshots\".\"evidence_status\" <> 'incomplete' or \"symbol_evidence_snapshots\".\"technical_evidence_score\" is null"
+        }
+      },
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
