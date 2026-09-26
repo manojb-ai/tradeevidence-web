@@ -181,10 +181,20 @@ data, backed up, restored, and queried only through approved boundaries.
   CRUD for `instruments`/`sectors`. Ten tests run the real generated migration
   against an in-memory pglite database. Not wired into application code yet
   — that is Epic E4's job.
-- **Deferred, not yet started:** the real Supabase project (an account-level
-  action, deliberately deferred — see the `architect-pm-handoff-assessment.md`
-  Project doc), separate test/staging/production databases and
-  least-privileged roles, encrypted backups and point-in-time recovery,
+- **2026-09-26 — Real Supabase project provisioned and migration verified
+  (PR #7):** created the project's first real Postgres database (Supabase
+  Free tier, project `tradeevidence-dev`) and ran the generated migration
+  against it end to end — the one integration point pglite cannot exercise,
+  since Supabase's transaction-mode connection pooler (port 6543) requires
+  `{ prepare: false }` in the `postgres` client. Along the way, fixed a real
+  gap in `scripts/run-migrations.mjs`: run directly via `node` (not through
+  Next.js), it never actually loaded `.env.local`, despite its own error
+  message saying to put `DATABASE_URL` there — fixed by adding Node's
+  built-in `--env-file-if-exists=.env.local` flag to the `db:migrate` script
+  rather than adding a new dependency. All 13 tables plus Drizzle's own
+  migration-tracking schema are confirmed present in the real database.
+- **Deferred, not yet started:** separate test/staging/production databases
+  and least-privileged roles, encrypted backups and point-in-time recovery,
   restore rehearsal, and this epic's user/watchlist domain slice.
 
 ### Epic E3 — Identity, sessions, and user isolation
