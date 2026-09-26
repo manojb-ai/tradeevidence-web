@@ -20,16 +20,22 @@
     "test:web:watch": "vitest",
     "test:analytics": "python -m unittest discover -s analytics-engine/tests -v",
     "docs:check": "node scripts/check-markdown-links.mjs",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node scripts/run-migrations.mjs",
     "secrets:check": "node scripts/check-tracked-secrets.mjs",
     "validate": "npm run format:check && npm run lint && npm run typecheck && npm run test:web && npm run test:analytics && npm run docs:check && npm run secrets:check && npm run build"
   },
   "dependencies": {
+    "drizzle-orm": "^0.45.3",
     "next": "16.3.3",
+    "postgres": "^3.4.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "uuidv7": "^1.2.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.1",
@@ -38,6 +44,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.1.1",
+    "drizzle-kit": "^0.31.11",
     "eslint": "^9",
     "eslint-config-next": "16.3.3",
     "jsdom": "^30.0.1",
@@ -45,5 +52,11 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.11"
+  },
+  "allowScripts": {
+    "esbuild@0.18.20": true,
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.2": true,
+    "unrs-resolver@1.12.2": true
   }
 }

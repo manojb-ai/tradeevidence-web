@@ -12,12 +12,14 @@ describe("getServerEnv", () => {
     vi.stubEnv("TRADEEVIDENCE_SYMBOL_EVIDENCE_FILE", undefined);
     vi.stubEnv("TRADEEVIDENCE_INSTRUMENT_REFERENCE_FILE", undefined);
     vi.stubEnv("TRADEEVIDENCE_CONTEXT_ARTIFACT", undefined);
+    vi.stubEnv("DATABASE_URL", undefined);
 
     expect(getServerEnv()).toEqual({
       TRADEEVIDENCE_ANALYTICS_ARTIFACT: undefined,
       TRADEEVIDENCE_SYMBOL_EVIDENCE_FILE: undefined,
       TRADEEVIDENCE_INSTRUMENT_REFERENCE_FILE: undefined,
       TRADEEVIDENCE_CONTEXT_ARTIFACT: undefined,
+      DATABASE_URL: undefined,
     });
   });
 
