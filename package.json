@@ -21,7 +21,7 @@
     "test:analytics": "python -m unittest discover -s analytics-engine/tests -v",
     "docs:check": "node scripts/check-markdown-links.mjs",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "node scripts/run-migrations.mjs",
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/run-migrations.mjs",
     "secrets:check": "node scripts/check-tracked-secrets.mjs",
     "validate": "npm run format:check && npm run lint && npm run typecheck && npm run test:web && npm run test:analytics && npm run docs:check && npm run secrets:check && npm run build"
   },
