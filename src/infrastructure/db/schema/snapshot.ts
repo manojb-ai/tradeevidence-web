@@ -205,6 +205,10 @@ export const evidenceFactorResults = pgTable(
       table.symbolSnapshotId,
       table.factorCode,
     ),
-    checkEnum("evidence_factor_results_effect_check", table.effect, FACTOR_EFFECTS),
+    checkEnum(
+      "evidence_factor_results_effect_check",
+      table.effect,
+      FACTOR_EFFECTS,
+    ),
   ],
 );

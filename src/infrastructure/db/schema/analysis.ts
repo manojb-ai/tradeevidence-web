@@ -1,9 +1,4 @@
-import {
-  pgTable,
-  text,
-  uuid,
-  type AnyPgColumn,
-} from "drizzle-orm/pg-core";
+import { pgTable, text, uuid, type AnyPgColumn } from "drizzle-orm/pg-core";
 
 import { checkEnum, timestamptz } from "./columns";
 import { universeVersions } from "./universe";
@@ -70,7 +65,9 @@ export const analysisRuns = pgTable(
     failureStage: text("failure_stage"),
     failureCategory: text("failure_category"),
   },
-  (table) => [checkEnum("analysis_runs_status_check", table.status, RUN_STATUSES)],
+  (table) => [
+    checkEnum("analysis_runs_status_check", table.status, RUN_STATUSES),
+  ],
 );
 
 export const publicationPointers = pgTable("publication_pointers", {

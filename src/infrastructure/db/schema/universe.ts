@@ -44,5 +44,10 @@ export const universeVersions = pgTable(
     contentFingerprint: text("content_fingerprint").notNull().unique(),
     createdAt: timestamptz("created_at").notNull(),
   },
-  (table) => [unique("universe_versions_universe_id_version").on(table.universeId, table.version)],
+  (table) => [
+    unique("universe_versions_universe_id_version").on(
+      table.universeId,
+      table.version,
+    ),
+  ],
 );
