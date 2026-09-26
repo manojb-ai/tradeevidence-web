@@ -161,6 +161,32 @@ Capabilities and features:
 Exit gate: a clean database can be created from zero, seeded with sanitized
 data, backed up, restored, and queried only through approved boundaries.
 
+**Progress log:**
+
+- **2026-09-26 — Schema and migration (PR #4):** implemented the approved
+  `MVP-Data-Schema.md` schema for the analytical-run + reference domain slice
+  (13 tables across the reference, universe, market-data, analytical-run, and
+  analytical-snapshot domains) as Drizzle ORM table definitions, generated the
+  first SQL migration (`drizzle-kit generate`), and verified it against the
+  real installed toolchain (`npm run typecheck`, `npm run validate`) on
+  Manoj's machine. Chose Drizzle ORM + drizzle-kit + `postgres` (postgres.js,
+  for Supabase's pooled-connection driver requirements) and
+  `@electric-sql/pglite` (an embedded, WASM Postgres) as the test database —
+  the AI's own working environment has no Docker or local Postgres, so pglite
+  lets tests run real SQL without either.
+- **2026-09-26 — Repository layer (PR #5):** built a status-pipeline-enforcing
+  repository for `analysis_runs` (generated -> staged -> validated -> approved
+  -> published, with a transactional publish that repoints a channel's
+  `publication_pointers` row), a read-only publication-pointer lookup, and
+  CRUD for `instruments`/`sectors`. Ten tests run the real generated migration
+  against an in-memory pglite database. Not wired into application code yet
+  — that is Epic E4's job.
+- **Deferred, not yet started:** the real Supabase project (an account-level
+  action, deliberately deferred — see the `architect-pm-handoff-assessment.md`
+  Project doc), separate test/staging/production databases and
+  least-privileged roles, encrypted backups and point-in-time recovery,
+  restore rehearsal, and this epic's user/watchlist domain slice.
+
 ### Epic E3 — Identity, sessions, and user isolation
 
 **Outcome:** a user can securely access TradeEvidence and only their records.
