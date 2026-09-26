@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 import type { CandidatePublication } from "@/src/domain/analytical-publication";
 
 import { parseArtifact } from "./file-candidate-publication";
+import { getServerEnv } from "@/src/infrastructure/config/env";
 
 /**
  * Loads the market/sector context publication: the same Evidence Engine v2
@@ -13,7 +14,7 @@ import { parseArtifact } from "./file-candidate-publication";
  * null rather than falling back to an illustrative fixture.
  */
 export function loadContextPublication(
-  configuredPath = process.env.TRADEEVIDENCE_CONTEXT_ARTIFACT,
+  configuredPath = getServerEnv().TRADEEVIDENCE_CONTEXT_ARTIFACT,
 ): CandidatePublication | null {
   if (!configuredPath) return null;
 

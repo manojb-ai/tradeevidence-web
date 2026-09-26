@@ -361,3 +361,79 @@ Acceptance progress:
   and review conversations resolved, enforces linear squash/rebase history, and
   blocks deletion and force pushes. Repository administrators retain an
   emergency bypass; normal development uses pull requests.
+
+### Runtime Operations - 2026-09-26
+
+Implemented:
+
+- added a typed, validated server environment module
+  (`src/infrastructure/config/env.ts`, zod-backed) replacing four scattered
+  `process.env.TRADEEVIDENCE_*` reads across the file-backed publication
+  adapters; a set-but-malformed value now fails fast with a clear message
+  instead of surfacing as a downstream file-system or parsing error;
+- added a committed `.env.example` naming every current variable (four
+  publication paths, three feature flags) with no values or credentials;
+- added server-owned feature flags with no client-side override
+  (`src/infrastructure/config/flags.ts`): `marketContextEnabled`,
+  `aiEnabled`, `exportsEnabled`, each documented with an owner, purpose,
+  default, and removal/review condition. `marketContextEnabled` and
+  `aiEnabled` default off per AC-09; the homepage's Market & Sector Snapshot
+  (shipped experimentally in the prior session, previously unconditional)
+  is now gated behind `marketContextEnabled` — off by default for a fresh
+  checkout, staging, or production, re-enabled locally today only via the
+  founder's own gitignored `.env.local`;
+- added `/api/health` (`app/api/health/route.ts`): liveness (`?check=live`)
+  reports only that the process can respond; readiness (default) additionally
+  confirms configuration parses and, if a candidate artifact path is
+  explicitly configured, that it resolves — an *unconfigured* artifact is
+  not a readiness failure, since the app deliberately falls back to an
+  illustrative fixture in that case. Both report a non-sensitive release
+  identity (Vercel's own `VERCEL_GIT_COMMIT_SHA`/`VERCEL_ENV`, falling back
+  to an explicit `local`/`development` identity off Vercel) and no
+  infrastructure or secret detail;
+- added `proxy.ts` (Next.js's "proxy" convention, the 16.3 successor to
+  "middleware"): every request receives a support-safe
+  `x-correlation-id` (reused from a well-formed incoming header, otherwise
+  minted), echoed on the response so a support report can be matched to a
+  specific request/response pair; and
+- added focused tests for the new env/flags modules and three new homepage
+  tests proving the Market & Sector Snapshot stays hidden by default even
+  with a context artifact configured, and only renders once its flag is
+  explicitly enabled.
+
+Deliberately not done in this session, and why:
+
+- **Structured logging is not yet attached to the correlation ID.** Section
+  10's open question ("Which observability provider, if any, is needed for
+  this slice?") is still open; the correlation-ID header exists and is
+  ready to log against once a provider is chosen, per AC-08's "logs and
+  responses can be correlated safely."
+- **The general `publication` kill switch named in this plan's Epic E1
+  scope was not added.** Unlike the experimental Market & Sector Snapshot,
+  the core deterministic evidence publication is the shipping product, not
+  an incomplete feature — flipping it off has no designed degraded-state
+  UI yet. Adding a switch with no safe "off" behavior would be a kill
+  switch in name only; tracked as a follow-up once a degraded-state design
+  exists.
+- No native route-handler or middleware test coverage yet — this repo's
+  test setup is component/unit-level (Vitest + jsdom); `/api/health` and
+  `proxy.ts` were verified by local manual exercise and by the
+  existing `npm run validate` gates (format, lint, strict type-check).
+  Real coverage for these arrives with Playwright, already planned "no
+  later than the first public-evidence slice."
+
+Validation evidence: formatting, ESLint, and strict TypeScript pass; the
+repository's 124-file Markdown-link check and tracked-secret baseline check
+pass. Full `npm run validate` (web tests, analytics tests, production build)
+to be confirmed on the founder's own Node 24/npm 11 toolchain before merge,
+per this slice's own declared toolchain baseline.
+
+Acceptance progress:
+
+- AC-07 and AC-09 are satisfied.
+- AC-08 is partially satisfied: liveness/readiness/release-identity and
+  correlation-ID propagation are done; correlation-ID-to-log-line
+  attachment awaits an observability provider decision.
+- AC-10 through AC-12 (staging deployment, rollback exercise, closure)
+  remain future sessions and require the founder's staging/hosting vendor
+  choice (Section 10) first.

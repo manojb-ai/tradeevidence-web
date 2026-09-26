@@ -11,6 +11,7 @@ import {
   demoOpportunities,
   demoSnapshot,
 } from "@/src/features/opportunities/demo-data";
+import { getServerEnv } from "@/src/infrastructure/config/env";
 
 const DEFAULT_ARTIFACT =
   "analytics-engine/output/2026-09-01-candidate-2/evidence_v2_20260902_024311Z.json";
@@ -22,7 +23,7 @@ const DEFAULT_INSTRUMENT_REFERENCE =
 type JsonRecord = Record<string, unknown>;
 
 export function loadCandidatePublication(
-  configuredPath = process.env.TRADEEVIDENCE_ANALYTICS_ARTIFACT,
+  configuredPath = getServerEnv().TRADEEVIDENCE_ANALYTICS_ARTIFACT,
 ): CandidatePublication {
   const artifactPath = resolve(
     /* turbopackIgnore: true */
@@ -197,12 +198,13 @@ function enrichPublication(
   publication: CandidatePublication,
 ): CandidatePublication {
   const useSeptemberDefaults = publication.marketDate === "2026-09-01";
+  const serverEnv = getServerEnv();
   const symbolPath = optionalInputPath(
-    process.env.TRADEEVIDENCE_SYMBOL_EVIDENCE_FILE,
+    serverEnv.TRADEEVIDENCE_SYMBOL_EVIDENCE_FILE,
     useSeptemberDefaults ? DEFAULT_SYMBOL_EVIDENCE : undefined,
   );
   const referencePath = optionalInputPath(
-    process.env.TRADEEVIDENCE_INSTRUMENT_REFERENCE_FILE,
+    serverEnv.TRADEEVIDENCE_INSTRUMENT_REFERENCE_FILE,
     useSeptemberDefaults ? DEFAULT_INSTRUMENT_REFERENCE : undefined,
   );
 

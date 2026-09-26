@@ -7,6 +7,7 @@ import {
   type FounderReviewRecord,
 } from "@/src/application/get-founder-review";
 import { getMarketContext } from "@/src/application/get-market-context";
+import { getFeatureFlags } from "@/src/infrastructure/config/flags";
 import {
   reviewIdentity,
   workspaceHref,
@@ -36,7 +37,11 @@ export default function Home() {
   );
   const breadth = getBreadth(review.all);
   const columns = getOpportunityColumns(review.all);
-  const marketContext = getMarketContext();
+  const { marketContextEnabled } = getFeatureFlags();
+  // AC-09 (Vertical Slice 01): experimental analytics publication is
+  // disabled by default through server-owned configuration, and no
+  // client-side input can enable it.
+  const marketContext = marketContextEnabled ? getMarketContext() : null;
 
   return (
     <main className="min-h-screen bg-[#07111f] text-slate-100">

@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 ### Added
+- Validated, typed server environment configuration (`src/infrastructure/config/env.ts`) replacing scattered `process.env` reads, with a committed `.env.example` naming every variable with no values or credentials (Epic E1, AC-07).
+- Server-owned feature flags with no client-side override (`src/infrastructure/config/flags.ts`): the experimental homepage Market & Sector Snapshot and the not-yet-built "Ask TradeEvidence" and data-export capabilities now default off, per Vertical Slice 01 AC-09. The Market & Sector Snapshot can be re-enabled with `TRADEEVIDENCE_FLAG_MARKET_CONTEXT_ENABLED=true`.
+- Operational identity: `/api/health` liveness/readiness endpoint reporting release identity (commit SHA, environment) with no infrastructure or secret detail, and a support-safe `x-correlation-id` on every request via `proxy.ts` (Next.js's "proxy" convention; Epic E1, AC-08).
 - Local Market & Sector Snapshot on the founder Homepage: the existing Evidence Engine v2 candidate run against the approved 14-symbol broad-market and sector context export, rendered as a compact sector heat map and broad-market summary, plus the Highest Conviction Opportunities section regrouped into YES/WATCH/NO columns. Local-only and experimental; not part of the published analytics contract.
 - Approved Homepage direct-symbol lookup requirement for opening same-run,
   already-published evidence, with explicit invalid, absent, incomplete, and
