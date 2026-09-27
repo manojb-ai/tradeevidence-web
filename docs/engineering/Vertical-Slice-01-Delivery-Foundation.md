@@ -437,3 +437,38 @@ Acceptance progress:
 - AC-10 through AC-12 (staging deployment, rollback exercise, closure)
   remain future sessions and require the founder's staging/hosting vendor
   choice (Section 10) first.
+
+### Structured Logging and Staging Decision - 2026-09-26
+
+Implemented:
+
+- added `src/infrastructure/observability/logger.ts`: structured JSON
+  logging (`logInfo`/`logWarn`/`logError`), one object per line to
+  stdout/stderr, captured natively by Vercel's Runtime Logs with no
+  vendor integration and no cost;
+- wired it into `/api/health`'s readiness path, attaching the same
+  correlation ID the response already carries (reused from `proxy.ts`,
+  not re-minted), so a log line and a captured response can be matched
+  to the same request; and
+- added deterministic tests for the logger (level dispatch, JSON shape,
+  default fields).
+
+Founder decision (2026-09-26): the persistent-staging vendor choice
+(Section 10's first open question) is deliberately deferred to
+beta-invite time (Epic E11), not resolved today. Vercel's Hobby plan was
+confirmed, via its current Fair Use Guidelines, to define commercial
+usage by the *purpose* of the project ("financial gain of anyone
+involved in any part of the production of the project"), not by whether
+a given deployment is public-facing — so a private, internal-only
+staging deployment would not sidestep the Pro requirement. Given that,
+AC-10 through AC-12 remain open by explicit choice, not oversight, until
+the founder brings the Vercel Pro upgrade forward.
+
+Acceptance progress:
+
+- AC-08 is now fully satisfied.
+- AC-10 through AC-12 remain open, explicitly deferred to Epic E11
+  (beta-invite time) per the founder decision above.
+- Nine of twelve acceptance criteria are satisfied; the remaining three
+  are a single, well-understood block gated on one founder/vendor
+  decision, not open engineering work.

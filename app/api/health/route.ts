@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 import { NextResponse } from "next/server";
 
 import { getServerEnv } from "@/src/infrastructure/config/env";
+import { logInfo, logWarn } from "@/src/infrastructure/observability/logger";
 
 // Health checks must always run live: never cache, never prerender.
 export const dynamic = "force-dynamic";
@@ -73,16 +74,34 @@ function checkAnalyticsArtifactConfig(): ReadinessCheck {
 export function GET(request: Request) {
   const url = new URL(request.url);
   const mode = url.searchParams.get("check");
+  // Set by proxy.ts on every request, including this one — reusing it
+  // here (rather than minting a second ID) is what lets a support report
+  // (which cites the response header) be matched to the log line below
+  // for the same request (Epic E1, AC-08: "logs and responses can be
+  // correlated safely").
+  const correlationId = request.headers.get("x-correlation-id") ?? null;
 
   // Liveness: the process can respond at all. Never inspects
   // configuration or the file system, so it can't false-negative on a
-  // dependency problem — that's what readiness is for.
+  // dependency problem — that's what readiness is for. Deliberately not
+  // logged: liveness is meant to be pinged frequently by uptime
+  // monitors, and logging every ping would be noise, not signal.
   if (mode === "live") {
     return NextResponse.json({ status: "ok", release: releaseIdentity() });
   }
 
   const analyticsArtifact = checkAnalyticsArtifactConfig();
   const ready = analyticsArtifact.ok;
+
+  if (ready) {
+    logInfo("health.readiness", { correlationId, status: "ok" });
+  } else {
+    logWarn("health.readiness", {
+      correlationId,
+      status: "degraded",
+      reason: analyticsArtifact.detail,
+    });
+  }
 
   return NextResponse.json(
     {
